@@ -3,14 +3,25 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+// PAGES ROUTES
 Route::get('/', function () {
     return view('welcome');
 });
 
+// DASHBOARD ROUTES
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/admin/dashboard', function () {
+    return view('admin');
+})->middleware(['auth', 'verified'])->name('admin');
 
+Route::get('/super-admin/dashboard', function () {
+    return view('super-admin');
+})->middleware(['auth', 'verified'])->name('super-admin');
+
+
+// PROFILE ROUTES
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
