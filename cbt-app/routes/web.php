@@ -11,14 +11,14 @@ Route::get('/', function () {
 // DASHBOARD ROUTES
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified','rolemanager:dashboard'])->name('dashboard');
 Route::get('/admin/dashboard', function () {
     return view('admin');
-})->middleware(['auth', 'verified'])->name('admin');
+})->middleware(['auth', 'verified','rolemanager:admin'])->name('admin');
 
 Route::get('/super-admin/dashboard', function () {
     return view('super-admin');
-})->middleware(['auth', 'verified'])->name('super-admin');
+})->middleware(['auth', 'verified','rolemanager:super-admin'])->name('super-admin');
 
 
 // PROFILE ROUTES
