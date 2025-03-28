@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('exam_histories', function (Blueprint $table) {
             $table->id();
+              $table->unsignedBigInteger('user_id');
+        $table->unsignedBigInteger('subject_id');
+        $table->integer('year');
+        $table->integer('score');
+        $table->integer('total_questions');
+        $table->timestamp('completed_at');
             $table->timestamps();
         });
     }

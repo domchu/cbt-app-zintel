@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('question_uploads', function (Blueprint $table) {
             $table->id();
+              $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('subject_id')->constrained()->onDelete('cascade');
+            $table->string('file_path'); // File location
+            $table->enum('status', ['pending', 'approved'])->default('pending');
             $table->timestamps();
         });
     }

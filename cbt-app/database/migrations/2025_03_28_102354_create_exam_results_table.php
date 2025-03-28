@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('exam_results', function (Blueprint $table) {
             $table->id();
+             $table->foreignId('exam_id')->constrained()->onDelete('cascade');
+            $table->integer('total_questions');
+            $table->integer('correct_answers');
+            $table->integer('wrong_answers');
+            $table->decimal('percentage', 5, 2); // Score percentage
+            $table->enum('status', ['pass', 'fail']);
             $table->timestamps();
         });
     }
