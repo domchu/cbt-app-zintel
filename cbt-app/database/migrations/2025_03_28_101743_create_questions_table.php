@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
            $table->unsignedBigInteger('subject_id');
+            $table->foreignId('exam_id')->constrained()->onDelete('cascade');
+    $table->foreignId('question_id')->constrained()->onDelete('cascade');
         $table->integer('year');
         $table->text('question');
         $table->string('option_a');

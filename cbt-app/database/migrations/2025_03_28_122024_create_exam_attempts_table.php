@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exams', function (Blueprint $table) {
+        Schema::create('exam_attempts', function (Blueprint $table) {
             $table->id();
              $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('subject_id')->constrained()->onDelete('cascade');
-            $table->integer('score')->default(0); // Score obtained
-            $table->enum('status', ['pending', 'completed'])->default('pending');
-             $table->string('title');
-    $table->integer('duration'); // in minutes
+    $table->foreignId('exam_id')->constrained()->onDelete('cascade');
+    $table->json('answers'); // Stores selected answers
+    $table->integer('score')->nullable();
+    $table->boolean('completed')->default(false);
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exams');
+        Schema::dropIfExists('exam_attempts');
     }
 };

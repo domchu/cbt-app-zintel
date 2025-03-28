@@ -20,6 +20,10 @@ return new class extends Migration
         $table->integer('total_questions');
         $table->timestamp('completed_at');
             $table->timestamps();
+            
+        // Foreign keys
+        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
         });
     }
 
