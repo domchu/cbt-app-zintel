@@ -15,3 +15,14 @@
         </div>
     </div>
 </x-app-layout>
+
+
+
+{{-- students --}}
+{{-- exams --}}
+{{-- questions --}}
+{{-- question_uploads --}}
+{{-- exam_results --}}
+{{-- user_answers --}}
+{{-- options --}}
+{{-- subjects  --}}
