@@ -13,13 +13,18 @@ return new class extends Migration
     {
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
-             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('subject_id')->constrained()->onDelete('cascade');
+                $table->integer('year');
             $table->integer('score')->default(0); // Score obtained
             $table->enum('status', ['pending', 'completed'])->default('pending');
-             $table->string('title');
-    $table->integer('duration'); // in minutes
+            $table->string('title');
+            $table->integer('duration'); // in minutes
+             $table->json('user_answers')->nullable();
             $table->timestamps();
+
+             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
         });
     }
 

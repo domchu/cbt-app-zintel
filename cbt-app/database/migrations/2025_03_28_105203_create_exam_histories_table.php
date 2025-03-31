@@ -13,17 +13,20 @@ return new class extends Migration
     {
         Schema::create('exam_histories', function (Blueprint $table) {
             $table->id();
-              $table->unsignedBigInteger('user_id');
-        $table->unsignedBigInteger('subject_id');
-        $table->integer('year');
-        $table->integer('score');
-        $table->integer('total_questions');
-        $table->timestamp('completed_at');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('subject_id');
+            $table->integer('year');
+            $table->integer('score');
+            $table->integer('total_questions');
+            $table->timestamp('completed_at');
             $table->timestamps();
-            
-        // Foreign keys
-        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-        $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+                
+            // Foreign keys
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+//store Exam history
+               $table->enum('status', ['ongoing', 'completed'])->default('ongoing');
+        $table->json('user_answers')->nullable(); // Store user responses
         });
     }
 
