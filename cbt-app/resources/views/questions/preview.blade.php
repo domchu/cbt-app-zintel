@@ -3,12 +3,13 @@
 @section('content')
     <div class="container">
         <h2>Preview Uploaded Questions</h2>
+        <h2>Preview, Edit, or Delete Questions Before Saving</h2>
 
-        <form action="{{ route('questions.importConfirmed') }}" method="POST">
+        <form id="confirmForm" action="{{ route('questions.importConfirmed') }}" method="POST">
             @csrf
             <input type="hidden" name="questions" value="{{ json_encode($questions) }}">
 
-            <table class="table">
+            <table class="table" id="questionsTable">
                 <thead>
                     <tr>
                         <th>Subject</th>
@@ -20,11 +21,12 @@
                         <th>Option D</th>
                         <th>Option E</th>
                         <th>Correct Answer</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($questions as $index => $question)
-                        <tr>
+                        <tr id="row-{{ $index }}">
                             <td>
                                 <input type="text" name="questions[{{ $index }}][subject]" class="form-control"
                                     value="{{ $question['subject'] }}" required>
@@ -62,13 +64,44 @@
                                 </select>
                             </td>
                         </tr>
+                        <td>
+                            <button type="button" class="btn btn-danger btn-sm"
+                                onclick="deleteRow({{ $index }})">Delete</button>
+                        </td>
                     @endforeach
                 </tbody>
             </table>
 
             <button type="submit" class="btn btn-success">Confirm & Save</button>
         </form>
+            <button id="undoDeleteBtn" class="btn btn-warning mt-3" style="display:none;" onclick="undoDelete()">Undo Last Delete</button>
 
         <a href="{{ route('questions.upload') }}" class="btn btn-secondary">Cancel</a>
     </div>
 @endsection
+<script>
+    let deletedQuestions = [];
+
+    function deleteRow(index) {
+        let row = document.getElementById("row-" + index);
+        if (row) {
+            deletedQuestions.push({ index: index, html: row.outerHTML });
+            row.remove();
+            document.getElementById("undoDeleteBtn").style.display = "block";
+        }
+    }
+
+    function undoDelete() {
+        if (deletedQuestions.length > 0) {
+            let lastDeleted = deletedQuestions.pop();
+            let tableBody = document.querySelector("#questionsTable tbody");
+            let tempDiv = document.createElement("div");
+            tempDiv.innerHTML = lastDeleted.html;
+            tableBody.appendChild(tempDiv.firstElementChild);
+
+            if (deletedQuestions.length === 0) {
+                document.getElementById("undoDeleteBtn").style.display = "none";
+            }
+        }
+    }
+</script>
