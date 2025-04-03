@@ -17,11 +17,11 @@
 
 <body class="sb-nav-fixed">
 
-    @include('layouts.partial.navbar')
+    @include('layouts.partials.navbar')
 
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-            @include('layouts.partial.sidebar')
+            @include('layouts.partials.sidebar')
         </div>
         <div id="layoutSidenav_content">
             <main>
@@ -29,7 +29,7 @@
                     @yield('content')
                 </div>
             </main>
-            @include('layouts.partial.footer')
+            @include('layouts.partials.footer')
         </div>
     </div>
 

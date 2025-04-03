@@ -23,7 +23,6 @@
                      <hr class="dropdown-divider" />
                  </li>
                  <li>
-                     <a class="dropdown-item" href="#!">Logout</a>
 
                      <!-- Authentication -->
                      <form method="POST" action="{{ route('logout') }}">
