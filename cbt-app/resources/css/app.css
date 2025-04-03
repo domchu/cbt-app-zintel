@@ -1,3 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/*  @import 'bootstrap/dist/css/bootstrap.min.css';
+*/
+
+
+/* DARK MODE STYLES */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.dark-mode .navbar {
+    background-color: #333;
+}
+
+.dark-mode .card {
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+.dark-mode .btn {
+    background-color: #444;
+    color: #fff;
+}
+
+.dark-mode .form-control {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
