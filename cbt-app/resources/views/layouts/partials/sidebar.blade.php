@@ -12,15 +12,16 @@
              </a>
 
 
-{{-- QUESTIONS --}}
-             <div class="sb-sidenav-menu-heading">Interface</div>
+             {{-- QUESTIONS --}}
+             <div class="sb-sidenav-menu-heading">Examination</div>
              <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseQuestions"
                  aria-expanded="false" aria-controls="collapseQuestions">
                  <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                  Questions
                  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
              </a>
-             <div class="collapse" id="collapseQuestions" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+             <div class="collapse" id="collapseQuestions" aria-labelledby="headingOne"
+                 data-bs-parent="#sidenavAccordion">
                  <nav class="sb-sidenav-menu-nested nav">
                      <a class="nav-link" href="{{ url('admin/questions/create') }}">Add Questions</a>
                      <a class="nav-link" href="{{ url('admin/questions') }}">View Questions</a>
@@ -28,14 +29,15 @@
              </div>
 
              {{-- ACADEMICS --}}
-             <div class="sb-sidenav-menu-heading">Interface</div>
+             <div class="sb-sidenav-menu-heading">ACADEMICS</div>
              <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseStudents"
                  aria-expanded="false" aria-controls="collapseStudents">
                  <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                  Students
                  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
              </a>
-             <div class="collapse" id="collapseStudents" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+             <div class="collapse" id="collapseStudents" aria-labelledby="headingTwo"
+                 data-bs-parent="#sidenavAccordion">
                  <nav class="sb-sidenav-menu-nested nav">
                      <a class="nav-link" href="{{ url('admin/students/create') }}">Add Students</a>
                      <a class="nav-link" href="{{ url('admin/students') }}">View Students</a>
