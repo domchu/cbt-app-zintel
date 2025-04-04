@@ -53,7 +53,7 @@
                
                    
 
-                   MAIN
+                <main>MAIN</main>
 
                    
                    

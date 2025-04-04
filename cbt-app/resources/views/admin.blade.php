@@ -21,7 +21,7 @@
 
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-            @include('layouts.partials.sidebar')
+        @include('layouts.partials.admin-sidebar')
         </div>
         <div id="layoutSidenav_content">
             <main>
