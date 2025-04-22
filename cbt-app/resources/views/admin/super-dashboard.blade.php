@@ -1,7 +1,7 @@
 @extends('layouts.super-admin')
 
 @section('content')
-    <h1>I am Super dashboard</h1>
+   
     <h1 class="mt-4">Super Dashboard</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">Super Dashboard</li>
