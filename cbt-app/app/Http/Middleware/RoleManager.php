@@ -14,7 +14,7 @@ class RoleManager
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next,$role): Response
+    public function handle(Request $request, Closure $next, $role): Response
     {
 
         if(!Auth::check()){
@@ -33,20 +33,20 @@ class RoleManager
                     return $next($request);
                 }
                 break;
-                     case 'dashboard':
+            case 'dashboard':
                 if($authUserRole == 2){
                     return $next($request);
                 }
                 break;
         }
         switch ($authUserRole) {
-            case '0':
+            case 0:
                 return redirect()->route('super-admin');
                
-            case '1':
+            case 1:
                 return redirect()->route('admin');
               
-            case '2':
+            case 2:
                 return redirect()->route('dashboard');
                
             

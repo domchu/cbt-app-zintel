@@ -4,7 +4,7 @@
              <div class="sb-sidenav-menu-heading">Core</div>
              <a class="nav-link" href="{{ url('admin/dashboard') }}">
                  <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                 Dashboard
+                 Dashboard Admin
              </a>
              <a class="nav-link" href="{{ url('admin/academics') }}">
                  <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
@@ -100,6 +100,6 @@
      </div>
      <div class="sb-sidenav-footer">
          <div class="small">Logged in as:</div>
-         Start Bootstrap
+        Administrator
      </div>
  </nav>

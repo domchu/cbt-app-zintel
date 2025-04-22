@@ -2,9 +2,9 @@
      <div class="sb-sidenav-menu">
          <div class="nav">
              <div class="sb-sidenav-menu-heading">Core</div>
-             <a class="nav-link" href="{{ url('admin/dashboard') }}">
+             <a class="nav-link" href="{{ url('admin/super-dashboard') }}">
                  <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                 Dashboard
+                 Dashboard Super
              </a>
              <a class="nav-link" href="{{ url('admin/academics') }}">
                  <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
@@ -101,6 +101,6 @@
      </div>
      <div class="sb-sidenav-footer">
          <div class="small">Logged in as:</div>
-         Start Bootstrap
+         Super  Administrator
      </div>
  </nav>

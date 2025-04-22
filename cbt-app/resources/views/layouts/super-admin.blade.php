@@ -15,16 +15,14 @@
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 
-{{-- <body class="sb-nav-fixed">
+<body class="sb-nav-fixed">
 
     @include('layouts.partials.navbar')
 
     <div id="layoutSidenav">
-
         <div id="layoutSidenav_nav">
-            @include('layouts.partials.admin-sidebar')
+            @include('layouts.partials.super-sidebar')
         </div>
-
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
@@ -33,8 +31,6 @@
             </main>
             @include('layouts.partials.footer')
         </div>
-
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
@@ -43,6 +39,20 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
     <script src="{{ asset('admin/js/datatables-simple-demo.js') }}"></script>
-</body> --}}
+</body>
 
 </html>
+
+
+
+
+{{-- students --}}
+{{-- exams --}}
+{{-- questions --}}
+{{-- question_uploads --}}
+{{-- exam_results --}}
+{{-- user_answers --}}
+{{-- options --}}
+{{-- subjects  --}}
+
+{{-- Package phpoffice/phpexcel is abandoned, you should avoid using it. Use phpoffice/phpspreadsheet instead. --}}
