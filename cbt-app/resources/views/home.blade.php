@@ -18,21 +18,31 @@
         @endif
     </head>
     <body class="bg-[#fcfcfd] dark:bg-[#0a0a0a] text-[#1b1b18] flex items-center lg:justify-center min-h-screen flex-col">
-        <header class="w-full lg:max-w-full max-w-[100%] text-sm mb-6 not-has-[nav]:hidden">
+        <header class="w-full lg:max-w-full max-w-[100%] text-sm mb-6 not-has-[nav]:hidden ">
+          
             @if (Route::has('login'))
-                <nav class="flex items-center justify-end gap-4 bg-slate-900 text-white">
-                    @auth
-                        <a
-                            href="{{ url('/dashboard') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
-                        >
-                            Dashboard
-                        </a>
-                    @else
+                <nav class="flex items-center justify-between gap-4 bg-sky-900 text-white px-[10rem] py-3">
+                    <header >
+                        <ul class="flex gap-4">
+                            <li><a class="px-5 py-1.5 dark:text-[#EDEDEC] text-[#fff] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] font-semibold text-l leading-normal" href="mailto:info@cbtapp.com">Email: info@cbtapp.com</a></li>
+                            <li><a class=" px-5 py-1.5 dark:text-[#EDEDEC] text-[#fff] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] font-semibold text-l leading-normal" href="tel: +234 7034278995">Contact Us: (+234) 703-4278-995</a></li>
+                        </ul>
+                    </header>
+                      <header>
+
+                          @auth
+                          
+                              <a
+                                  href="{{ url('/dashboard') }}"
+                                  class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
+                              >
+                                  Dashboard
+                              </a>
+                          @else
                     
                         <a
                             href="{{ route('login') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#fff] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal"
+                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#fff] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] font-semibold text-l leading-normal"
                         >
                             Log in
                         </a>
@@ -40,17 +50,30 @@
                         @if (Route::has('register'))
                             <a
                                 href="{{ route('register') }}"
-                                class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#fff] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
+                                class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#fff] dark:border-[#3E3E3A] dark:hover:border-[#62605b] font-semibold text-l leading-normal">
                                 Register
                             </a>
                         @endif
+                      </header>
+
                     @endauth
                 </nav>
                 <nav>
-                    <ul>
-                        <li><a href="http://">Home</a></li>
-                    </ul>
-                </nav>
+                    <header class="flex justify-between text-center align-middle px-[10rem] py-4">
+                        <a href="/">
+                            <img src="./images/logo.png" alt="Brand Logo" sizes="50" width="150px" srcset="">
+                        </a>
+
+                        <ul class="flex">
+                            <li class="mr-4 font-semibold text-xl text-sky-900"><a href="/">Home</a></li>
+                            <li class="mr-4 font-semibold text-xl text-sky-900"><a href="/">About Us</a></li>
+                            <li class="mr-4 font-semibold text-xl text-sky-900"><a href="/">Gallery</a></li>
+                            <li class="mr-4 font-semibold text-xl text-sky-900"><a href="/">Pricing</a></li>
+                            <li class="mr-4 font-semibold text-xl text-sky-900"><a href="/">Contact Us</a></li>
+                            <li class="mr-4 font-semibold text-xl text-sky-900"><a href="/">Faq</a></li>
+                        </ul>
+                    </header>
+                </nav> 
             @endif
         </header>
         <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
