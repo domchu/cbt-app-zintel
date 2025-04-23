@@ -10,14 +10,15 @@ Route::get('/', function () {
 
 // DASHBOARD ROUTES
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('admin/dashboard');
 })->middleware(['auth', 'verified','rolemanager:dashboard'])->name('dashboard');
+
 Route::get('/admin/dashboard', function () {
-    return view('admin');
+    return view('admin/admin-dashboard');
 })->middleware(['auth', 'verified','rolemanager:admin'])->name('admin');
 
 Route::get('/super-admin/dashboard', function () {
-    return view('super-admin');
+    return view('admin/super-dashboard');
 })->middleware(['auth', 'verified','rolemanager:super-admin'])->name('super-admin');
 
 
@@ -28,4 +29,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Route::prefix('admin')->middleware('auth.admin')->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('admin.dashboard');
+//     })->name('admin.dashboard');
+// });
+
+
+
 require __DIR__.'/auth.php';
+
+require __DIR__.'/admin-auth.php';
