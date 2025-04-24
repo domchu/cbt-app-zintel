@@ -32,15 +32,23 @@ Route::middleware('auth')->group(function () {
 
 // PAGES ROUTES
 Route::get('/contact-us', function () {
-    return view('pages.contact');
+    return view('pages.contact-us');
+});
+Route::get('/about-us', function () {
+    return view('pages.about-us');
+});
+Route::get('/pricing', function () {
+    return view('pages.pricing');
+});
+Route::get('/gallery', function () {
+    return view('pages.gallery');
+});
+Route::get('/frequently-asked-questions', function () {
+    return view('pages.frequently-asked-questions');
 });
 
 
-// Route::prefix('admin')->middleware('auth.admin')->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('admin.dashboard');
-//     })->name('admin.dashboard');
-// });
+
 
 
 

@@ -66,11 +66,11 @@
 
                         <ul class="flex">
                             <li class="mr-4 font-semibold text-xl text-sky-900"><a href="/">Home</a></li>
-                            <li class="mr-4 font-semibold text-xl text-sky-900"><a href="/">About Us</a></li>
-                            <li class="mr-4 font-semibold text-xl text-sky-900"><a href="/">Gallery</a></li>
-                            <li class="mr-4 font-semibold text-xl text-sky-900"><a href="/">Pricing</a></li>
+                            <li class="mr-4 font-semibold text-xl text-sky-900"><a href={{ url('/about-us') }}>About Us</a></li>
+                            <li class="mr-4 font-semibold text-xl text-sky-900"><a href={{ url('/gallery') }}>Gallery</a></li>
+                            <li class="mr-4 font-semibold text-xl text-sky-900"><a href={{ url('/pricing') }}>Pricing</a></li>
                             <li class="mr-4 font-semibold text-xl text-sky-900"><a href={{ url('/contact-us') }}>Contact Us</a></li>
-                            <li class="mr-4 font-semibold text-xl text-sky-900"><a href="/">Faq</a></li>
+                            <li class="mr-4 font-semibold text-xl text-sky-900"><a href={{url('/frequently-asked-questions.')}}>Faq</a></li>
                         </ul>
                     </header>
                 </nav> 

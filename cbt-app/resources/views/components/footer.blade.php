@@ -49,10 +49,10 @@
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
                         <a href="{{ url('/privacy-policy') }}">Privacy Policy</a>
                     </li>
-                    <li
+                    {{-- <li
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
                         <a href="{{ url('/booking') }}">Consultation / Booking</a>
-                    </li>
+                    </li> --}}
                     <li
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
                         <a href="tel:+234 7034278995">+234 703 4278 995</a>
@@ -145,10 +145,10 @@
     </footer>
 </div>
 {{-- COPYRIGHT --}}
-<div class="w-full p-3 bg-white text-center text-sm text-primaryColor2">
-    <p class="text-lg font-medium ">Copyright &copy; Computer Base Test (CBT) 2025 | All rights reserved | Designed & Powered by <a
+<div class="w-full py-3 bg-white text-center text-sm text-primaryColor2">
+    <p class="text-xl ">Copyright &copy; Computer Base Test (CBT) 2025 | All rights reserved | Designed & Powered by <a
             href="https://www.bridgekode.com" target="_blank"
-            class="text-sky-800 pt-2 text-lg cursor-pointer font-medium">Bridgekode Technology</a></p>
+            class="text-sky-800 pt-2 text-xl cursor-pointer font-medium">Bridgekode Technology</a></p>
 </div>
 
 <script src="{{ asset('js/navbar.js') }}"></script>
