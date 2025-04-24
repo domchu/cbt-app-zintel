@@ -23,8 +23,8 @@
              <div class="collapse" id="collapseExam" aria-labelledby="headingOne"
                  data-bs-parent="#sidenavAccordion">
                  <nav class="sb-sidenav-menu-nested nav">
-                     <a class="nav-link" href="{{ url('admin/create') }}">Take Exams</a>
-                     <a class="nav-link" href="{{ url('admin') }}">Exams History</a>
+                     <a class="nav-link" href="{{ url('exam') }}">Take Exams</a>
+                     <a class="nav-link" href="{{ url('exam/history') }}">Exams History</a>
                  </nav>
              </div>
 
@@ -33,7 +33,7 @@
              <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseStudents"
                  aria-expanded="false" aria-controls="collapseStudents">
                  <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                 Students
+                 Students Info
                  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
              </a>
              <div class="collapse" id="collapseStudents" aria-labelledby="headingTwo"
@@ -41,6 +41,7 @@
                  <nav class="sb-sidenav-menu-nested nav">
                      <a class="nav-link" href="{{ url('admin/students/create') }}">Add Students</a>
                      <a class="nav-link" href="{{ url('admin/students') }}">View Students</a>
+                    
                     
                  </nav>
              </div>

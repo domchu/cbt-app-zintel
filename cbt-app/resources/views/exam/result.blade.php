@@ -1,4 +1,6 @@
-@extends('layouts.app')
+<h1>Results</h1>
+
+{{-- @extends('layouts.app')
 
 @section('content')
 <div class="container text-center">
@@ -18,11 +20,11 @@
             @endif
         </p>
     </div>
-    @endforeach
+    @endforeach --}}
 
 {{-- USER SUBMITTED BEFORE COMPLETED --}}
- <h2>Exam Results</h2>
+ {{-- <h2>Exam Results</h2>
     <p>Your Score: {{ $examAttempt->score }} / {{ count(json_decode($examAttempt->answers, true)) }}</p>
     <a href="{{ route('dashboard') }}" class="btn btn-primary">Back to Dashboard</a>
 </div>
-@endsection
+@endsection --}}

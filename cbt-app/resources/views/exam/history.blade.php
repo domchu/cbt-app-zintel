@@ -1,3 +1,6 @@
+<h1>Exam History</h1>
+
+{{-- 
 @extends('layouts.app')
 
 @section('content')
@@ -31,4 +34,4 @@
         </tbody>
     </table>
 </div>
-@endsection
+@endsection --}}

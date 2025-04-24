@@ -21,7 +21,7 @@
                  <li>
                      <hr class="dropdown-divider" />
                  </li>
-                 <li><a class="dropdown-item" href="{{ url('') }}">View Profile</a></li>
+                 <li><a class="dropdown-item" href="{{ url('/profile/partials/update-profile-information-form') }}">View Profile</a></li>
                  <li>
                      <hr class="dropdown-divider" />
                  </li>

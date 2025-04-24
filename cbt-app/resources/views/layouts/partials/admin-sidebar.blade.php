@@ -33,7 +33,7 @@
              <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseStudents"
                  aria-expanded="false" aria-controls="collapseStudents">
                  <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                 Students
+                 Students Info
                  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
              </a>
              <div class="collapse" id="collapseStudents" aria-labelledby="headingTwo"
@@ -41,8 +41,13 @@
                  <nav class="sb-sidenav-menu-nested nav">
                      <a class="nav-link" href="{{ url('admin/students/create') }}">Add Students</a>
                      <a class="nav-link" href="{{ url('admin/students') }}">View Students</a>
-                      <a class="nav-link" href="{{ url('admin/subjects/create') }}">Add Subjects</a>
-                     <a class="nav-link" href="{{ url('admin/subjects') }}">View Subjects</a>
+                      <a class="nav-link" href="{{ url('admin/subjects/create') }}">Subjects</a>
+                     <a class="nav-link" href="{{ url('admin/subjects') }}">Sections</a>
+                      <a class="nav-link" href="{{ url('admin/students') }}">Add Subjects</a>
+                     <a class="nav-link" href="{{ url('admin/students') }}">Add Class</a>
+                     <a class="nav-link" href="{{ url('admin/students') }}">Sections</a>
+                     <a class="nav-link" href="{{ url('admin/students') }}">View Students</a>
+                     <a class="nav-link" href="{{ url('admin/students') }}">View Students</a>
                  </nav>
              </div>
 
@@ -54,7 +59,7 @@
              <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                  aria-expanded="false" aria-controls="collapsePages">
                  <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                 Pages
+                 General Settins
                  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
              </a>
              <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
