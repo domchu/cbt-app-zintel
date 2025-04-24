@@ -69,7 +69,7 @@
                             <li class="mr-4 font-semibold text-xl text-sky-900"><a href="/">About Us</a></li>
                             <li class="mr-4 font-semibold text-xl text-sky-900"><a href="/">Gallery</a></li>
                             <li class="mr-4 font-semibold text-xl text-sky-900"><a href="/">Pricing</a></li>
-                            <li class="mr-4 font-semibold text-xl text-sky-900"><a href="/">Contact Us</a></li>
+                            <li class="mr-4 font-semibold text-xl text-sky-900"><a href={{ url('/contact-us') }}>Contact Us</a></li>
                             <li class="mr-4 font-semibold text-xl text-sky-900"><a href="/">Faq</a></li>
                         </ul>
                     </header>
@@ -82,7 +82,10 @@
                
                    
 
-                <main>MAIN</main>
+               
+{{-- <div>
+    <x-navbar></x-navbar>
+</div> --}}
 
                    
                    

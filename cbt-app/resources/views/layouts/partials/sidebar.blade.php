@@ -23,8 +23,8 @@
              <div class="collapse" id="collapseExam" aria-labelledby="headingOne"
                  data-bs-parent="#sidenavAccordion">
                  <nav class="sb-sidenav-menu-nested nav">
-                     <a class="nav-link" href="{{ url('admin/create') }}">Add Exams</a>
-                     <a class="nav-link" href="{{ url('admin') }}">View Exams</a>
+                     <a class="nav-link" href="{{ url('admin/create') }}">Take Exams</a>
+                     <a class="nav-link" href="{{ url('admin') }}">Exams History</a>
                  </nav>
              </div>
 
