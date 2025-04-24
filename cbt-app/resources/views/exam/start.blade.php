@@ -1,5 +1,5 @@
-<h1>Exam</h1>
- <a href="{{ url('exam/result') }}" class="btn btn-primary">Submit Exam</a>
+<h1>WRONG Exam PAGE</h1>
+<a href="{{ url('exam/result') }}" class="btn btn-primary">Submit Exam</a>
 
 
 

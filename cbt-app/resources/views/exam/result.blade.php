@@ -1,4 +1,5 @@
 <h1>Results</h1>
+  <a href="{{ route('dashboard') }}" class="btn btn-primary">Back to Dashboard</a>
 
 {{-- @extends('layouts.app')
 
