@@ -1,12 +1,14 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use Admin\SliderController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 
 // PAGES ROUTES
 Route::get('/', function () {
     return view('home');
 });
+
 
 // DASHBOARD ROUTES
 Route::get('/dashboard', function () {
@@ -27,6 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+   
 });
 
 
@@ -63,6 +67,8 @@ Route::get('/exam/history', function () {
     return view('exam.history');
 });
 
+
+Route::get('home-slider', 'Admin\SliderController@index');
 
 
 

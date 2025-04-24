@@ -54,13 +54,13 @@
 
  {{-- FRONTEND --}}
              <div class="sb-sidenav-menu-heading">Frontend</div>
-             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseQuestions"
-                 aria-expanded="false" aria-controls="collapseQuestions">
+             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseFrontend"
+                 aria-expanded="false" aria-controls="collapseFrontend">
                  <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                  Frontend
                  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
              </a>
-             <div class="collapse" id="collapseQuestions" aria-labelledby="headingOne"
+             <div class="collapse" id="collapseFrontend" aria-labelledby="headingThree"
                  data-bs-parent="#sidenavAccordion">
                  <nav class="sb-sidenav-menu-nested nav">
                      <a class="nav-link" href="{{ url('home-slider') }}">Slider</a>
