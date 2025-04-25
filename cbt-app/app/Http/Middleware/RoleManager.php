@@ -20,6 +20,7 @@ class RoleManager
         if(!Auth::check()){
             return redirect()->route('login');
         }
+        
 
         $authUserRole = Auth::user()->role;
         switch ($role) {

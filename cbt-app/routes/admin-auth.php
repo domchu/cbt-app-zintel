@@ -1,11 +1,14 @@
 <?php
 
-use Admin\SliderController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\SliderController;
 
 
 
-Route::middleware('$authUserRole')->group(function () {
-    Route::get('home-slider', [SliderController::class, 'index'])->name('admin.slider.index');
 
-});
+
+
+
+Route::get('home-slider', [SliderController::class, 'index']);
+Route::get('add-slider', [SliderController::class, 'create']);
+Route::post('store-slider', [SliderController::class, 'store']);

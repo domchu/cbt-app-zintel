@@ -68,7 +68,7 @@ Route::get('/exam/history', function () {
 });
 
 
-Route::get('home-slider', 'Admin\SliderController@index');
+
 
 
 
