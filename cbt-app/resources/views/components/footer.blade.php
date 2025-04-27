@@ -1,8 +1,8 @@
 <!-- No surplus words or unnecessary actions. - Marcus Aurelius -->
 {{-- FOOTER --}}
 <div
-    class="relative w-full h-84 mt-10 bg-[url('../../public/images/BannerHouse.png')] bg-cover bg-center bg-no-repeat text-white p-10">
-    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+    class="relative w-full h-84 mt-10 bg-[#32064a] bg-cover bg-center bg-no-repeat text-white p-10">
+    <div class="absolute inset-0 bg-[#32064a]/40 backdrop-blur-sm"></div>
     <footer class="relative z-10 grid grid-cols-1 lg:grid-cols-3 mr-0 lg:mr-0 xl:mr-40">
         <div class="flex justify-center lg:justify-normal py-8 px-0 lg:px-20 col-span-1">
             <a href="{{ url('/') }}">
@@ -28,7 +28,7 @@
                     </li>
                     <li
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
-                        <a href="{{ url('/why-us') }}">Why Us</a>
+                        <a href="{{ url('/why-us') }}">Features</a>
                     </li>
 
                     <li
@@ -144,11 +144,14 @@
         </div>
     </footer>
 </div>
+<div class="text-white py-8 bg-[#32064a] w-full">
+    <hr class="w-[80%] my-0 mx-auto">
+</div>
 {{-- COPYRIGHT --}}
-<div class="w-full py-3 bg-white text-center text-sm text-primaryColor2">
-    <p class="text-xl ">Copyright &copy; Computer Base Test (CBT) 2025 | All rights reserved | Designed & Powered by <a
+<div class="w-full py-6 bg-[#32064a] text-center text-sm text-primaryColor2 text-white">
+    <p class="text-base "> Copyright &copy; 2025. Computer Base Test (CBT)  | All rights reserved | Designed & Powered by <a
             href="https://www.bridgekode.com" target="_blank"
-            class="text-sky-800 pt-2 text-xl cursor-pointer font-medium">Bridgekode Technology</a></p>
+            class="text-[#fff] pt-2 text-base cursor-pointer font-sm border-[#d6353f]">Bridgekode Technology</a></p>
 </div>
 
 <script src="{{ asset('js/navbar.js') }}"></script>

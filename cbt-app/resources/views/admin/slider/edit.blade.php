@@ -23,7 +23,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Description</label>
-                                <textarea name="description" id="" class="form-control">{{ $slider->description }}</textarea>
+                                <textarea name="description"  class="form-control">{{ $slider->description }}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="">Link</label>
@@ -42,8 +42,8 @@
                             </div>
                             <div class="form-group py-4">
                                 <label for="">Status</label>
-                                <input type="checkbox" name="status" value="{{ $slider->status == '1' ? 'checked' : '' }}">
-                                1=visible, 0=hidden
+                                <input type="checkbox" name="status" value="{{ $slider->status == '1' ? 'checked' : '' }}" >
+                                {{-- 1=visible, 0=hidden --}}
                             </div>
                             <div class="form-group py-4">
                                 <button type="submit" class="btn btn-primary">Update </button>

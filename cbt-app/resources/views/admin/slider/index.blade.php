@@ -32,13 +32,11 @@
                                         <td>{{ $sliderItem->description }} </td>
                                         <td>{{ $sliderItem->link }} </td>
                                         <td>{{ $sliderItem->link_name }} </td>
-
                                         <td>
-                                            <img src="{{ asset('uploads/slider'.$sliderItem->image) }}" alt="Slider Image"
-                                                sizes="100" srcset="">
+                                            <img src="{{ asset('uploads/slider/'.$sliderItem->image) }}" alt="Slider Image" sizes="100" srcset="">
                                         </td>
                                         <td>
-                                            @if ($sliderItem->status  == '1')
+                                            @if ($sliderItem->status == '1')
                                                 visible
                                             @else
                                                 hidden
@@ -46,14 +44,14 @@
 
                                         </td>
                                         <td>
-                                            <a href="{{ url('edit-slider/'.$sliderItem->id) }}" class="btn btn-success">Edit</a>
+                                            <a href="{{ url('edit-slider/' . $sliderItem->id) }}"
+                                                class="btn btn-success">Edit</a>
+                                            <a href="{{ url('view-slider/' . $sliderItem->id) }}"
+                                                class="btn btn-primary">View</a>
+                                            <a href="{{ url('edit-slider/' . $sliderItem->id) }}"
+                                                class="btn btn-danger">Delete</a>
                                         </td>
-                                        <td>
-                                            <a href="{{ url('edit-slider/'.$sliderItem->id) }}" class="btn btn-success">View</a>
-                                        </td>
-                                        <td>
-                                            <a href="{{ url('edit-slider/'.$sliderItem->id) }}" class="btn btn-success">Delete</a>
-                                        </td>
+
                                     </tr>
                                 @endforeach
 
