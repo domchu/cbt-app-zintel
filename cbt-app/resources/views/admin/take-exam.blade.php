@@ -18,4 +18,4 @@
 </div>
 @endsection --}}
 <h1>take exam</h1>
- <a href="{{ url('exam.start') }}" class="btn btn-primary">Start Exam</a>
+ <a href="{{ url('exam.start') }}"  class="btn btn-primary" >Start Exam</a>
