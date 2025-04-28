@@ -53,7 +53,7 @@
                                             <a href="{{ url('view-slider/'.$sliderItem->id) }}"
                                                 class="btn btn-primary">View</a>
 
-                                            <form action="" method="POST">
+                                            <form action="{{ url('home-slider.destroy/'.$sliderItem->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"

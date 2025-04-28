@@ -56,6 +56,7 @@ class SliderController extends Controller
             $filename = time().'.'.$extention;
             $file->move('uploads/slider/'.$filename);
             $slider->image = $filename;
+           
         }
        $slider->status = $request->input('status')== true ? '1': '0';
         $slider->save();
@@ -124,16 +125,19 @@ class SliderController extends Controller
         return redirect()->back()->with('status', 'Slider Updated successsfully');
     }
 
-       // 🔥 NEW DELETE FUNCTION
-    public function destroy(Slider $slider)
+       //  DELETE FUNCTION
+    public function destroy($id)
     {
+
+    
+         $slider = Slider::findOrFail($id);
         // Delete the image file from storage
         if ($slider->image && Storage::disk('public')->exists('sliders/' . $slider->image)) {
             Storage::disk('public')->delete('sliders/' . $slider->image);
         }
 
         // Delete the slider record from the database
-         $slider->delete();
+         $slider->delete($id);
 
         return redirect()->back()->with('status', 'Slider deleted successfully.');
     }

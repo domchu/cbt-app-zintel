@@ -40,7 +40,7 @@
                             <div class="form-group my-3">
                                 <label for="">Slider Image Upload</label>
                                 <input type="file" class="form-control" name="image" id="image" onchange="previewImage(event)">
-                                  <img id="imagePreview" style="max-width:300px;display: none;" />
+                                  <img id="imagePreview" style="max-width:100px;display: none;" />
 
                             </div>
                             <div class="form-group my-3">
