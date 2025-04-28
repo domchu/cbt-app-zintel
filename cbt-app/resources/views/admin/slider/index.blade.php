@@ -53,12 +53,11 @@
                                             <a href="{{ url('view-slider/'.$sliderItem->id) }}"
                                                 class="btn btn-primary">View</a>
 
-                                            <form action="{{ url('home-slider.destroy/'.$sliderItem->id) }}" method="POST" style="display:inline;">
+                                            <form action="{{ url('home-slider.destroy/'.$slider->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit"
-                                                    onclick="return confirm('Are you sure you want to delete this slider?')"
-                                                    class="btn btn-danger float-right">Delete</button>
+                                                <button type="submit"                                       
+                                                    class="btn btn-danger float-right delete-slider" data-id="{{$slider->id}}" >Delete</button>
                                             </form>
                                         </div>
                                         </td>
@@ -74,3 +73,55 @@
         </div>
     </div>
 @endsection
+
+
+{{-- SWEET SweetAlert --}}
+<script>
+$(document).ready(function() {
+    $('.delete-slider').click(function() {
+        var sliderId = $(this).data('id');
+        var button = $(this);
+
+        // SweetAlert confirmation
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "This action cannot be undone!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If user confirmed, make the AJAX call
+                $.ajax({
+                    url: '/sliders/' + sliderId,
+                    type: 'DELETE',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        // Fade out the deleted row
+                        button.closest('tr').fadeOut();
+
+                        // Show success message
+                        Swal.fire(
+                            'Deleted!',
+                            response.message,
+                            'success'
+                        )
+                    },
+                    error: function(xhr) {
+                        Swal.fire(
+                            'Error!',
+                            'There was a problem deleting the slider.',
+                            'error'
+                        )
+                    }
+                });
+            }
+        })
+    });
+});
+</script>

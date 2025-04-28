@@ -128,16 +128,12 @@ class SliderController extends Controller
        //  DELETE FUNCTION
     public function destroy($id)
     {
+         $slider = Slider::findOrFail( $id);
+        // if ($slider->image && Storage::exists('public/sliders/' . $slider->image)) {
+        //     Storage::delete('sliders/'.$slider->image);
+        // }
 
-    
-         $slider = Slider::findOrFail($id);
-        // Delete the image file from storage
-        if ($slider->image && Storage::disk('public')->exists('sliders/' . $slider->image)) {
-            Storage::disk('public')->delete('sliders/' . $slider->image);
-        }
-
-        // Delete the slider record from the database
-         $slider->delete($id);
+         $slider->delete();
 
         return redirect()->back()->with('status', 'Slider deleted successfully.');
     }
