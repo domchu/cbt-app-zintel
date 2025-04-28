@@ -33,7 +33,10 @@
                                         <td>{{ $sliderItem->link }} </td>
                                         <td>{{ $sliderItem->link_name }} </td>
                                         <td>
-                                            <img src="{{ asset('uploads/slider/'.$sliderItem->image) }}" alt="Slider Image" sizes="100" srcset="">
+                                            <img src="{{ asset('uploads/slider/' . $sliderItem->image) }}" alt="Slider Image"
+                                                style="max-width: 100px">
+                                               
+
                                         </td>
                                         <td>
                                             @if ($sliderItem->status == '1')
@@ -44,12 +47,20 @@
 
                                         </td>
                                         <td>
-                                            <a href="{{ url('edit-slider/' . $sliderItem->id) }}"
-                                                class="btn btn-success">Edit</a>
-                                            <a href="{{ url('view-slider/' . $sliderItem->id) }}"
+                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                            <a href="{{ url('edit-slider/'.$sliderItem->id) }}"
+                                                class="btn btn-success flo">Edit</a>
+                                            <a href="{{ url('view-slider/'.$sliderItem->id) }}"
                                                 class="btn btn-primary">View</a>
-                                            <a href="{{ url('edit-slider/' . $sliderItem->id) }}"
-                                                class="btn btn-danger">Delete</a>
+
+                                            <form action="" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    onclick="return confirm('Are you sure you want to delete this slider?')"
+                                                    class="btn btn-danger float-right">Delete</button>
+                                            </form>
+                                        </div>
                                         </td>
 
                                     </tr>

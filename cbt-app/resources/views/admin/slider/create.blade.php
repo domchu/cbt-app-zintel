@@ -7,6 +7,11 @@
                 @if (session('status'))
                 <h5 class="alert alert-success">{{session('status')}} </h5>
                 @endif
+
+
+                 @if(session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+        @endif
                 <div class="card">
                     <div class="card-header">
                         <h4>Add Slider <a class="btn btn-danger float-end" href="{{ url('home-slider') }}"><- Back</a>
@@ -34,11 +39,13 @@
                             </div>
                             <div class="form-group my-3">
                                 <label for="">Slider Image Upload</label>
-                                <input type="file" class="form-control" name="image">
+                                <input type="file" class="form-control" name="image" id="image" onchange="previewImage(event)">
+                                  <img id="imagePreview" style="max-width:300px;display: none;" />
+
                             </div>
                             <div class="form-group my-3">
                                 <label for="">Status</label>
-                                <input type="checkbox"  name="status" class="w-[20px] h-[20px]"> 1=visible, 0=hidden
+                                <input type="checkbox"  name="status" > 1=visible, 0=hidden
                             </div>
                             <div class="form-group my-3">
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -50,3 +57,17 @@
         </div>
     </div>
 @endsection
+<script>
+function previewImage(event) {
+    const input = event.target;
+    const reader = new FileReader();
+
+    reader.onload = function(){
+        const imgElement = document.getElementById('imagePreview');
+        imgElement.src = reader.result;
+        imgElement.style.display = 'block';
+    }
+
+    reader.readAsDataURL(input.files[0]);
+}
+</script>

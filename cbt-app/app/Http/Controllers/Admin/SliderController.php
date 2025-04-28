@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Return_;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class SliderController extends Controller
@@ -31,7 +32,7 @@ class SliderController extends Controller
                     'description' => 'required',
                     'link'=>'required|string|max:225',
                     'link_name'=>'required|string|max:225',
-                    'image'=>'required'
+                    'image'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         if($validator->fails())
@@ -68,6 +69,12 @@ class SliderController extends Controller
         $slider = Slider::find($id);
         return view('admin.slider.edit', compact('slider'));
     }
+    // VIEW SLIDER
+    public function view($id)
+    {
+        $slider = Slider::find($id);
+        return view('admin.slider.view', compact('slider'));
+    }
 
 
     // UPDATE SLIDER
@@ -79,7 +86,8 @@ class SliderController extends Controller
                     'description' => 'required',
                     'link'=>'required|string|max:225',
                     'link_name'=>'required|string|max:225',
-                    'image'=>'required'
+                    'image'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+
         ]);
 
         if($validator->fails())
@@ -110,9 +118,24 @@ class SliderController extends Controller
             $file->move('uploads/slider/'.$filename);
             $slider->image = $filename;
         }
-       $slider->status = $request->input('status')== true ? '1': '0';
+        $slider->status = $request->input('status')== true ? '1': '0';
         $slider->save();
+        
         return redirect()->back()->with('status', 'Slider Updated successsfully');
+    }
+
+       // 🔥 NEW DELETE FUNCTION
+    public function destroy(Slider $slider)
+    {
+        // Delete the image file from storage
+        if ($slider->image && Storage::disk('public')->exists('sliders/' . $slider->image)) {
+            Storage::disk('public')->delete('sliders/' . $slider->image);
+        }
+
+        // Delete the slider record from the database
+         $slider->delete();
+
+        return redirect()->back()->with('status', 'Slider deleted successfully.');
     }
 
 }
