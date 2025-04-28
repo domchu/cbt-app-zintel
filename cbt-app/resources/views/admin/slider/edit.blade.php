@@ -9,14 +9,14 @@
                 @endif
                 <div class="card">
                     <div class="card-header">
-                        <h4>Edit Slider <a class="btn btn-danger float-end" href="{{ url('home-slider') }}"><- Back</a>
+                        <h4>Edit Slider <a class="btn btn-danger float-end" href="{{ url('home-slider/'.$slider->id) }}"><- Back</a>
                         </h4>
 
                     </div>
                     <div class="card-body">
                         <form action="{{ url('update-slider/'.$slider->id) }}" method="P0ST" enctype="multipart/form-data">
                             @csrf
-                          @method('PUT')
+                          @method("PUT")
                             <div class="form-group">
                                 <label for="">Heading</label>
                                 <input type="text" class="form-control" name="heading" value="{{ $slider->heading }}">
@@ -38,11 +38,11 @@
                                 <label for="">Slider Image Upload</label>
                                 <input type="file" class="form-control" name="image">
                                 <img src="{{ asset('uploads/slider/'.$slider->image) }}" alt="Slider Image"
-                                    sizes="100" srcset="">
+                                    sizes="30" srcset="">
                             </div>
                             <div class="form-group py-4">
                                 <label for="">Status</label>
-                                <input type="checkbox" name="status" value="{{ $slider->status == '1' ? 'checked' : '' }}" >
+                                <input type="checkbox" name="status" {{ $slider->status == '1' ? 'checked' : '' }}>
                                 {{-- 1=visible, 0=hidden --}}
                             </div>
                             <div class="form-group py-4">

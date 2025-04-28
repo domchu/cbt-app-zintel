@@ -16,31 +16,31 @@
                     <div class="card-body">
                         <form action="{{ url('store-slider') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group">
+                            <div class="form-group my-3">
                                 <label for="">Heading</label>
                                 <input type="text" class="form-control" name="heading">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group my-3">
                                 <label for="">Description</label>
                                 <textarea name="description" id="" class="form-control"></textarea>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group my-3">
                                 <label for="">Link</label>
                                 <input type="text" class="form-control" name="link">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group my-3">
                                 <label for="">Link Name</label>
                                 <input type="text" class="form-control" name="link_name">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group my-3">
                                 <label for="">Slider Image Upload</label>
                                 <input type="file" class="form-control" name="image">
                             </div>
-                            <div class="form-group py-4">
+                            <div class="form-group my-3">
                                 <label for="">Status</label>
-                                <input type="checkbox"  name="status"> 1=visible, 0=hidden
+                                <input type="checkbox"  name="status" class="w-[20px] h-[20px]"> 1=visible, 0=hidden
                             </div>
-                            <div class="form-group py-4">
+                            <div class="form-group my-3">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </form>

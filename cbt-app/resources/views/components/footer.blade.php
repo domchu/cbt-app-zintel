@@ -28,7 +28,7 @@
                     </li>
                     <li
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
-                        <a href="{{ url('/why-us') }}">Features</a>
+                        <a href="{{ url('/features') }}">Features</a>
                     </li>
 
                     <li
@@ -74,12 +74,12 @@
                             placeholder="Enter Your Email" />
                     </div>
                     <button type="submit"
-                        class="rounded-md bg-sky-800 py-2 px-4 hover:bg-sky-700 hover:text-gray-300">Submit</button>
+                        class="rounded-md bg-transparent py-2 px-4 hover:bg-red-700 hover:text-gray-300" style="border:1px solid #fff">Submit</button>
                 </form>
                 {{-- SOCIAL MEDIA HANDLES --}}
                 <ul class="flex justify-start items-center p-2 lg:flex lg:justify-start lg:items-baseline">
                     <li
-                        class="w-3 bg-gray-700 bg-opacity-20 p-5 mx-0 lg:mx-1 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md">
+                        class="w-3 bg-gray-700 bg-opacity-20 p-5 mx-0 lg:mx-1 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md hover:bg-red-700" style="border:1px solid #fff">
                         <a href="#">                           
                             <svg class="absolute z-10 top-2 right-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -90,7 +90,7 @@
                         </a>
                     </li>
                     <li
-                        class="w-3 mt-0 xl:mt-5 bg-gray-700 bg-opacity-20 p-5 mx-2 lg:mx-4 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md">
+                        class="w-3 mt-0 xl:mt-5 bg-gray-700 bg-opacity-20 p-5 mx-2 lg:mx-4 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md hover:bg-red-700" style="border:1px solid #fff">
                         <a href="#">
                             <svg class="absolute z-10 top-2 right-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -103,7 +103,7 @@
                         </a>
                     </li>
                     <li
-                        class="w-3 bg-gray-700 bg-opacity-20 p-5 mx-0 xl:mx-3 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md">
+                        class="w-3 bg-gray-700 bg-opacity-20 p-5 mx-0 xl:mx-3 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md hover:bg-red-700" style="border:1px solid #fff">
                         <a href="#">
                             <svg class="absolute z-10 top-2 right-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -114,7 +114,7 @@
                         </a>
                     </li>
                     <li
-                        class="w-3 mt-0 xl:mt-5 bg-gray-700 bg-opacity-20 p-5 mx-2 lg:mx-3 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md">
+                        class="w-3 mt-0 xl:mt-5 bg-gray-700 bg-opacity-20 p-5 mx-2 lg:mx-3 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md hover:bg-red-700 " style="border:1px solid #fff">
                         <a href="#">
                             <svg class="absolute z-10 top-2 right-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -127,7 +127,7 @@
                         </a>
                     </li>
                     <li
-                        class="w-3 mt-0 xl:mt-5 bg-gray-700 bg-opacity-20 p-5 mx-2 lg:mx-3 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md">
+                        class="w-3 mt-0 xl:mt-5 bg-gray-700 bg-opacity-20 p-5 mx-2 lg:mx-3 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md hover:bg-red-700" style="border:1px solid #fff">
                         <a href="#">
                             <svg class="absolute z-10 top-2 right-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24" fill="currentColor" class="size-6">
