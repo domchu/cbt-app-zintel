@@ -11,7 +11,7 @@
                     </div>
                     <div class="card-body">
                         {{-- your slider data --}}
-                        <div id="sliderTable">
+                        
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -72,9 +72,9 @@
 
                                 </tbody>
                             </table>
-                        </div>
+                        
                         <div class="mt-3">
-                            {{ $sliders->links() }}
+                            {{ $slider->links() }}
                         </div>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
 
 {{-- SWEET SweetAlert --}}
 
-<script>
+{{-- <script>
     function bindDeleteButtons() {
     $('.delete-slider').off('click').on('click', function () {
         const sliderId = $(this).data('id');
@@ -127,9 +127,9 @@
 $(document).ready(function () {
     bindDeleteButtons();
 });
-</script>
+</script> --}}
 
-<script>
+{{-- <script>
     success: function(response) {
     Swal.fire('Deleted!', response.message, 'success');
 
@@ -140,7 +140,7 @@ $(document).ready(function () {
     });
 }
 
-</script>
+</script> --}}
 
 
 

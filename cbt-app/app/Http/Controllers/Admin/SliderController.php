@@ -14,8 +14,8 @@ class SliderController extends Controller
 {
     public function index()
     {
-        $slider = Slider::all()->paginate(10);
-        return view('admin.slider.index', compact('slider'));
+        $slider = Slider::paginate(5);
+        return view('admin.slider.index', ['slider' => $slider]);
     }
      // CREATE SLIDER
       public function create()
