@@ -7,35 +7,36 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h4> Slider {{ $slider->id }}
+                        <h4>Show Slider {{ $slider->id }} <a class="btn btn-danger float-end" href="{{ url('home-slider') }}">Back</a>
                         </h4>
 
+                        </h4>
                     </div>
                     <div class="card-body">
 
                         <div class="form-group">
-                            <h2>Title: </h2>
+                            <h5>Title: </h5>
                             <p>{{ $slider->heading }}</p>
                         </div>
                         <div class="form-group">
-                            <h2>Description: </h2>
+                            <h5>Description: </h5>
                             <p> {{ $slider->description }}</p>
                         </div>
                         <div class="form-group">
-                            <h2>Link: </h2>
+                            <h5>Link: </h5>
                             <p>{{ $slider->link }}</p>
 
                         </div>
                         <div class="form-group">
-                            <h2>Link Name: </h2>
+                            <h5>Link Name: </h5>
                             <p>{{ $slider->link_name }}</p>
 
 
                         </div>
                         <div class="form-group">
-                            <h2>Slider Image</h2>
+                            <h5>Slider Image</h5>
 
-                            <img src="{{ asset('uploads/sliders/' . $slider->image) }}" alt="Slider Image">
+                          <img src="{{ Storage::url($slider->image) }}" alt="Slider Image" style="width:500px; height:300px;">
 
                         </div>
 

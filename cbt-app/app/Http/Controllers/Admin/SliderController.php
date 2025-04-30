@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Exception;
 use App\Models\Slider;
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\Return_;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -14,7 +14,7 @@ class SliderController extends Controller
 {
     public function index()
     {
-        $slider = Slider::all();
+        $slider = Slider::all()->paginate(10);
         return view('admin.slider.index', compact('slider'));
     }
      // CREATE SLIDER
@@ -29,38 +29,47 @@ class SliderController extends Controller
     {
         $validator = Validator::make($request->all(),[
                     'heading' => 'required|string|max:225',
-                    'description' => 'required',
-                    'link'=>'required|string|max:225',
-                    'link_name'=>'required|string|max:225',
+                    'description' => 'nullable|string|',
+                    'link'=>'nullable|string|url|max:225',
+                    'link_name'=>'nullable|string|max:225',
                     'image'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        if($validator->fails())
-                {
-                    return response()->json([
-                    'message'=> 'All fields are required',
-                    'error'=> $validator->messages(),
-                    ], 422);
-                }
+        // if($validator->fails())
+        //         {
+        //             return response()->json([
+        //             'message'=> 'All fields are required',
+        //             'error'=> $validator->messages(),
+        //             ], 422);
+        //         }
 
-        $slider = new Slider;
-        $slider->heading = $request->input('heading');
-        $slider->description = $request->input('description');
-        $slider->link = $request->input('link');
-        $slider->link_name = $request->input('link_name');
+       
 
-        if ($request->hasFile('image'))
+        try {
+           if ($request->hasFile('image'))
         {
-            $file = $request->file('image');
-            $extention = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extention;
-            $file->move('uploads/slider/'.$filename);
-            $slider->image = $filename;
+            $path = $request->file('image')->store('/sliders', 'public');
+             Storage::url($path);
+
+
+            $slider = new Slider();
+            $slider->heading = $request->input('heading');
+            $slider->description = $request->input('description');
+            $slider->link = $request->input('link');
+            $slider->link_name = $request->input('link_name');
+            $slider->image = $path;
            
+            $slider->status = $request->input('status')== true ? '1': '0';
+            $slider->save();
+            return redirect('add-slider')->with('status', 'Slider Added Successfully');
         }
-       $slider->status = $request->input('status')== true ? '1': '0';
-        $slider->save();
-        return redirect()->back()->with('status', 'Slider added successsfully');
+
+        
+        } catch (Exception $th) {
+            //throw $th;
+        return redirect('add-slider')->with('fail', $th->getMessage());
+
+        }
     }
 
 
@@ -83,58 +92,63 @@ class SliderController extends Controller
 
     {
         $validator = Validator::make($request->all(),[
-                    'heading' => 'required|string|max:225',
-                    'description' => 'required',
-                    'link'=>'required|string|max:225',
-                    'link_name'=>'required|string|max:225',
+                   'heading' => 'required|string|max:225',
+                    'description' => 'nullable|string|',
+                    'link'=>'nullable|string|url|max:225',
+                    'link_name'=>'nullable|string|max:225',
                     'image'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048'
 
         ]);
 
-        if($validator->fails())
-                {
-                    return response()->json([
-                    'message'=> 'All fields are required',
-                    'error'=> $validator->messages(),
-                    ], 422);
-                }
+        // if($validator->fails())
+        //         {
+        //             return response()->json([
+        //             'message'=> 'All fields are required',
+        //             'error'=> $validator->messages(),
+        //             ], 422);
+        //         }
 
-        $slider = Slider::find($id);
-        $slider->heading = $request->input('heading');
-        $slider->description = $request->input('description');
-        $slider->link = $request->input('link');
-        $slider->link_name = $request->input('link_name');
+      try {
+             $slider = Slider::findOrFail($id); 
 
-        if ($request->hasFile('image'))
-        {
-            $destination = 'uploads/slider/'.$slider->image;
-             if(File::exists($destination)) {
-                File::delete($destination);
-             }
-
-             
-            $file = $request->file('image');
-            $extention = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extention;
-            $file->move('uploads/slider/'.$filename);
-            $slider->image = $filename;
+          
+            if ($request->hasFile('image')) {
+          
+           if ($slider->image && Storage::disk('public')->exists($slider->image)) {
+            Storage::disk('public')->delete($slider->image);
         }
-        $slider->status = $request->input('status')== true ? '1': '0';
-        $slider->save();
-        
-        return redirect()->back()->with('status', 'Slider Updated successsfully');
+
+        // Save new image
+        $path = $request->file('image')->store('sliders', 'public');
+        $slider->image = $path;
+    }
+
+    // Update other fields (even if no new image)
+    $slider->heading = $request->input('heading');
+    $slider->description = $request->input('description');
+    $slider->link = $request->input('link');
+    $slider->link_name = $request->input('link_name');
+    $slider->status = $request->input('status') == true ? '1' : '0';
+    $slider->save();
+
+    return redirect('add-slider')->with('status', 'Slider Updated Successfully');
+    } catch (Exception $th) {
+        return redirect('add-slider')->with('fail', $th->getMessage());
+    }
+
     }
 
        //  DELETE FUNCTION
     public function destroy(Slider $slider, $id)
     {
          $slider = Slider::findOrFail($id);
-        if ($slider->image && Storage::exists('public/sliders/' . $slider->image)) {
-            Storage::delete('sliders/' . $slider->image);
-        }
+        // Delete image file
+    if ($slider->image && Storage::disk('public')->exists($slider->image)) {
+        Storage::disk('public')->delete($slider->image);
+    }
 
          $slider->delete($id);
-        return redirect()->back()->with('status', 'Slider deleted successfully.');
+        return redirect('add-slider')->with('status', 'Slider deleted successfully.');
     }
 
 }
