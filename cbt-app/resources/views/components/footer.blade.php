@@ -158,7 +158,7 @@
 <script src="{{ asset('js/slider.js') }}"></script>
 <script src="{{ asset('js/reviews.js') }}"></script>
 <script src="{{ asset('js/faqsection.js')}}" defer></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

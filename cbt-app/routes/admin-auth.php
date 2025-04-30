@@ -11,4 +11,4 @@ Route::post('store-slider', [SliderController::class, 'store']);
 Route::get('edit-slider/{id}', [SliderController::class, 'edit']);
 Route::put('update-slider/{id}', [SliderController::class, 'update']);
 Route::delete('home-slider/{id}', [SliderController::class, 'destroy']);
-Route::get('view-slider/{id}', [SliderController::class, 'view']);
+Route::get('show-slider/{id}', [SliderController::class, 'show']);

@@ -71,10 +71,10 @@ class SliderController extends Controller
         return view('admin.slider.edit', compact('slider'));
     }
     // VIEW SLIDER
-    public function view($id)
+    public function show($id)
     {
         $slider = Slider::find($id);
-        return view('admin.slider.view', compact('slider'));
+        return view('admin.slider.show', compact('slider'));
     }
 
 
@@ -126,15 +126,14 @@ class SliderController extends Controller
     }
 
        //  DELETE FUNCTION
-    public function destroy($id)
+    public function destroy(Slider $slider, $id)
     {
-         $slider = Slider::findOrFail( $id);
-        // if ($slider->image && Storage::exists('public/sliders/' . $slider->image)) {
-        //     Storage::delete('sliders/'.$slider->image);
-        // }
+         $slider = Slider::findOrFail($id);
+        if ($slider->image && Storage::exists('public/sliders/' . $slider->image)) {
+            Storage::delete('sliders/' . $slider->image);
+        }
 
-         $slider->delete();
-
+         $slider->delete($id);
         return redirect()->back()->with('status', 'Slider deleted successfully.');
     }
 

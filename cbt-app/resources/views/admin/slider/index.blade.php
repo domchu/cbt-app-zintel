@@ -35,7 +35,7 @@
                                         <td>
                                             <img src="{{ asset('uploads/slider/' . $sliderItem->image) }}" alt="Slider Image"
                                                 style="max-width: 100px">
-                                               
+
 
                                         </td>
                                         <td>
@@ -47,19 +47,19 @@
 
                                         </td>
                                         <td>
-                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                            <a href="{{ url('edit-slider/'.$sliderItem->id) }}"
-                                                class="btn btn-success flo">Edit</a>
-                                            <a href="{{ url('view-slider/'.$sliderItem->id) }}"
-                                                class="btn btn-primary">View</a>
+                                            <a href="{{ url('edit-slider/' . $sliderItem->id) }}"
+                                                class="btn btn-success">Edit</a>
+                                            <a href="{{ url('show-slider/' . $sliderItem->id) }}"
+                                                class="btn btn-info">Show</a>
 
-                                            <form action="{{ url('home-slider.destroy/'.$slider->id) }}" method="POST" style="display:inline;">
+                                            <form action="{{ url('home-slider/' . $sliderItem->id) }}" method="POST"
+                                                style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit"                                       
-                                                    class="btn btn-danger float-right delete-slider" data-id="{{$slider->id}}" >Delete</button>
+                                                <button type="submit" class="btn btn-danger delete-slider d-inline"
+                                                    data-id="{{ $sliderItem->id }}">Delete</button>
                                             </form>
-                                        </div>
+
                                         </td>
 
                                     </tr>
@@ -76,52 +76,55 @@
 
 
 {{-- SWEET SweetAlert --}}
+
+
+
 <script>
-$(document).ready(function() {
-    $('.delete-slider').click(function() {
-        var sliderId = $(this).data('id');
-        var button = $(this);
+    $(document).ready(function() {
+        $('.delete-slider').click(function() {
+            var sliderId = $(this).data('id');
+            var button = $(this);
 
-        // SweetAlert confirmation
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "This action cannot be undone!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'Cancel'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // If user confirmed, make the AJAX call
-                $.ajax({
-                    url: '/sliders/' + sliderId,
-                    type: 'DELETE',
-                    data: {
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(response) {
-                        // Fade out the deleted row
-                        button.closest('tr').fadeOut();
+            // SweetAlert confirmation
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "This action cannot be undone!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // If user confirmed, make the AJAX call
+                    $.ajax({
+                        url: '/sliders/' + sliderId,
+                        type: 'DELETE',
+                        data: {
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            // Fade out the deleted row
+                            button.closest('tr').fadeOut();
 
-                        // Show success message
-                        Swal.fire(
-                            'Deleted!',
-                            response.message,
-                            'success'
-                        )
-                    },
-                    error: function(xhr) {
-                        Swal.fire(
-                            'Error!',
-                            'There was a problem deleting the slider.',
-                            'error'
-                        )
-                    }
-                });
-            }
-        })
+                            // Show success message
+                            Swal.fire(
+                                'Deleted!',
+                                response.message,
+                                'success'
+                            )
+                        },
+                        error: function(xhr) {
+                            Swal.fire(
+                                'Error!',
+                                'There was a problem deleting the slider.',
+                                'error'
+                            )
+                        }
+                    });
+                }
+            })
+        });
     });
-});
 </script>
