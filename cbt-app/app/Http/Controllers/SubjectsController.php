@@ -14,7 +14,7 @@ class SubjectsController extends Controller
     public function index()
     {
       
-         $subject = Subject::paginate(10);
+         $subject = Subject::paginate(5);
         return view('admin.subject.index', ['subject' => $subject]);
     }
 
@@ -107,11 +107,11 @@ class SubjectsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Subject $subject, $id)
+    public function destroy( $id)
     {
       
         $subject = Subject::findOrFail($id);
         $subject->delete();
-        return redirect('admin.subject')->with('status', 'Subject deleted successfully.');
+        return redirect('subject')->with('status', 'Subject deleted successfully.');
     }
 }

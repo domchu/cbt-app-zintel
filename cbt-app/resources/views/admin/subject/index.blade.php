@@ -9,7 +9,6 @@
                         <h2>All Subjects Info
                             <a href="{{ route('subject.create') }}" class="btn btn-primary float-end">Back</a>
                         </h2>
-                        
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered mt-3">
@@ -44,6 +43,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="mt-3">
+                            {{ $subject->links() }}
+                        </div>
                     </div>
                 </div>
 
