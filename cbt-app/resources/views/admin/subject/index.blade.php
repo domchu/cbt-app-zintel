@@ -29,9 +29,9 @@
                                         <td>{{ $subjectItem->code }}</td>
                                         <td>{{ $subjectItem->status }}</td>
                                         <td>
-                                            <a href="{{ route('subject.edit', $subjectItem->id) }}"
+                                            <a href="{{ route('subject.edit/'.$subjectItem->id) }}"
                                                 class="btn btn-primary">Edit</a>
-                                            <a href="{{ route('subject.show', $subjectItem->id) }}"
+                                            <a href="{{ route('subject.show/'.$subjectItem->id) }}"
                                                 class="btn btn-info">Show</a>
                                             <form action="{{ route('subject.destroy', $subjectItem->id) }}" method="POST"
                                                 style="display:inline;">
