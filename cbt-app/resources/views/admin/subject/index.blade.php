@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h2>Add Subject 
+                        <h2>All Subjects Info
                             <a href="{{ route('subject.create') }}" class="btn btn-primary float-end">Back</a>
                         </h2>
                         
@@ -20,15 +20,18 @@
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            {{-- <tbody>
+                            <tbody>
                                 @foreach ($subject as $subjectItem)
                                     <tr>
+                                        <td>{{ $subjectItem->id }}</td>
                                         <td>{{ $subjectItem->name }}</td>
                                         <td>{{ $subjectItem->code }}</td>
                                         <td>
-                                            <a href="{{ route('subjects.edit', $subjectItem->id) }}"
+                                            <a href="{{ route('subject.edit', $subjectItem->id) }}"
                                                 class="btn btn-warning">Edit</a>
-                                            <form action="{{ route('subjects.destroy', $subjectItem->id) }}" method="POST"
+                                            <a href="{{ route('subject.show', $subjectItem->id) }}"
+                                                class="btn btn-info">Show Subject</a>
+                                            <form action="{{ route('subject.destroy', $subjectItem->id) }}" method="POST"
                                                 style="display:inline;">
                                                 @csrf @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -36,7 +39,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                            </tbody> --}}
+                            </tbody>
                         </table>
                     </div>
                 </div>
