@@ -62,8 +62,11 @@ class SubjectsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Subject $subject)
+    public function destroy(Subject $subject, $id)
     {
         //
+        $slider = Subject::findOrFail($id);
+        $slider->delete();
+        return redirect('subject.index')->with('status', 'Subject deleted successfully.');
     }
 }

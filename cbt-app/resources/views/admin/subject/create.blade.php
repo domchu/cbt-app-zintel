@@ -19,12 +19,12 @@
                 {{-- END OF SESSION MESSAGE --}}
                 <div class="card">
                     <div class="card-header">
-                        <h4>Add Subject <a class="btn btn-danger float-end" href="{{ route('subject.store') }}"> Back</a>
+                        <h4>Add Subject <a class="btn btn-danger float-end" href="{{ route('subject.index') }}"> Back</a>
                         </h4>
 
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('store-subject') }}" method="POST" >
+                        <form action="{{ url('subject.store') }}" method="POST" >
                             @csrf
                             <div class="form-group my-3">
                                 <label for="">Subject</label>
