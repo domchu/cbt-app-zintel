@@ -1,9 +1,9 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('content')
 <div class="container">
     <h2>Subjects</h2>
-    <a href="{{ route('subjects.create') }}" class="btn btn-primary">Add Subject</a>
+    <a href="{{ route('subject.create') }}" class="btn btn-primary">Add Subject</a>
     <table class="table mt-3">
         <thead>
             <tr><th>Name</th><th>Actions</th></tr>
@@ -24,4 +24,5 @@
         </tbody>
     </table>
 </div>
-@endsection
+@endsection --}}
+<h2>Index</h2>

@@ -14,20 +14,24 @@ Route::put('update-slider/{id}', [SliderController::class, 'update']);
 Route::delete('home-slider/{id}', [SliderController::class, 'destroy']);
 Route::get('show-slider/{id}', [SliderController::class, 'show']);
 // SUBJECT ROUTES
-Route::get('subject', [SubjectsController::class, 'index']);
-Route::get('add-subject', [SubjectsController::class, 'create']);
+// Route::get('subject', [SubjectsController::class, 'index']);
+// Route::get('add-subject', [SubjectsController::class, 'create']);
 // Route::post('store-subject', [SubjectsController::class, 'store']);
 // Route::get('edit-subject/{id}', [SubjectsController::class, 'edit']);
 // Route::put('update-subject/{id}', [SubjectsController::class, 'update']);
 // Route::delete('subject/{id}', [SubjectsController::class, 'destroy']);
 // Route::get('show-subject/{id}', [SubjectsController::class, 'show']);
 
-// Route::prefix('admin/subject')->controller(SubjectsController::class)->group(function () {
-//     Route::get('/', 'index')->name('subject.index');
-//     Route::get('/create', 'create')->name('subject.create');
-//     Route::post('/store', 'store')->name('subject.store');
-//     Route::get('/{id}/edit', 'edit')->name('subject.edit');
-//     Route::put('/{id}/update', 'update')->name('subject.update');
-//     Route::delete('/{id}', 'destroy')->name('subject.destroy');
-//     Route::get('/{id}', 'show')->name('subject.show');
-// });
+
+
+
+
+Route::prefix('admin/subject')->controller(SubjectsController::class)->group(function () {
+    Route::get('/', 'index')->name('subject.index');
+    Route::get('/create', 'create')->name('subject.create');
+    Route::post('/store', 'store')->name('subject.store');
+    Route::get('/{id}/edit', 'edit')->name('subject.edit');
+    Route::put('/{id}/update', 'update')->name('subject.update');
+    Route::delete('/{id}', 'destroy')->name('subject.destroy');
+    Route::get('/{id}', 'show')->name('subject.show');
+});

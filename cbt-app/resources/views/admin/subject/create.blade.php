@@ -19,7 +19,7 @@
                 {{-- END OF SESSION MESSAGE --}}
                 <div class="card">
                     <div class="card-header">
-                        <h4>Add Subject <a class="btn btn-danger float-end" href="{{ url('add-subject') }}"> Back</a>
+                        <h4>Add Subject <a class="btn btn-danger float-end" href="{{ route('subject.store') }}"> Back</a>
                         </h4>
 
                     </div>
@@ -27,14 +27,14 @@
                         <form action="{{ url('store-subject') }}" method="POST" >
                             @csrf
                             <div class="form-group my-3">
-                                <label for="">Suject</label>
+                                <label for="">Subject</label>
                                 <input type="text" class="form-control" name="subject">
                                 @error('subject')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="form-group my-3">
-                                <label for="">Code</label>
+                                <label for="">Subject Code</label>
                                 <input type="text" class="form-control" name="code">
                                 @error('code')
                                     <span class="text-danger">{{ $message }}</span>

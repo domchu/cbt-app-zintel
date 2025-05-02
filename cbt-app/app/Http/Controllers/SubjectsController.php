@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\subjects;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class SubjectsController extends Controller
@@ -13,6 +13,7 @@ class SubjectsController extends Controller
     public function index()
     {
         //
+         return view('admin.subject.index');
     }
 
     /**
@@ -21,6 +22,7 @@ class SubjectsController extends Controller
     public function create()
     {
         //
+         return view('admin.subject.create');
     }
 
     /**
@@ -34,23 +36,25 @@ class SubjectsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(subjects $subjects)
+    public function show(Subject $subjects)
     {
         //
+        return view('admin.subject.show');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(subjects $subjects)
+    public function edit(Subject $subject)
     {
         //
+        return view('admin.subject.edit');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, subjects $subjects)
+    public function update(Request $request, Subject $subject)
     {
         //
     }
@@ -58,7 +62,7 @@ class SubjectsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(subjects $subjects)
+    public function destroy(Subject $subject)
     {
         //
     }

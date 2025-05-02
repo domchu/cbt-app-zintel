@@ -30,7 +30,7 @@
              <div class="collapse" id="collapseQuestions" aria-labelledby="headingOne"
                  data-bs-parent="#sidenavAccordion">
                  <nav class="sb-sidenav-menu-nested nav">
-                       <a class="nav-link" href="{{ url('add-subject') }}">Add Subject</a>
+                     <a class="nav-link" href="{{ url('admin/subject/create') }}">Add Subject</a>
                      <a class="nav-link" href="{{ url('admin/subject') }}">View Subjects</a>
                  </nav>
              </div>
@@ -48,9 +48,9 @@
                  <nav class="sb-sidenav-menu-nested nav">
                      <a class="nav-link" href="{{ url('admin/students/create') }}">Add Students</a>
                      <a class="nav-link" href="{{ url('admin/students') }}">View Students</a>
-                      <a class="nav-link" href="{{ url('admin/subject/create') }}">Subjects</a>
+                     <a class="nav-link" href="{{ url('admin/subject/create') }}">Subjects</a>
                      <a class="nav-link" href="{{ url('admin/subject') }}">Sections</a>
-                      <a class="nav-link" href="{{ url('admin/students') }}">Add Subjects</a>
+                     <a class="nav-link" href="{{ url('admin/students') }}">Add Subjects</a>
                      <a class="nav-link" href="{{ url('admin/students') }}">Add Class</a>
                      <a class="nav-link" href="{{ url('admin/students') }}">Sections</a>
                      <a class="nav-link" href="{{ url('admin/students') }}">View Students</a>
@@ -59,7 +59,7 @@
              </div>
 
 
- {{-- FRONTEND --}}
+             {{-- FRONTEND --}}
              <div class="sb-sidenav-menu-heading">Frontend</div>
              <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseFrontend"
                  aria-expanded="false" aria-controls="collapseFrontend">
@@ -83,7 +83,8 @@
                  General Settins
                  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
              </a>
-             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
+                 data-bs-parent="#sidenavAccordion">
                  <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                      <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                          data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
@@ -99,7 +100,8 @@
                          </nav>
                      </div>
                      <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                         data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                         data-bs-target="#pagesCollapseError" aria-expanded="false"
+                         aria-controls="pagesCollapseError">
                          Error
                          <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                      </a>
@@ -126,6 +128,6 @@
      </div>
      <div class="sb-sidenav-footer">
          <div class="small">Logged in as:</div>
-        Administrator
+         Administrator
      </div>
  </nav>
