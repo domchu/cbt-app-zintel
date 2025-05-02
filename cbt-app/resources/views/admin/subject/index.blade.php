@@ -15,8 +15,10 @@
                         <table class="table table-bordered mt-3">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>ID</th>
+                                    <th>Subject Name</th>
                                     <th>Subject Code</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -26,11 +28,12 @@
                                         <td>{{ $subjectItem->id }}</td>
                                         <td>{{ $subjectItem->name }}</td>
                                         <td>{{ $subjectItem->code }}</td>
+                                        <td>{{ $subjectItem->status }}</td>
                                         <td>
                                             <a href="{{ route('subject.edit', $subjectItem->id) }}"
-                                                class="btn btn-warning">Edit</a>
+                                                class="btn btn-primary">Edit</a>
                                             <a href="{{ route('subject.show', $subjectItem->id) }}"
-                                                class="btn btn-info">Show Subject</a>
+                                                class="btn btn-info">Show</a>
                                             <form action="{{ route('subject.destroy', $subjectItem->id) }}" method="POST"
                                                 style="display:inline;">
                                                 @csrf @method('DELETE')

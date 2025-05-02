@@ -13,7 +13,7 @@ class SubjectsController extends Controller
      */
     public function index()
     {
-        //
+      
          $subject = Subject::paginate(10);
         return view('admin.subject.index', ['subject' => $subject]);
     }
@@ -23,7 +23,6 @@ class SubjectsController extends Controller
      */
     public function create()
     {
-        //
          return view('admin.subject.create');
     }
 
@@ -45,12 +44,6 @@ class SubjectsController extends Controller
                     ], 422);
                  }
 
-                    // ✅ Store in database
-                    // Subject::create([
-                    //     'subject' => $request->input('subject'),
-                    //     'code' => $request->input('code'),
-                    //     'status' => $request->input('status')== true ? '1': '0',
-                    // ]);
                             $subject = new Subject();
                             $subject->name = $request->input('name');
                             $subject->code = $request->input('code');
@@ -66,8 +59,7 @@ class SubjectsController extends Controller
      * Display the specified resource.
      */
     public function show($id)
-    {
-        //
+    { 
         $subject = Subject::find($id);
         return view('admin.subject.show', compact('subject'));
     }
@@ -77,7 +69,6 @@ class SubjectsController extends Controller
      */
     public function edit( $id)
     {
-        //
         $subject = Subject::find($id);
         return view('admin.subject.edit', compact('subject'));
     }
@@ -85,9 +76,32 @@ class SubjectsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Subject $subject)
+    public function update(Request $request,  $id)
     {
-        //
+      
+        
+                    $validator = Validator::make($request->all(),[
+                            'name' => 'required|string|max:255',
+                            'code' => 'required|numeric|unique:subjects,code',
+                            'status' => 'required|boolean',
+                        ]);
+                        if($validator->fails())
+                {
+                    return response()->json([
+                   'message'=> 'All fields are required',
+                    'error'=> $validator->messages(),
+                    ], 422);
+                 }
+
+                            $subject = Subject::findOrFail($id);
+                            $subject->name = $request->input('name');
+                            $subject->code = $request->input('code');
+                            $subject->status = $request->input('status')== true ? '1': '0';
+                            $subject->save();
+
+                // ✅ Redirect back with success message
+                return redirect()->route('subject.index')->with('status', 'Subject Updated successfully!');
+                                 
     }
 
     /**
@@ -95,7 +109,7 @@ class SubjectsController extends Controller
      */
     public function destroy(Subject $subject, $id)
     {
-        //
+      
         $subject = Subject::findOrFail($id);
         $subject->delete();
         return redirect('admin.subject')->with('status', 'Subject deleted successfully.');
