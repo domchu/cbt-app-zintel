@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->bigIncrements('id');
                $table->string('name')->unique();
+               $table->string('code');
+               $table->boolean('status')->default(1)->nullable();
             $table->timestamps();
         });
     }

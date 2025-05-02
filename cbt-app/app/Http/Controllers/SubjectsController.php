@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SubjectsController extends Controller
 {
@@ -13,7 +14,8 @@ class SubjectsController extends Controller
     public function index()
     {
         //
-         return view('admin.subject.index');
+         $subject = Subject::paginate(10);
+        return view('admin.subject.index', ['subject' => $subject]);
     }
 
     /**
@@ -30,25 +32,54 @@ class SubjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+                    $validator = Validator::make($request->all(),[
+                            'name' => 'required|string|max:255',
+                            'code' => 'required|numeric|unique:subjects,code',
+                            'status' => 'required|boolean',
+                        ]);
+                        if($validator->fails())
+                {
+                    return response()->json([
+                   'message'=> 'All fields are required',
+                    'error'=> $validator->messages(),
+                    ], 422);
+                 }
+
+                    // ✅ Store in database
+                    // Subject::create([
+                    //     'subject' => $request->input('subject'),
+                    //     'code' => $request->input('code'),
+                    //     'status' => $request->input('status')== true ? '1': '0',
+                    // ]);
+                            $subject = new Subject();
+                            $subject->name = $request->input('name');
+                            $subject->code = $request->input('code');
+                            $subject->status = $request->input('status')== true ? '1': '0';
+                            $subject->save();
+
+                // ✅ Redirect back with success message
+                return redirect()->route('subject.index')->with('status', 'Subject created successfully!');
+                                            
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Subject $subjects)
+    public function show($id)
     {
         //
-        return view('admin.subject.show');
+        $subject = Subject::find($id);
+        return view('admin.subject.show', compact('subject'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Subject $subject)
+    public function edit( $id)
     {
         //
-        return view('admin.subject.edit');
+        $subject = Subject::find($id);
+        return view('admin.subject.edit', compact('subject'));
     }
 
     /**
@@ -65,8 +96,8 @@ class SubjectsController extends Controller
     public function destroy(Subject $subject, $id)
     {
         //
-        $slider = Subject::findOrFail($id);
-        $slider->delete();
-        return redirect('subject.index')->with('status', 'Subject deleted successfully.');
+        $subject = Subject::findOrFail($id);
+        $subject->delete();
+        return redirect('admin.subject')->with('status', 'Subject deleted successfully.');
     }
 }

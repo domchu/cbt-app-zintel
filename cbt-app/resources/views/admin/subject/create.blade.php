@@ -24,12 +24,12 @@
 
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('subject.store') }}" method="POST" >
+                        <form action="{{ route('subject.store') }}" method="POST" >
                             @csrf
                             <div class="form-group my-3">
                                 <label for="">Subject</label>
-                                <input type="text" class="form-control" name="subject">
-                                @error('subject')
+                                <input type="text" class="form-control" name="name">
+                                @error('name')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -43,7 +43,8 @@
                            
                             <div class="form-group my-3">
                                 <label for="">Status</label>
-                                <input type="checkbox" name="status"> 1=visible, 0=hidden
+                                <input type="hidden" name="status" value="0">
+                                <input type="checkbox" name="status" value="1" {{ old('status') ? 'checked' : '' }}> 1=visible, 0=hidden
                             </div>
                             <div class="form-group my-3">
                                 <button type="submit" class="btn btn-primary">Add Subject</button>
