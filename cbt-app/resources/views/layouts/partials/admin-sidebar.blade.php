@@ -27,6 +27,13 @@
                      <a class="nav-link" href="{{ url('admin/questions') }}">View Questions</a>
                  </nav>
              </div>
+             <div class="collapse" id="collapseQuestions" aria-labelledby="headingOne"
+                 data-bs-parent="#sidenavAccordion">
+                 <nav class="sb-sidenav-menu-nested nav">
+                       <a class="nav-link" href="{{ url('add-subject') }}">Add Subject</a>
+                     <a class="nav-link" href="{{ url('admin/subject') }}">View Subjects</a>
+                 </nav>
+             </div>
 
              {{-- ACADEMICS --}}
              <div class="sb-sidenav-menu-heading">ACADEMICS</div>
@@ -41,8 +48,8 @@
                  <nav class="sb-sidenav-menu-nested nav">
                      <a class="nav-link" href="{{ url('admin/students/create') }}">Add Students</a>
                      <a class="nav-link" href="{{ url('admin/students') }}">View Students</a>
-                      <a class="nav-link" href="{{ url('admin/subjects/create') }}">Subjects</a>
-                     <a class="nav-link" href="{{ url('admin/subjects') }}">Sections</a>
+                      <a class="nav-link" href="{{ url('admin/subject/create') }}">Subjects</a>
+                     <a class="nav-link" href="{{ url('admin/subject') }}">Sections</a>
                       <a class="nav-link" href="{{ url('admin/students') }}">Add Subjects</a>
                      <a class="nav-link" href="{{ url('admin/students') }}">Add Class</a>
                      <a class="nav-link" href="{{ url('admin/students') }}">Sections</a>
