@@ -24,7 +24,7 @@
 
                     </div>
                     <div class="card-body">
-                        <form action="{{ route( `subject.$subject->id`) }}" method="POST" >
+                        <form action="{{ route( 'subject.edit',$subject->id) }}" method="POST" >
                             @csrf
                             @method('PUT')
                             <div class="form-group my-3">
