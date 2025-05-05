@@ -14,7 +14,7 @@ class SubjectsController extends Controller
     public function index()
     {
       
-         $subject = Subject::paginate(5);
+         $subject = Subject::paginate(10);
         return view('admin.subject.index', ['subject' => $subject]);
     }
 
@@ -83,8 +83,8 @@ class SubjectsController extends Controller
     {
                     $validator = Validator::make($request->all(),[
                             'name' => 'required|string|max:255',
-                            'code' => 'required|numeric|unique:subjects,code',
-                            'status' => 'required|boolean',
+                            'code' => 'required|numeric|unique:subjects,code,' . $id,
+                            'status' => 'nullable|boolean',
                         ]);
                         if($validator->fails())
                 {
@@ -94,14 +94,14 @@ class SubjectsController extends Controller
                     ], 422);
                  }
 
-                            $subject = Subject::findOrFail($id); 
+                             $subject = Subject::findOrFail($id); 
                             $subject->name = $request->input('name');
                             $subject->code = $request->input('code');
-                            $subject->status = $request->input('status')== true ? '1': '0';
+                            $subject->status = $request->has('status') ? 1 : 0;
                             $subject->save();
 
                 // ✅ Redirect back with success message
-                return redirect()->route('subject.index')->with('status', 'Subject Updated successfully!');
+               return redirect()->route('subject.index')->with('status', 'Subject updated successfully!');
                                  
     }
 

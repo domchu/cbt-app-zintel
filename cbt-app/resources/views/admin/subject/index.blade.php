@@ -4,10 +4,21 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-12">
+                  {{-- SUCCESS MESSAGE --}}
+               @if(session('status'))
+                <h5 class="alert alert-success">{{ session('status') }}</h5>
+            @endif
+
+            @if(session('error'))
+                <h5 class="alert alert-danger">{{ session('error') }}</h5>
+            @endif
+               
+
+                {{-- END OF SESSION MESSAGE --}}
                 <div class="card">
                     <div class="card-header">
                         <h2>All Subjects Information
-                            <a href="{{ route('subject.create') }}" class="btn btn-primary float-end">Back</a>
+                            <a href="{{ route('subject.create') }}" class="btn btn-primary float-end">Add Subject</a>
                         </h2>
                     </div>
                     <div class="card-body">
