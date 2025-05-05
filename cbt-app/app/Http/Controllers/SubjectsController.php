@@ -60,7 +60,10 @@ class SubjectsController extends Controller
      */
     public function show($id)
     { 
-        $subject = Subject::find($id);
+        // $subject = Subject::find($id);
+        // return view('admin.subject.show', compact('subject'));
+
+         $subject = Subject::find($id);
         return view('admin.subject.show', compact('subject'));
     }
 
@@ -107,7 +110,7 @@ class SubjectsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
       
         $subject = Subject::findOrFail($id);

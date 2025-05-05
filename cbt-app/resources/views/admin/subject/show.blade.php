@@ -19,7 +19,7 @@
                 {{-- END OF SESSION MESSAGE --}}
                 <div class="card">
                     <div class="card-header">
-                        <h4>Show Subject <a class="btn btn-danger float-end" href="{{ route('subject.index') }}"> Back</a>
+                        <h4>Subject Details <a class="btn btn-danger float-end" href="{{ route('subject.index') }}"> Back</a>
                         </h4>
 
                     </div>
@@ -27,11 +27,11 @@
                         
                             @csrf
                             <div class="form-group my-3">
-                                <h5 for="">Subject Name</h5>
+                                <h5 for="">Subject Name:</h5>
                                 <p>{{ $subject->name }}</p>
                             </div>
                             <div class="form-group my-3">
-                                <h5 >Subject Code</h5>
+                                <h5 >Subject Code:</h5>
                                   <p>{{ $subject->code }}</p>
                             </div>
                            

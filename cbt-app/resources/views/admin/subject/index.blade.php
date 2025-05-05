@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h2>All Subjects Info
+                        <h2>All Subjects Information
                             <a href="{{ route('subject.create') }}" class="btn btn-primary float-end">Back</a>
                         </h2>
                     </div>
@@ -29,13 +29,14 @@
                                         <td>{{ $subjectItem->code }}</td>
                                         <td>{{ $subjectItem->status }}</td>
                                         <td>
-                                            <a href="{{ route('subject.edit/'.$subjectItem->id) }}"
+                                            <a href="{{ route('subject.edit',$subjectItem->id) }}"
                                                 class="btn btn-primary">Edit</a>
-                                            <a href="{{ route('subject.show/'.$subjectItem->id) }}"
+                                            <a href="{{ route('subject.show',$subjectItem->id) }}"
                                                 class="btn btn-info">Show</a>
                                             <form action="{{ route('subject.destroy', $subjectItem->id) }}" method="POST"
                                                 style="display:inline;">
-                                                @csrf @method('DELETE')
+                                                @csrf 
+                                                @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
                                         </td>
