@@ -34,9 +34,7 @@
                                 <h5 >Subject Code:</h5>
                                   <p>{{ $subject->code }}</p>
                             </div>
-                           
-                            
-                       
+                     
                     </div>
                 </div>
             </div>

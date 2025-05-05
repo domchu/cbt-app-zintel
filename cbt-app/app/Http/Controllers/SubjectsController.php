@@ -79,10 +79,8 @@ class SubjectsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,  $id)
+    public function update(Request $request, $id)
     {
-      
-        
                     $validator = Validator::make($request->all(),[
                             'name' => 'required|string|max:255',
                             'code' => 'required|numeric|unique:subjects,code',
@@ -96,7 +94,7 @@ class SubjectsController extends Controller
                     ], 422);
                  }
 
-                            $subject = Subject::findOrFail($id);
+                            $subject = Subject::findOrFail($id); 
                             $subject->name = $request->input('name');
                             $subject->code = $request->input('code');
                             $subject->status = $request->input('status')== true ? '1': '0';

@@ -22,26 +22,39 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($subject as $subjectItem)
+                                @if(count($subject) > 0)
+                                    @foreach ($subject as $subjectItem)
+                                        <tr>
+                                            <td>{{ $subjectItem->id }}</td>
+                                            <td>{{ $subjectItem->name }}</td>
+                                            <td>{{ $subjectItem->code }}</td>
+                                            <td>
+                                                @if ($subjectItem->status == '1')
+                                                    visible
+                                                @else
+                                                    hidden
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('subject.edit', $subjectItem->id) }}"
+                                                    class="btn btn-primary">Edit</a>
+                                                <a href="{{ route('subject.show', $subjectItem->id) }}"
+                                                    class="btn btn-info">Show</a>
+                                                <form action="{{ route('subject.destroy', $subjectItem->id) }}"
+                                                    method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="btn btn-danger delete-slider d-inline">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                      @else
                                     <tr>
-                                        <td>{{ $subjectItem->id }}</td>
-                                        <td>{{ $subjectItem->name }}</td>
-                                        <td>{{ $subjectItem->code }}</td>
-                                        <td>{{ $subjectItem->status }}</td>
-                                        <td>
-                                            <a href="{{ route('subject.edit',$subjectItem->id) }}"
-                                                class="btn btn-primary">Edit</a>
-                                            <a href="{{ route('subject.show',$subjectItem->id) }}"
-                                                class="btn btn-info">Show</a>
-                                            <form action="{{ route('subject.destroy', $subjectItem->id) }}" method="POST"
-                                                style="display:inline;">
-                                                @csrf 
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
-                                        </td>
+                                        <td>No data found</td>
                                     </tr>
-                                @endforeach
+                                @endif
                             </tbody>
                         </table>
                         <div class="mt-3">
