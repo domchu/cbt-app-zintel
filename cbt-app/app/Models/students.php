@@ -9,10 +9,19 @@ class Students extends Model
     //
      protected $table = 'sliders';
     protected $fillable = [
-        'heading',
-        'description',
-        'link',
-        'link_name',
+        'surname',
+        'first_name',
+        'other_name',
+        'email',
+        'password',
+        'phone',
+        'gender',
+        'state',
+        'country',
+        'registration_number',
+        'address',
+        'dob',
+        'role',
         'image',
         'status',
     ];
