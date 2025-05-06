@@ -25,4 +25,5 @@ class Students extends Model
         'image',
         'status',
     ];
+    protected $hidden = ['password'];
 }
