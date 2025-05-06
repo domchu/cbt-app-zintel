@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\students;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class StudentsController extends Controller
 {
@@ -58,8 +59,12 @@ class StudentsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(students $students)
+    public function destroy(students $students, $id)
     {
         //
+        $student = Students::findOrfail($id);
+        $student = delete();
+        return Redirect()->back()->with('status', 'Student Delete Successfully');
+
     }
 }
