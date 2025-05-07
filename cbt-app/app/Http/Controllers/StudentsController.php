@@ -49,7 +49,7 @@ class StudentsController extends Controller
                     'first_name' => 'required|string|max:255',
                     'other_name' => 'nullable|string|max:255',
                     'email' => 'required|email|unique:students,email',
-                    'password' => 'required|min:6|confirmed',
+                    'password' => 'required|min:8|confirmed',
                     'phone' => 'required|digits_between:10,15',
                     'gender' => 'required|in:male,female',
                     'state' => 'required|string',
@@ -59,7 +59,7 @@ class StudentsController extends Controller
                     'dob' => 'required|date',
                     'role' => 'required|string|in:student,admin',
                     'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-                    'status' => 'required|boolean',
+                    // 'status' => 'required|boolean',
                         ]);
                         if($validator->fails())
                 {
@@ -137,7 +137,7 @@ class StudentsController extends Controller
                     'first_name' => 'required|string|max:255',
                     'other_name' => 'nullable|string|max:255',
                     'email' => 'required|email|unique:students,email',
-                    'password' => 'required|min:6|confirmed',
+                    'password' => 'required|min:8|confirmed',
                     'phone' => 'required|digits_between:10,15',
                     'gender' => 'required|in:male,female',
                     'state' => 'required|string',
@@ -147,7 +147,7 @@ class StudentsController extends Controller
                     'dob' => 'required|date',
                     'role' => 'required|string|in:student,admin',
                     'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-                    'status' => 'required|boolean',
+                    // 'status' => 'required|boolean',
                         ]);
                         if($validator->fails())
                 {

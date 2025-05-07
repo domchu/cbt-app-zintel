@@ -57,13 +57,7 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="form-group my-3">
-                                <label for="">Password</label>
-                                <input type="password" class="form-control" name="password">
-                                @error('password')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
+                           
                             <div class="form-group my-3">
                                 <label for="">Phone Number</label>
                                 <input type="tel" class="form-control" name="phone">
@@ -105,13 +99,7 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="form-group my-3">
-                                <label for="">Registration Number</label>
-                                <input type="tel" class="form-control" name="registration_number">
-                                @error('registration_number')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
+                           
                             <div class="form-group my-3">
                                 <label for="">Student Image Upload</label>
                                 <input type="file" class="form-control" name="image" id="image"
@@ -126,6 +114,20 @@
                                 <label for="">Student Address</label>
                                 <textarea name="address" id="address" class="form-control"></textarea>
                                 @error('address')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                             <div class="form-group my-3">
+                                <label for="">Registration Number</label>
+                                <input type="tel" class="form-control" name="registration_number">
+                                @error('registration_number')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                             <div class="form-group my-3">
+                                <label for="">Password</label>
+                                <input type="password" class="form-control" name="password">
+                                @error('password')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>

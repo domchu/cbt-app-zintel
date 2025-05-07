@@ -6,79 +6,88 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Student Registered  <a class="btn btn-primary float-end" href="{{ url('subject.create') }}">Register Student </a></h4>
+                        <h4>Student Registered <a class="btn btn-primary float-end"
+                                href="{{ url('subject.create') }}">Register Student </a></h4>
 
                     </div>
                     <div class="card-body">
                         {{-- your Student data --}}
-                        
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Surname</th>
-                                        <th>Fisrt Name</th>
-                                        <th>Other Name</th>
-                                        <th>Surname</th>
-                                        <th>Surname</th>
-                                        <th>Surname</th>
-                                        <th>Surname</th>
-                                        <th>Description</th>
-                                        <th>Link</th>
-                                        <th>Link Name</th>
-                                        <th>Slider Image</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if (count($student) > 0)
-                                        @foreach ($student as $studentInfo)
-                                            <tr>
-                                                <td>{{ $studentInfo->id }} </td>
-                                                <td>{{ $studentInfo->heading }} </td>
-                                                <td>{{ $studentInfo->description }} </td>
-                                                <td>{{ $studentInfo->link }} </td>
-                                                <td>{{ $studentInfo->link_name }} </td>
-                                                <td>
-                                                    <img src="{{ Storage::url($studentInfo->image) }}" alt="Student Image"
-                                                        style="width:100px; height:50px;">
-                                                </td>
-                                                <td>
-                                                    @if ($studentInfo->status == '1')
-                                                        visible
-                                                    @else
-                                                        hidden
-                                                    @endif
 
-                                                </td>
-                                                <td>
-                                                    <a href="{{ url('edit-student/' . $studentInfo->id) }}"
-                                                        class="btn btn-success">Edit</a>
-                                                    <a href="{{ url('show-student/' . $studentInfo->id) }}"
-                                                        class="btn btn-info">Show</a>
-
-                                                    <form action="{{ url('home-student/' . $studentInfo->id) }}"
-                                                        method="POST" style="display:inline;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger delete-student d-inline"
-                                                            data-id="{{ $studentInfo->id }}">Delete</button>
-                                                    </form>
-
-                                                </td>
-
-                                            </tr>
-                                        @endforeach
-                                    @else
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Surname</th>
+                                    <th>Fisrt Name</th>
+                                    <th>Other Name</th>
+                                    <th>Email</th>
+                                    <th>Phone Number</th>
+                                    <th>Gender</th>
+                                    <th>Registration Number</th>
+                                    <th>State Of Origin</th>
+                                    <th>Country</th>
+                                    <th>Home Address</th>
+                                    <th>Date Of Birth</th>
+                                    <th>Slider Image</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (count($student) > 0)
+                                    @foreach ($student as $studentInfo)
                                         <tr>
-                                            <td>No data found</td>
-                                        </tr>
-                                    @endif
+                                            <td>{{ $studentInfo->id }} </td>
+                                            <td>{{ $studentInfo->surname }} </td>
+                                            <td>{{ $studentInfo->first_name }} </td>
+                                            <td>{{ $studentInfo->other_name }} </td>
+                                            <td>{{ $studentInfo->email }} </td>
+                                            <td>{{ $studentInfo->phone }} </td>
+                                            <td>{{ $studentInfo->gender }} </td>
+                                            <td>{{ $studentInfo->state }} </td>
+                                            <td>{{ $studentInfo->country }} </td>
+                                            <td>{{ $studentInfo->registration_number }} </td>
+                                            <td>{{ $studentInfo->address }} </td>
+                                            <td>{{ $studentInfo->dob }} </td>
+                                            <td>
+                                                <img src="{{ Storage::url($studentInfo->image) }}" alt="Student Image"
+                                                    style="width:100px; height:50px;">
+                                            </td>
+                                            <td>
+                                                @if ($studentInfo->status == '1')
+                                                    visible
+                                                @else
+                                                    hidden
+                                                @endif
 
-                                </tbody>
-                            </table>
-                        
+                                            </td>
+                                            <td>
+                                                <a href="{{ url('subject.edit/' . $studentInfo->id) }}"
+                                                    class="btn btn-success">Edit</a>
+                                                <a href="{{ url('subject.show/' . $studentInfo->id) }}"
+                                                    class="btn btn-info">Show</a>
+
+                                                <form action="{{ url('subject.destroy/' . $studentInfo->id) }}"
+                                                    method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger delete-student d-inline"
+                                                        data-id="{{ $studentInfo->id }}">Delete</button>
+                                                </form>
+
+                                            </td>
+
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td>No data found</td>
+                                    </tr>
+                                @endif
+
+                            </tbody>
+                        </table>
+
                         <div class="mt-3">
                             {{ $slider->links() }}
                         </div>
@@ -147,6 +156,3 @@ $(document).ready(function () {
 }
 
 </script> --}}
-
-
-
