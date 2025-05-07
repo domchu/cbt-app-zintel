@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\Admin\SliderController;
 
@@ -30,7 +31,7 @@ Route::prefix('admin/subject')->controller(SubjectsController::class)->group(fun
 
 // STUDENT REGISTRATION
 
-Route::prefix('admin/student')->controller(SubjectsController::class)->group(function () {
+Route::prefix('admin/student')->controller(StudentsController::class)->group(function () {
     Route::get('/', 'index')->name('student.index');
     Route::get('/create', 'create')->name('student.create');
     Route::post('/store', 'store')->name('student.store');

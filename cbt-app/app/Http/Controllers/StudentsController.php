@@ -102,7 +102,7 @@ class StudentsController extends Controller
 
             } 
             catch (Exception $th) {
-                return redirect('add-student')->with('fail', $th->getMessage());
+                return redirect('admin.student.create')->with('fail', $th->getMessage());
             }
 
                 
@@ -114,7 +114,7 @@ class StudentsController extends Controller
     public function show(Student $students, $id)
     {
         $students = Student::findOrFail($id);
-        return view('admin.student.show', compact('subject'));
+        return view('admin.student.show', compact('student'));
     }
 
     /**
@@ -123,7 +123,7 @@ class StudentsController extends Controller
     public function edit(Student $students, $id)
     {
          $students = Student::findOrFail($id);
-        return view('admin.student.edit', compact('subject'));
+        return view('admin.student.edit', compact('student'));
     }
 
     /**
@@ -191,7 +191,7 @@ class StudentsController extends Controller
 
             } 
             catch (Exception $th) {
-                return redirect('add-student')->with('fail', $th->getMessage());
+                return redirect('admin.student.create')->with('fail', $th->getMessage());
             };
     }
 
