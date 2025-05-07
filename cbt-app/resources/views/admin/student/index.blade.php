@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Student Registered <a class="btn btn-primary float-end"
-                                href="{{ url('subject.create') }}">Register Student </a></h4>
+                                href="{{ url('admin/student/create') }}">Register Student </a></h4>
 
                     </div>
                     <div class="card-body">
@@ -28,7 +28,7 @@
                                     <th>Country</th>
                                     <th>Home Address</th>
                                     <th>Date Of Birth</th>
-                                    <th>Slider Image</th>
+                                    <th>Student Image</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -89,7 +89,7 @@
                         </table>
 
                         <div class="mt-3">
-                            {{ $slider->links() }}
+                            {{ $student->links() }}
                         </div>
                     </div>
                 </div>
