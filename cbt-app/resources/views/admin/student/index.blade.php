@@ -13,7 +13,7 @@
                     <div class="card-body">
                         {{-- your Student data --}}
 
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -62,12 +62,12 @@
 
                                             </td>
                                             <td>
-                                                <a href="{{ url('subject.edit/' . $studentInfo->id) }}"
+                                                <a href="{{ url('student.edit/' . $studentInfo->id) }}"
                                                     class="btn btn-success">Edit</a>
-                                                <a href="{{ url('subject.show/' . $studentInfo->id) }}"
+                                                <a href="{{ url('student.show/' . $studentInfo->id) }}"
                                                     class="btn btn-info">Show</a>
 
-                                                <form action="{{ url('subject.destroy/' . $studentInfo->id) }}"
+                                                <form action="{{ url('student.destroy/' . $studentInfo->id) }}"
                                                     method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
@@ -80,7 +80,7 @@
                                         </tr>
                                     @endforeach
                                 @else
-                                    <tr>
+                                    <tr class="w-full">
                                         <td>No data found</td>
                                     </tr>
                                 @endif

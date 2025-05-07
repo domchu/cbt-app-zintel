@@ -44,7 +44,7 @@
                                 <input type="checkbox" name="status" {{ $slider->status == '1' ? 'checked' : '' }}>
                            
                             </div>
-                            <div class="form-group py-4">
+                            <div class="form-group py-4 flex justify-center align-baseline text-center w-full my-0 mx-auto">
                                 <button type="submit" class="btn btn-primary">Update Slider </button>
                             </div>
                         </form>

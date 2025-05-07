@@ -72,15 +72,15 @@ class StudentsController extends Controller
       try {
               
                if ($request->hasFile('image')) {
-                 $path = $request->file('image')->store('/students', 'public');
-             Storage::url($path);
+                $path = $request->file('image')->store('/students', 'public');
+                Storage::url($path);
 
-              $student = new Student();
+                $student = new Student();
                 $student->surname = $request->surname;
                 $student->first_name = $request->first_name;
                 $student->other_name = $request->other_name;
                 $student->email = $request->email;
-                $student->password = Hash::make($request->surname . 'pass');;
+                $student->password = Hash::make($request->surname.'pass');;
                 $student->phone = $request->phone;
                 $student->gender = $request->gender;
                 $student->state = $request->state;

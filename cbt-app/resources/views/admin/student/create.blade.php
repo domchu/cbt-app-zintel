@@ -5,16 +5,16 @@
         <div class="row">
             <div class="col-md-12">
                 {{-- SUCCESS MESSAGE --}}
-                @if(session('status'))
+                @if (session('status'))
                     <h5 class="alert alert-success">{{ session('status') }} </h5>
                 @endif
 
-                @if(session('error'))
+                @if (session('error'))
                     <h5 class="alert alert-danger">
                         {{ session('error') }}
                     </h5>
                 @endif
-               
+
 
                 {{-- END OF SESSION MESSAGE --}}
                 <div class="card">
@@ -24,32 +24,32 @@
 
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('subject.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url('student.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                           <div class="row col-md-12">
-                             <div class="form-group my-3">
-                                <label for="">Surname</label>
-                                <input type="text" class="form-control" name="surname">
-                                @error('surname')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                            <div class="row col-md-12">
+                                <div class="form-group my-3">
+                                    <label for="">Surname</label>
+                                    <input type="text" class="form-control" name="surname">
+                                    @error('surname')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group my-3">
+                                    <label for="">First Name</label>
+                                    <input type="text" class="form-control" name="first_name">
+                                    @error('first_name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group my-3">
+                                    <label for="">Other Name</label>
+                                    <input type="text" class="form-control" name="other_name">
+                                    @error('other_name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
-                            <div class="form-group my-3">
-                                <label for="">First Name</label>
-                                <input type="text" class="form-control" name="first_name">
-                                @error('first_name')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group my-3">
-                                <label for="">Other Name</label>
-                                <input type="text" class="form-control" name="other_name">
-                                @error('other_name')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                           </div>
-                           
+
                             <div class="form-group my-3">
                                 <label for="">Email Address</label>
                                 <input type="email" class="form-control" name="email">
@@ -57,7 +57,7 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                           
+
                             <div class="form-group my-3">
                                 <label for="">Phone Number</label>
                                 <input type="tel" class="form-control" name="phone">
@@ -79,10 +79,10 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                          
+
                             <div class="form-group my-3">
                                 <label for="">Gender</label>
-                                <select  class="form-control" name="gender">
+                                <select class="form-control" name="gender">
                                     <option value="'">-- Select Gender --</option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
@@ -92,45 +92,32 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                             <div class="form-group my-3">
+                            <div class="form-group my-3">
                                 <label for="">Country</label>
                                 <input type="text" class="form-control" name="country">
                                 @error('country')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                           
+
                             <div class="form-group my-3">
                                 <label for="">Student Image Upload</label>
                                 <input type="file" class="form-control" name="image" id="image"
-                                    onchange="previewImage(event)">
-                                <img id="imagePreview" style="width:70px; height:70px; display: none;" />
+                                    onchange="StudentPreviewImage(event)">
+                                <img id="studentImagePreview" style="width:70px; height:70px; display: none;" />
                                 @error('image')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
 
                             </div>
-                             <div class="form-group my-3">
+                            <div class="form-group my-3">
                                 <label for="">Student Address</label>
                                 <textarea name="address" id="address" class="form-control"></textarea>
                                 @error('address')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                             <div class="form-group my-3">
-                                <label for="">Registration Number</label>
-                                <input type="tel" class="form-control" name="registration_number">
-                                @error('registration_number')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                             <div class="form-group my-3">
-                                <label for="">Password</label>
-                                <input type="password" class="form-control" name="password">
-                                @error('password')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
+
                             <div class="form-group my-3">
                                 <label for="">Status</label>
                                 <input type="checkbox" name="status"> 1=visible, 0=hidden
@@ -146,12 +133,12 @@
     </div>
 @endsection
 <script>
-    function previewImage(event) {
+    function StudentPreviewImage(event) {
         const input = event.target;
         const reader = new FileReader();
 
         reader.onload = function() {
-            const imgElement = document.getElementById('imagePreview');
+            const imgElement = document.getElementById('studentImagePreview');
             imgElement.src = reader.result;
             imgElement.style.display = 'block';
         }
