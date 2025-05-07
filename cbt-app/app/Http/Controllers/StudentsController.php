@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Exception;
-use App\Models\students;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +18,7 @@ class StudentsController extends Controller
      */
     public function index()
     {
-        $student = Students::latest()->paginate(15);
+        $student = Student::latest()->paginate(15);
         return view('admin.student.index', [ 'student' => $student]);
     }
 
@@ -75,7 +75,7 @@ class StudentsController extends Controller
                  $path = $request->file('image')->store('/students', 'public');
              Storage::url($path);
 
-              $student = new Students();
+              $student = new Student();
                 $student->surname = $request->surname;
                 $student->first_name = $request->first_name;
                 $student->other_name = $request->other_name;
@@ -111,18 +111,18 @@ class StudentsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(students $students, $id)
+    public function show(Student $students, $id)
     {
-        $students = Students::findOrFail($id);
+        $students = Student::findOrFail($id);
         return view('admin.student.show', compact('subject'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(students $students, $id)
+    public function edit(Student $students, $id)
     {
-         $students = Students::findOrFail($id);
+         $students = Student::findOrFail($id);
         return view('admin.student.edit', compact('subject'));
     }
 
@@ -158,7 +158,7 @@ class StudentsController extends Controller
                  }
 
       try {
-               $student = Students::findOrFail($id); 
+               $student = Student::findOrFail($id); 
                if ($request->hasFile('image')) {
           
                 if ($student->image && Storage::disk('public')->exists($student->image)) {
@@ -198,10 +198,10 @@ class StudentsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Students $students, $id)
+    public function destroy(Student $students, $id)
     {
         
-            $student = Students::findOrFail($id);
+            $student = Student::findOrFail($id);
             
             if ($student->image && Storage::disk('public')->exists($students->image)) {
                 Storage::disk('public')->delete($student->image);
