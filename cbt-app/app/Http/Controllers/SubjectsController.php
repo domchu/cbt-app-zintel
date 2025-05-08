@@ -51,7 +51,7 @@ class SubjectsController extends Controller
                             $subject->save();
 
                 // ✅ Redirect back with success message
-                return redirect()->route('subject.index')->with('status', 'Subject created successfully!');
+                return redirect()->route('subject.index')->with('status', 'Subject Created successfully!');
                                             
     }
 
@@ -101,7 +101,7 @@ class SubjectsController extends Controller
                             $subject->save();
 
                 // ✅ Redirect back with success message
-               return redirect()->route('subject.index')->with('status', 'Subject updated successfully!');
+               return redirect()->route('subject.index')->with('status', 'Subject Updated successfully!');
                                  
     }
 
@@ -113,6 +113,6 @@ class SubjectsController extends Controller
       
         $subject = Subject::findOrFail($id);
         $subject->delete();
-        return redirect('subject')->with('status', 'Subject deleted successfully.');
+        return redirect('subject')->with('status', 'Subject Deleted successfully.');
     }
 }

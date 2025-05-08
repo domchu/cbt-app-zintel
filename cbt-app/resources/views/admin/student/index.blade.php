@@ -6,14 +6,14 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Student Registered <a class="btn btn-primary float-end"
-                                href="{{ url('admin/student/create') }}">Register Student </a></h4>
+                        <h4>Student Registered <a class="btn btn-primary float-end" href="{{ url('admin/student/create') }}">
+                                Register Student </a></h4>
 
                     </div>
                     <div class="card-body">
-                        {{-- your Student data --}}
+                        {{-- Your Student Data --}}
 
-                        <table class="table table-bordered table-hover">
+                        <table id="myDataTable" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -51,7 +51,8 @@
                                             <td>{{ $studentInfo->dob }} </td>
                                             <td>
                                                 <img src="{{ Storage::url($studentInfo->image) }}" alt="Student Image"
-                                                    style="width:100px; height:50px;">
+                                                    style="widows: 100px; height: 70px;">
+
                                             </td>
                                             <td>
                                                 @if ($studentInfo->status == '1')
@@ -68,7 +69,7 @@
                                                     class="btn btn-info">Show</a>
 
                                                 <form action="{{ url('student.destroy/' . $studentInfo->id) }}"
-                                                    method="POST" style="display:inline;">
+                                                    method="POST" style="display:inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger delete-student d-inline"
@@ -81,7 +82,7 @@
                                     @endforeach
                                 @else
                                     <tr class="w-full">
-                                        <td>No data found</td>
+                                        <td>No Student Record found</td>
                                     </tr>
                                 @endif
 

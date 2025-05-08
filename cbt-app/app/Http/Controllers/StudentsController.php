@@ -50,7 +50,7 @@ class StudentsController extends Controller
                     'other_name' => 'nullable|string|max:255',
                     'email' => 'required|email|unique:students,email',
                     'password' => 'required|min:8|confirmed',
-                    'phone' => 'required|digits_between:10,15',
+                    'phone' => 'required|digits_between:10,25',
                     'gender' => 'required|in:male,female',
                     'state' => 'required|string',
                     'country' => 'required|string',
@@ -59,7 +59,7 @@ class StudentsController extends Controller
                     'dob' => 'required|date',
                     'role' => 'required|string|in:student,admin',
                     'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-                    // 'status' => 'required|boolean',
+                    'status' => 'required|boolean',
                         ]);
                         if($validator->fails())
                 {
@@ -113,7 +113,7 @@ class StudentsController extends Controller
      */
     public function show(Student $students, $id)
     {
-        $students = Student::findOrFail($id);
+        $students = Student::find($id);
         return view('admin.student.show', compact('student'));
     }
 
@@ -122,7 +122,7 @@ class StudentsController extends Controller
      */
     public function edit(Student $students, $id)
     {
-         $students = Student::findOrFail($id);
+         $students = Student::find($id);
         return view('admin.student.edit', compact('student'));
     }
 
@@ -138,7 +138,7 @@ class StudentsController extends Controller
                     'other_name' => 'nullable|string|max:255',
                     'email' => 'required|email|unique:students,email',
                     'password' => 'required|min:8|confirmed',
-                    'phone' => 'required|digits_between:10,15',
+                    'phone' => 'required|digits_between:10,25',
                     'gender' => 'required|in:male,female',
                     'state' => 'required|string',
                     'country' => 'required|string',
@@ -147,7 +147,7 @@ class StudentsController extends Controller
                     'dob' => 'required|date',
                     'role' => 'required|string|in:student,admin',
                     'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-                    // 'status' => 'required|boolean',
+                    'status' => 'required|boolean',
                         ]);
                         if($validator->fails())
                 {
@@ -198,17 +198,16 @@ class StudentsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Student $students, $id)
+    public function destroy( $id)
     {
         
-            $student = Student::findOrFail($id);
-            
-            if ($student->image && Storage::disk('public')->exists($students->image)) {
+            $student = Student::findOrFail($id);            
+            if ($student->image && Storage::disk('public')->exists($student->image)) {
                 Storage::disk('public')->delete($student->image);
             }
             
             $student = delete();
-            return Redirect('admin.index')->back()->with('status', 'Student Delete Successfully');
+            return Redirect('admin.student.index')->back()->with('status', 'Student Delete Successfully');
         
         }
     

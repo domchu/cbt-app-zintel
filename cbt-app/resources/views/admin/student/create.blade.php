@@ -5,11 +5,13 @@
         <div class="row">
             <div class="col-md-12">
                 {{-- SUCCESS MESSAGE --}}
-                @if (session('status'))
-                    <h5 class="alert alert-success">{{ session('status') }} </h5>
+                @if(session('status'))
+                    <h5 class="alert alert-success">
+                        {{ session('status') }} 
+                    </h5>
                 @endif
 
-                @if (session('error'))
+                @if(session('error'))
                     <h5 class="alert alert-danger">
                         {{ session('error') }}
                     </h5>
@@ -24,7 +26,7 @@
 
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('student.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('student.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row col-md-12">
                                 <div class="form-group my-3">
@@ -138,7 +140,7 @@
         const reader = new FileReader();
 
         reader.onload = function() {
-            const imgElement = document.getElementById('studentImagePreview');
+            const imgElement = document.getElementById('#studentImagePreview');
             imgElement.src = reader.result;
             imgElement.style.display = 'block';
         }
