@@ -4,6 +4,24 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-12">
+                {{-- SUCCESS MESSAGE --}}
+                @if (session('status'))
+                    <h5 class="alert alert-success">
+                        {{ session('status') }}
+                    </h5>
+                @endif
+
+                @if (session('error'))
+                    <h5 class="alert alert-danger">
+                        {{ session('error') }}
+                    </h5>
+                @endif
+                @if (session('fail'))
+                    <h5 class="alert alert-danger">
+                        {{ session('fail') }}
+                    </h5>
+                @endif
+
                 <div class="card">
                     <div class="card-header">
                         <h4>Student Registered <a class="btn btn-primary float-end" href="{{ url('admin/student/create') }}">
@@ -63,17 +81,17 @@
 
                                             </td>
                                             <td>
-                                                <a href="{{ url('student.edit/'.$studentInfo->id) }}"
+                                                <a href="{{route('student.edit',$studentInfo->id)}}"
                                                     class="btn btn-success">Edit</a>
-                                                <a href="{{ url('student.show/'.$studentInfo->id) }}"
+                                                <a href="{{route('student.show',$studentInfo->id)}}"
                                                     class="btn btn-info">Show</a>
 
-                                                <form action="{{ url('student.destroy/'.$studentInfo->id) }}"
+                                                <form action="{{route('student.destroy',$studentInfo->id) }}"
                                                     method="POST" style="display:inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger delete-student d-inline"
-                                                        data-id="{{ $studentInfo->id }}">Delete</button>
+                                                        data-id="{{$studentInfo->id }}">Delete</button>
                                                 </form>
 
                                             </td>
@@ -90,7 +108,7 @@
                         </table>
 
                         <div class="mt-3">
-                            {{ $student->links() }}
+                            {{-- {{ $student->links() }} --}}
                         </div>
                     </div>
                 </div>

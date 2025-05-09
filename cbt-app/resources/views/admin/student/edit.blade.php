@@ -26,7 +26,7 @@
 
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('student.update') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('student.update',$student->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="row col-md-12">
@@ -101,17 +101,13 @@
                                 @error('country')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
-                            </div>
-
-                            <div class="form-group my-3">
+                            </div>                          
+                             <div class="form-group">
                                 <label for="">Student Image Upload</label>
-                                <input type="file" class="form-control" name="image" id="image"
+                                <input type="file" class="form-control" name="image">
+                                 <img src="{{ Storage::url($student->image) }}" alt="Student Image" style="width:70px; height:70px;"
                                     onchange="StudentPreviewImage(event)">
-                                <img id="studentImagePreview" style="width:70px; height:70px; display: none;" />
-                                @error('image')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-
+                                <img id="studentImagePreview" />
                             </div>
                             <div class="form-group my-3">
                                 <label for="">Student Address</label>
@@ -123,7 +119,7 @@
 
                             <div class="form-group my-3">
                                 <label for="">Status</label>
-                                <input type="checkbox" name="status" {{ $slider->status == '1' ? 'checked' : '' }}>
+                                <input type="checkbox" name="status" {{ $student->status == '1' ? 'checked' : '' }}>
                             </div>
                             <div class="form-group flex justify-center align-baseline text-center w-full my-0 mx-auto">
                                 <button type="submit" class="btn btn-primary btn-lg">Update Student</button>

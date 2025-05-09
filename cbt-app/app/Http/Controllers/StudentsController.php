@@ -18,7 +18,7 @@ class StudentsController extends Controller
      */
     public function index()
     {
-        $student = Student::latest()->paginate(15);
+        $student = Student::all();
         return view('admin.student.index', [ 'student' => $student]);
     }
 
@@ -50,7 +50,7 @@ class StudentsController extends Controller
                     'other_name' => 'nullable|string|max:255',
                     'email' => 'required|email|unique:students,email',
                     'password' => 'min:8|confirmed',
-                    'phone' => 'required|digits_between:10,25',
+                    'phone' => 'required|string|regex:/^(\+?\d{10,20})$/',
                     'gender' => 'required|in:male,female',
                     'state' => 'required|string',
                     'country' => 'required|string',
@@ -59,7 +59,6 @@ class StudentsController extends Controller
                     'dob' => 'required|date',
                     'role' => 'digits|in:2,1',
                     'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-                    // 'status' => 'required|boolean',
                         ]);
                         if($validator->fails())
                 {
@@ -86,18 +85,18 @@ class StudentsController extends Controller
                 $student->state = $request->state;
                 $student->country = $request->country;
                 $student->address = $request->address;
-                $student->role = $request->role;
                 $student->registration_number = $this->generateRegistrationNumber();
                 $student->dob = $request->dob;
                 $student->status = $request->status == true ? '1' : '0';
                 $student->image = $path;
                 $student->save(); 
-                return redirect('admin.student')->with('status', 'Student Registered Successfully');       
+                return redirect()->route('student.index')->with('status', 'Student Registered Successfully');
+      
             }
 
             } 
             catch (Exception $th) {
-                return redirect('admin.student.create')->with('fail', $th->getMessage());
+                return redirect()->route('student.create')->with('fail', $th->getMessage());
             }
 
                 
@@ -112,37 +111,32 @@ class StudentsController extends Controller
         return view('admin.student.show', compact('student'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+   
     public function edit( $id)
     {
          $student = Student::find($id);
         return view('admin.student.edit', compact('student'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+   
     public function update(Request $request, $id)
     {
-         
+         $student = Student::findOrFail($id); 
            $validator = Validator::make($request->all(),[
                     'surname' => 'required|string|max:255',
                     'first_name' => 'required|string|max:255',
                     'other_name' => 'nullable|string|max:255',
-                    'email' => 'required|email|unique:students,email',
-                    'password' => 'required|min:8|confirmed',
-                    'phone' => 'required|digits_between:10,25',
+                    'email' => 'required|email|unique:students,email,'.$student->id,
+                    'password' => 'min:8|confirmed',
+                    'phone' => 'required|string|regex:/^(\+?\d{10,20})$/',
                     'gender' => 'required|in:male,female',
                     'state' => 'required|string',
                     'country' => 'required|string',
-                    'registration_number' => 'required|unique:students,registration_number',
+                    'registration_number' => 'string|unique:students,registration_number,' . $student->id,
                     'address' => 'nullable|string',
                     'dob' => 'required|date',
-                    'role' => 'required|string|in:student,admin',
                     'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-                    // 'status' => 'required|boolean',
+                    
                         ]);
                         if($validator->fails())
                 {
@@ -153,7 +147,7 @@ class StudentsController extends Controller
                  }
 
       try {
-               $student = Student::findOrFail($id); 
+               
                if ($request->hasFile('image')) {
           
                 if ($student->image && Storage::disk('public')->exists($student->image)) {
@@ -165,6 +159,9 @@ class StudentsController extends Controller
                 $student->image = $path;
     }
 
+     if ($request->filled('password')) {
+        $student->password = bcrypt($request->input('password'));
+    }
             // Update other fields (even if no new image)
                 $student->surname = $request->surname;
                 $student->first_name = $request->first_name;
@@ -182,11 +179,11 @@ class StudentsController extends Controller
                 $student->save();
 
                  
-                return redirect('admin.student')->with('status', 'Student Updated Successfully');
+                  return redirect()->route('student.index')->with('status', 'Student Updated Successfully');
 
             } 
             catch (Exception $th) {
-                return redirect('admin.student')->with('fail', $th->getMessage());
+                return redirect()->route('student.edit')->with('fail', $th->getMessage());
             };
     }
 
@@ -196,13 +193,14 @@ class StudentsController extends Controller
     public function destroy( $id)
     {
         
-            $student = Student::findOrFail($id);            
+              $student = Student::findOrFail($id);           
             if ($student->image && Storage::disk('public')->exists($student->image)) {
                 Storage::disk('public')->delete($student->image);
             }
             
-            $student = delete();
-            return Redirect('admin.student.index')->back()->with('status', 'Student Delete Successfully');
+            $student->delete();
+           
+    return redirect()->route('student.index')->with('status', 'Student deleted successfully.');
         
         }
     

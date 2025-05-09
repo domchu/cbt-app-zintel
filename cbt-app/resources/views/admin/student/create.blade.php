@@ -4,24 +4,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
-                {{-- SUCCESS MESSAGE --}}
-                @if(session('status'))
-                    <h5 class="alert alert-success">
-                        {{ session('status') }} 
-                    </h5>
-                @endif
-
-                @if(session('error'))
-                    <h5 class="alert alert-danger">
-                        {{ session('error') }}
-                    </h5>
-                @endif
-                @if(session('fail'))
-                    <h5 class="alert alert-danger">
-                        {{ session('fail') }}
-                    </h5>
-                @endif
-
+             
 
                 {{-- END OF SESSION MESSAGE --}}
                 <div class="card">
@@ -67,7 +50,7 @@
 
                             <div class="form-group my-3">
                                 <label for="">Phone Number</label>
-                                <input type="tel" class="form-control" name="phone">
+                                <input type="text" class="form-control" name="phone">
                                 @error('phone')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
