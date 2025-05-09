@@ -49,17 +49,17 @@ class StudentsController extends Controller
                     'first_name' => 'required|string|max:255',
                     'other_name' => 'nullable|string|max:255',
                     'email' => 'required|email|unique:students,email',
-                    'password' => 'required|min:8|confirmed',
+                    'password' => 'min:8|confirmed',
                     'phone' => 'required|digits_between:10,25',
                     'gender' => 'required|in:male,female',
                     'state' => 'required|string',
                     'country' => 'required|string',
-                    'registration_number' => 'required|unique:students,registration_number',
-                    'address' => 'nullable|string',
+                    'registration_number' => 'unique:students,registration_number',
+                    'address' => 'nullable|string|max:300',
                     'dob' => 'required|date',
-                    'role' => 'required|string|in:student,admin',
+                    'role' => 'digits|in:2,1',
                     'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-                    'status' => 'required|boolean',
+                    // 'status' => 'required|boolean',
                         ]);
                         if($validator->fails())
                 {
@@ -76,7 +76,7 @@ class StudentsController extends Controller
                 Storage::url($path);
 
                 $student = new Student();
-                $student->surname = $request->surname;
+                $student->surname = $request->input('surname');
                 $student->first_name = $request->first_name;
                 $student->other_name = $request->other_name;
                 $student->email = $request->email;
@@ -86,19 +86,14 @@ class StudentsController extends Controller
                 $student->state = $request->state;
                 $student->country = $request->country;
                 $student->address = $request->address;
+                $student->role = $request->role;
                 $student->registration_number = $this->generateRegistrationNumber();
                 $student->dob = $request->dob;
                 $student->status = $request->status == true ? '1' : '0';
                 $student->image = $path;
-                $student->save();
-
-                
-                return redirect('admin.student')->with('status', 'Student Updated Successfully');
-         
+                $student->save(); 
+                return redirect('admin.student')->with('status', 'Student Registered Successfully');       
             }
-
-            
-               
 
             } 
             catch (Exception $th) {
@@ -111,18 +106,18 @@ class StudentsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Student $students, $id)
+    public function show( $id)
     {
-        $students = Student::find($id);
+        $student = Student::find($id);
         return view('admin.student.show', compact('student'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Student $students, $id)
+    public function edit( $id)
     {
-         $students = Student::find($id);
+         $student = Student::find($id);
         return view('admin.student.edit', compact('student'));
     }
 
@@ -147,7 +142,7 @@ class StudentsController extends Controller
                     'dob' => 'required|date',
                     'role' => 'required|string|in:student,admin',
                     'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-                    'status' => 'required|boolean',
+                    // 'status' => 'required|boolean',
                         ]);
                         if($validator->fails())
                 {
@@ -191,7 +186,7 @@ class StudentsController extends Controller
 
             } 
             catch (Exception $th) {
-                return redirect('admin.student.create')->with('fail', $th->getMessage());
+                return redirect('admin.student')->with('fail', $th->getMessage());
             };
     }
 

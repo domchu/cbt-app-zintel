@@ -6,7 +6,9 @@
             <div class="col-md-12">
                 {{-- SUCCESS MESSAGE --}}
                 @if (session('status'))
-                    <h5 class="alert alert-success">{{ session('status') }} </h5>
+                    <h5 class="alert alert-success">
+                        {{ session('status') }} 
+                    </h5>
                 @endif
 
                 @if (session('error'))

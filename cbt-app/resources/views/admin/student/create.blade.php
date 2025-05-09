@@ -16,6 +16,11 @@
                         {{ session('error') }}
                     </h5>
                 @endif
+                @if(session('fail'))
+                    <h5 class="alert alert-danger">
+                        {{ session('fail') }}
+                    </h5>
+                @endif
 
 
                 {{-- END OF SESSION MESSAGE --}}
@@ -140,7 +145,7 @@
         const reader = new FileReader();
 
         reader.onload = function() {
-            const imgElement = document.getElementById('#studentImagePreview');
+            const imgElement = document.getElementById('studentImagePreview');
             imgElement.src = reader.result;
             imgElement.style.display = 'block';
         }

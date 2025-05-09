@@ -63,12 +63,12 @@
 
                                             </td>
                                             <td>
-                                                <a href="{{ url('student.edit/' . $studentInfo->id) }}"
+                                                <a href="{{ url('student.edit/'.$studentInfo->id) }}"
                                                     class="btn btn-success">Edit</a>
-                                                <a href="{{ url('student.show/' . $studentInfo->id) }}"
+                                                <a href="{{ url('student.show/'.$studentInfo->id) }}"
                                                     class="btn btn-info">Show</a>
 
-                                                <form action="{{ url('student.destroy/' . $studentInfo->id) }}"
+                                                <form action="{{ url('student.destroy/'.$studentInfo->id) }}"
                                                     method="POST" style="display:inline">
                                                     @csrf
                                                     @method('DELETE')

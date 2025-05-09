@@ -60,9 +60,6 @@ class SubjectsController extends Controller
      */
     public function show($id)
     { 
-        // $subject = Subject::find($id);
-        // return view('admin.subject.show', compact('subject'));
-
          $subject = Subject::find($id);
         return view('admin.subject.show', compact('subject'));
     }
