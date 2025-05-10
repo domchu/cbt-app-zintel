@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\Admin\SliderController;
@@ -39,4 +40,15 @@ Route::prefix('admin/student')->controller(StudentsController::class)->group(fun
     Route::put('/{id}/update', 'update')->name('student.update');
     Route::delete('/{id}', 'destroy')->name('student.destroy');
     Route::get('/{id}', 'show')->name('student.show');
+});
+
+// SESSION ROUTE
+Route::prefix('admin/session')->controller(SessionController::class)->group(function () {
+    Route::get('/', 'index')->name('session.index');
+    Route::get('/create', 'create')->name('session.create');
+    Route::post('/store', 'store')->name('session.store');
+    Route::get('/{id}/edit', 'edit')->name('session.edit');
+    Route::put('/{id}/update', 'update')->name('session.update');
+    Route::delete('/{id}', 'destroy')->name('session.destroy');
+    Route::get('/{id}', 'show')->name('session.show');
 });

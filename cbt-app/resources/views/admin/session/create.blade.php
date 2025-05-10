@@ -10,9 +10,7 @@
                 @endif
 
                 @if(session('error'))
-                    <h5 class="alert alert-danger">
-                        {{ session('error') }}
-                    </h5>
+                    <h5 class="alert alert-danger"> {{ session('error') }}</h5>
                 @endif
                
 

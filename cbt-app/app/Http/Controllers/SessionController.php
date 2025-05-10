@@ -12,8 +12,8 @@ class SessionController extends Controller
      */
     public function index()
     {
-        $sessions = Session::all()->paginate(10);
-        return view('admin.sessions.index', compact('sessions'));
+        $session = Session::all();
+        return view('admin.session.index', compact('session'));
     }
 
     /**
@@ -21,7 +21,7 @@ class SessionController extends Controller
      */
     public function create()
     {
-         return view('admin.sessions.create');
+         return view('admin.session.create');
     }
 
     /**
@@ -38,7 +38,7 @@ class SessionController extends Controller
     public function show(string $id)
     {
         $session = Session::find($id);
-        return view('admin.sessions.show', compact('session'));
+        return view('admin.session.show', compact('session'));
         
     }
 
@@ -48,7 +48,7 @@ class SessionController extends Controller
     public function edit(string $id)
     {
          $session = Session::find($id);
-        return view('admin.sessions.edit', compact('session'));
+        return view('admin.session.edit', compact('session'));
     }
 
     /**
