@@ -37,7 +37,7 @@
                             </div>
                             <div class="form-group my-3">
                                 <button type="submit" class="btn btn-primary">Save Session</button>
-                                <a href="{{url('section.index')}}" class="btn btn-danger">Cancel</a>
+                                <a href="{{route('section.index')}}" class="btn btn-danger">Cancel</a>
                             </div>
                         </form>
                     </div>

@@ -10,13 +10,13 @@
                 @endif
                 <div class="card">
                     <div class="card-header">
-                        <h4> Academic Session <a class="btn btn-secondary float-end"
-                                href="{{ url('admin.section.index') }}">Add Session</a>
+                        <h4> Academic Session <a class="btn btn-danger float-end"
+                                href="{{ route('section.create') }}">Add Session</a>
                         </h4>
 
                     </div>
                     <div class="card-body">
-                        <table class="table-stripe table-hover">
+                        <table class="table table-stripe table-hover table-bordered">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -25,10 +25,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-
-                                {{-- @if (count($sections) > 0) --}}
-                                @foreach ($sections as $sectionItem)
-                                    <tr>
+                            {{-- @if(Count($sections) > 0) --}}
+                                {{-- @foreach ($sections as $sectionItem) --}}
+                                    {{-- <tr>
                                         <td>{{ $sectionItem->name }}</td>
                                         <td>{{ $sectionItem->is_active ? 'Yes' : 'No' }}</td>
                                         <td>
@@ -42,16 +41,14 @@
                                             </form>
 
                                         </td>
-                                    </tr>
-                                @endforeach
+                                    </tr> --}}
+                                {{-- @endforeach --}}
 
-                                {{-- @endif --}}
-                                {{-- @empty($sections)
-                            <tr>
-                                <td class="colspan-6">No section found in the database</td>
-                            </tr>
-                                
-                            @endempty --}}
+                             {{-- @else
+                                    <tr colspan="6">
+                                        <td>No Section Record found</td>
+                                    </tr>
+                             @endif --}}
                             </tbody>
                         </table>
                     </div>
