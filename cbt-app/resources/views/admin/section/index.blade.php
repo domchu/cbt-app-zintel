@@ -25,8 +25,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @if(count($sections)> 0) 
-                                @foreach ($sections as $sectionItem) --}}
+                                {{--@if (count($student) > 0)--}}
+                                {{---  @foreach ($student as $studentInfo)--}}
+                            @if(count($section) > 0) 
+                                @foreach ($section as $sectionItem)
                                      <tr>
                                         <td>{{ $sectionItem->name }}</td>
                                         <td>{{ $sectionItem->is_active ? 'Yes' : 'No' }}</td>
@@ -46,7 +48,7 @@
 
                              @else
                                     <tr colspan="6">
-                                        <td>No Section Record found</td>
+                                        <td>No Section found</td>
                                     </tr>
                              @endif
                             </tbody>

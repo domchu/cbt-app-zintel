@@ -28,7 +28,7 @@
                                 <label for="">Session Name (e.g., 2024/2025)</label>
                                 <input type="text" class="form-control" name="name" required>
                                 @error('name')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <span class="text-danger">{{ $error }}</span>
                                 @enderror
                             </div>
                             <div class="form-group my-3 form-check">
