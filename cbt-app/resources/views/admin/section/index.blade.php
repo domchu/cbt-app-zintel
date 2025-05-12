@@ -25,8 +25,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{--@if (count($student) > 0)--}}
-                                {{---  @foreach ($student as $studentInfo)--}}
                             @if(count($section) > 0) 
                                 @foreach ($section as $sectionItem)
                                      <tr>
@@ -45,7 +43,6 @@
                                         </td>
                                     </tr>
                                  @endforeach
-
                              @else
                                     <tr colspan="6">
                                         <td>No Section found</td>

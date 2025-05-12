@@ -10,13 +10,13 @@
                         </h4>
                     </div>
                     <div class="card-body my-3">
-                        <p> <strong>Name</strong> {{ $session->name }}</p>
+                        <p> <strong>Name</strong> {{ $sectionItem->name }}</p>
 
                     </div>
                     <div class=" my-3">
                         <p><strong>Active</strong>
-                            <span class="badge bg-{{ $session->is_active ? 'success' : 'secondary' }}">
-                                {{ $session->is_active ? 'Yes' : 'No' }}
+                            <span class="badge bg-{{ $sectionItem->is_active ? 'success' : 'secondary' }}">
+                                {{ $sectionItem->is_active ? 'Yes' : 'No' }}
                             </span>
                         </p>
 

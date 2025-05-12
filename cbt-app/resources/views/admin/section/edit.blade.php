@@ -17,24 +17,24 @@
                 {{-- END OF SESSION MESSAGE --}}
                 <div class="card">
                     <div class="card-header">
-                        <h4>Update Session: {{$session->name}} <a class="btn btn-danger float-end" href="{{ route('section.index') }}">Back to List</a>
+                        <h4>Update Session: {{$section->name}} <a class="btn btn-danger float-end" href="{{ route('section.index') }}">Back to List</a>
                         </h4>
 
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('section.update', $session->id) }}" method="POST" >
+                        <form action="{{ route('section.update', $section->id) }}" method="POST" >
                             @csrf
                             @method('PUT')
                             <div class="form-group my-3">
                                 <label for="">Session Name (e.g., 2024/2025)</label>
-                                <input type="text" class="form-control" name="name" value="{{$session->name}}" required>
+                                <input type="text" class="form-control" name="name" value="{{$section->name}}" required>
                                 @error('name')
                                     <span class="text-danger">{{ $error }}</span>
                                 @enderror
                             </div>
                             <div class="form-group my-3 form-check">
                                 <input type="checkbox" name="is_active" class="form-check-input" id="is_active"
-                                {{$session->is_active ? 'checked' : ''}}
+                                {{$section->is_active ? 'checked' : ''}}
                                 > 
                                 <label for="is_active">Set as Active</label>
                             </div>
