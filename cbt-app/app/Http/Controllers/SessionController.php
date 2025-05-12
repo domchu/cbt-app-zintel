@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Session;
+use App\Models\Section;
 use Illuminate\Http\Request;
 
 class SessionController extends Controller
@@ -12,8 +12,8 @@ class SessionController extends Controller
      */
     public function index()
     {
-        $session = Session::all();
-        return view('admin.session.index', compact('session'));
+        $section = Section::all();
+        return view('admin.section.index', compact('section'));
     }
 
     /**
@@ -21,24 +21,40 @@ class SessionController extends Controller
      */
     public function create()
     {
-         return view('admin.session.create');
+         return view('admin.section.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
+    // ACTIVE TOGGLE
+    
+        // Session::where('is_active', true)->update(['is_active'=>false]);
+        // Session::where('id', $newActiveId)->update(['is_active'=>true]);
+
+        // $activeSession = Session::where('is_active', true)->first();
+             
+//   const $isActive => $request->has('is_active')
+//    if($isActive){
+//     Session::where('is_active', true)->update('is_active', false)
+//    }
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:sections,name',
+        ]);
+
+        Section::create([
+            'name'=> $request->name,
+            // 'is_active'=>$request-> $isActive,
+        ]);
+         return redirect()->route('section.index')->with('status', 'Section Added Successfully');
+
     }
 
-    /**
-     * Display the specified resource.
-     */
+   
     public function show(string $id)
     {
-        $session = Session::find($id);
-        return view('admin.session.show', compact('session'));
+        $session = Section::find($id);
+        return view('admin.section.show', compact('section'));
         
     }
 
@@ -47,8 +63,8 @@ class SessionController extends Controller
      */
     public function edit(string $id)
     {
-         $session = Session::find($id);
-        return view('admin.session.edit', compact('session'));
+         $session = Section::find($id);
+        return view('admin.section.edit', compact('section'));
     }
 
     /**
@@ -56,15 +72,23 @@ class SessionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //   $request->validate([
+        //     'name' => 'required|unique:sections,name' . $section->id,
+        // ]);
+        // Section::update([
+        //     'name' => $request->name,
+        //     'is_active' => $request->$isActive,
+
+        // ]);
+        //  return redirect()->route('section.index')->with('status', 'Section Updated Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Session $session, string $id)
+    public function destroy(Section $section, string $id)
     {
-        $session = Session::find($id)->delete();
-        return redirect()->back()->with('status', 'Session Delete Successfully');
+        $section = Section::find($id)->delete();
+        return redirect()->back()->with('status', 'section Delete Successfully');
     }
 }

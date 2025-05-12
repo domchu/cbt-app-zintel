@@ -43,12 +43,12 @@ Route::prefix('admin/student')->controller(StudentsController::class)->group(fun
 });
 
 // SESSION ROUTE
-Route::prefix('admin/session')->controller(SessionController::class)->group(function () {
-    Route::get('/', 'index')->name('session.index');
-    Route::get('/create', 'create')->name('session.create');
-    Route::post('/store', 'store')->name('session.store');
-    Route::get('/{id}/edit', 'edit')->name('session.edit');
-    Route::put('/{id}/update', 'update')->name('session.update');
-    Route::delete('/{id}', 'destroy')->name('session.destroy');
-    Route::get('/{id}', 'show')->name('session.show');
+Route::prefix('admin/section')->controller(SessionController::class)->group(function () {
+    Route::get('/', 'index')->name('section.index');
+    Route::get('/create', 'create')->name('section.create');
+    Route::post('/store', 'store')->name('section.store');
+    Route::get('/{id}/edit', 'edit')->name('section.edit');
+    Route::put('/{id}/update', 'update')->name('section.update');
+    Route::delete('/{id}', 'destroy')->name('section.destroy');
+    Route::get('/{id}', 'show')->name('section.show');
 });

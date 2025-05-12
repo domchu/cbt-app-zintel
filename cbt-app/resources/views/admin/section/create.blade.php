@@ -17,12 +17,12 @@
                 {{-- END OF SESSION MESSAGE --}}
                 <div class="card">
                     <div class="card-header">
-                        <h4>Create Academic Session <a class="btn btn-danger float-end" href="{{ route('sessions.index') }}">Back to List</a>
+                        <h4>Create Academic Session <a class="btn btn-danger float-end" href="{{ route('section.index') }}">Back to List</a>
                         </h4>
 
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('sessions.store') }}" method="POST" >
+                        <form action="{{ url('section.store') }}" method="POST" >
                             @csrf
                             <div class="form-group my-3">
                                 <label for="">Session Name (e.g., 2024/2025)</label>
@@ -37,7 +37,7 @@
                             </div>
                             <div class="form-group my-3">
                                 <button type="submit" class="btn btn-primary">Save Session</button>
-                                <a href="{{route('sessions.index')}}" class="btn btn-secondary">Cancel</a>
+                                <a href="{{url('section.index')}}" class="btn btn-danger">Cancel</a>
                             </div>
                         </form>
                     </div>
