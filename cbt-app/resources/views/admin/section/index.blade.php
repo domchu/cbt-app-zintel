@@ -25,9 +25,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            {{-- @if(Count($sections) > 0) --}}
-                                {{-- @foreach ($sections as $sectionItem) --}}
-                                    {{-- <tr>
+                            @if(count($sections)> 0) 
+                                @foreach ($sections as $sectionItem) --}}
+                                     <tr>
                                         <td>{{ $sectionItem->name }}</td>
                                         <td>{{ $sectionItem->is_active ? 'Yes' : 'No' }}</td>
                                         <td>
@@ -41,14 +41,14 @@
                                             </form>
 
                                         </td>
-                                    </tr> --}}
-                                {{-- @endforeach --}}
+                                    </tr>
+                                 @endforeach
 
-                             {{-- @else
+                             @else
                                     <tr colspan="6">
                                         <td>No Section Record found</td>
                                     </tr>
-                             @endif --}}
+                             @endif
                             </tbody>
                         </table>
                     </div>

@@ -6,8 +6,7 @@
             <div class="col-md-12">            
                 <div class="card">
                     <div class="card-header">
-                        <h4>Update Detail <a class="btn btn-secondary float-end" href="{{ route('sessions.index') }}">Back to
-                                List</a>
+                        <h4>Show Detail {{$sectionItem->id}} <a class="btn btn-secondary float-end" href="{{ route('section.create') }}">Add Session</a>
                         </h4>
                     </div>
                     <div class="card-body my-3">
