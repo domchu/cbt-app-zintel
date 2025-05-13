@@ -20,13 +20,6 @@ class SessionController extends Controller
          return view('admin.section.create');
     }
 
-
-    // ACTIVE TOGGLE
-    
-        // Session::where('is_active', true)->update(['is_active'=>false]);
-        // Session::where('id', $newActiveId)->update(['is_active'=>true]);
-
-        // $activeSession = Session::where('is_active', true)->first();
  
     public function store(Request $request)
     {
@@ -46,7 +39,7 @@ class SessionController extends Controller
             'name'->$request => $request->name,
             'is_active'=> $isActive,
         ]);
-         return redirect()->route('section.index')->with('status', 'Section Added Successfully');
+         return redirect()->route('section.index')->with('status', 'Session Created Successfully');
 
     }
 
@@ -66,29 +59,29 @@ class SessionController extends Controller
     }
 
    
-    public function update(Request $request, string $id)
+    public function update(Request $request,  Section $section)
     {
           $isActive = $request->has('is_active');
             if($isActive){
         Section::where('is_active', true)->update(['is_active'=> false]);
    }
           $request->validate([
-             'name' => 'required|unique:sections,name' . $id,
+             'name' => 'required|unique:sections,name' . $section->id,
         ]);
         Section::update([
             'name' => $request->name,
-            'is_active' => $request->$isActive,
+            'is_active' => $isActive,
 
          ]);
-          return redirect()->route('section.index')->with('status', 'Section Updated Successfully');
+          return redirect()->route('section.index')->with('status', 'Session Updated Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Section $section, string $id)
+    public function destroy(Section $section)
     {
-        $section = Section::find($id)->delete();
-        return redirect()->back()->with('status', 'section Delete Successfully');
+        $section->delete();
+        return redirect()->back()->with('status', 'Session Delete Successfully');
     }
 }
