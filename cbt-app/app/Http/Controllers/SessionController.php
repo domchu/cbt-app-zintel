@@ -10,7 +10,7 @@ class SessionController extends Controller
     
     public function index()
     {
-        $section = Section::all();
+        $section = Section::all()->paginate(10);
         return view('admin.section.index', compact('section'));
     }
 
