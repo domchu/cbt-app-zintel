@@ -4,9 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\questions;
 use Illuminate\Http\Request;
+use App\Models\QuestionsImport;
+use Maatwebsite\Excel\Facades\Excel;
 
-class QuestionsController extends Controller
+class QuestionImportController extends Controller
 {
+    public function showUploadForm()
+    {
+        return view('questions.upload');
+    }
+
+    public function import(Request $request){
+        $request->validate([
+           'file'=> 'require|mimes:xlsx,csv',
+        ]);
+         Excel::import(new QuestionsImport, $request->file('file'));
+
+          return redirect()->back()->with('sucess', 'Questions Imported Successfully');
+    }
+    
+    
     /**
      * Display a listing of the resource.
      */
