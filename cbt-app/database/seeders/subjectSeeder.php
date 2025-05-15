@@ -13,7 +13,7 @@ class subjectSeeder extends Seeder
      */
     public function run(): void
     {
-        $subjects = ['Mathematics', 'English Language', 'Physics', 'Chemistry', 'Biology', 'Economics', 'Government', 'Geography', 'History', 'Commerce', 'Civil  Education', 'Data Processing', 'Marketing', 'Further Mathematics', 'Literature in English', 'Agricultural Science', 'Creative Art', 'Computer Science', 'Christian Religion Knowledge', 'Basic Science', 'Basic Technology', 'Physical and Health Education','Food and Nutrition', 'Home Economics', 'French', 'Igbo', 'Yoruba', 'Hausa', 'Verbal Reasoning', 'Quantitative Reasoning', ] ;
+        $subjects = ['Mathematics', 'English Language', 'Physics', 'Chemistry', 'Biology', 'Economics', 'Government', 'Geography', 'History', 'Commerce', 'Civil  Education', 'Data Processing', 'Marketing', 'Further Mathematics', 'Literature in English', 'Agricultural Science', 'Cultural and Creative Art', 'Computer Science', 'Christian Religion Knowledge', 'Basic Science', 'Basic Technology', 'Physical and Health Education','Food and Nutrition', 'Home Economics', 'French', 'Igbo', 'Yoruba', 'Hausa', 'Verbal Reasoning', 'Quantitative Reasoning', 'Business Studies', 'Diction', 'Information Technology', 'Accounting', 'Fishery', 'Phonics', 'Social Studies' ] ;
 
         foreach ($subjects as  $subject) {
             Subject::created(['name' => $subject]);
