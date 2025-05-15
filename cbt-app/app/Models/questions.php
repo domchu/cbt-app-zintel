@@ -4,7 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class questions extends Model
+class Questions extends Model
 {
-    //
+
+    protected $table = 'questions';
+
+    protected $fillable = [
+'subject_id', 
+'exam_type', 
+'year',
+'question', 
+'option_a', 
+'option_b', 
+'option_c', 
+'option_d', 
+'option_e', 
+'correct_answer'
+    ];
 }
