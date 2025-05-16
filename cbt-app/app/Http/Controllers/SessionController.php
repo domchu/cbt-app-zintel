@@ -59,7 +59,7 @@ class SessionController extends Controller
     }
 
    
-    public function update(Request $request,  Section $section)
+    public function update(Request $request,  Section $section, $id)
     {
           $isActive = $request->has('is_active');
             if($isActive){
@@ -68,7 +68,8 @@ class SessionController extends Controller
           $request->validate([
              'name' => 'required|unique:sections,name' . $section->id,
         ]);
-        Section::update([
+        $section = Section::findOrFail($id);
+        $section->update([
             'name' => $request->name,
             'is_active' => $isActive,
 
