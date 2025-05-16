@@ -54,12 +54,13 @@ Route::prefix('admin/section')->controller(SessionController::class)->group(func
     Route::get('/{id}', 'show')->name('section.show');
 });
 // QUESTIONS ROUTE
+
+
 Route::prefix('admin/questions')->controller(QuestionImportController::class)->group(function () {
     Route::get('/upload', 'showUploadForm')->name('questions.upload');
-    Route::get('/import', 'import')->name('questions.import');
+    Route::get('/view', 'view')->name('questions.view'); 
+    Route::get('/import', 'showImportForm')->name('questions.import.form');
+    Route::post('/import', 'import')->name('questions.import'); 
     Route::post('/preview', 'preview')->name('questions.preview');
     Route::get('/importConfirmed', 'importConfirmed')->name('questions.importConfirmed');
-    // Route::put('/{id}/update', 'update')->name('section.update');
-    // Route::delete('/{id}', 'destroy')->name('section.destroy');
-    // Route::get('/{id}', 'show')->name('section.show');
 });

@@ -10,7 +10,7 @@ class SessionController extends Controller
     
     public function index()
     {
-        $section = Section::all()->paginate(10);
+        $section = Section::all();
         return view('admin.section.index', compact('section'));
     }
 
@@ -31,12 +31,12 @@ class SessionController extends Controller
    }
  
         $request->validate([
-            'name' => 'required|unique:sections,name',
+            'name' => 'required|string|max:255|unique:sections,name',
         ]);
 
         
         Section::create([
-            'name'->$request => $request->name,
+            'name' => $request->name,
             'is_active'=> $isActive,
         ]);
          return redirect()->route('section.index')->with('status', 'Session Created Successfully');
@@ -46,7 +46,7 @@ class SessionController extends Controller
    
     public function show(string $id)
     {
-        $session = Section::find($id);
+        $section = Section::findOrFail($id);;
         return view('admin.section.show', compact('section'));
         
     }
@@ -54,7 +54,7 @@ class SessionController extends Controller
    
     public function edit(string $id)
     {
-         $session = Section::find($id);
+        $section = Section::findOrFail($id);;
         return view('admin.section.edit', compact('section'));
     }
 
@@ -79,8 +79,9 @@ class SessionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Section $section)
+    public function destroy(Section $section, $id)
     {
+        $section = Section::findOrFail($id);;
         $section->delete();
         return redirect()->back()->with('status', 'Session Delete Successfully');
     }

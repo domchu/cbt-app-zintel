@@ -31,12 +31,14 @@
                                         <td>{{ $sectionItem->name }}</td>
                                         <td>{{ $sectionItem->is_active ? 'Yes' : 'No' }}</td>
                                         <td>
-                                            <a href="{{ route('sections.edit', $sectionItem->id) }}"
+                                            <a href="{{ route('section.edit', $sectionItem->id) }}"
                                                 class="btn btn-success">Edit</a>
-                                            <a href="{{ route('sections.show', $sectionItem->id) }}"
+                                            <a href="{{ route('section.show', $sectionItem->id) }}"
                                                 class="btn btn-info">Show</a>
-                                            <form action="{{ route('sections.destroy', $sectionItem->id) }}"
-                                                class="d-inline">
+                                            <form action="{{ route('section.destroy',$sectionItem->id) }}"
+                                                class="d-inline" method="post" onsubmit="return confirm('Are you sure you want to delete this section?')">
+                                                @csrf
+                                                @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
 

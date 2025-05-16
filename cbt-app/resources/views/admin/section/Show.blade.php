@@ -6,23 +6,23 @@
             <div class="col-md-12">            
                 <div class="card">
                     <div class="card-header">
-                        <h4>Show Detail {{$sectionItem->id}} <a class="btn btn-secondary float-end" href="{{ route('section.create') }}">Add Session</a>
+                        <h4>Show Detail {{$section->id}} <a class="btn btn-primary float-end" href="{{ route('section.create') }}">Add Session</a>
                         </h4>
                     </div>
                     <div class="card-body my-3">
-                        <p> <strong>Name</strong> {{ $sectionItem->name }}</p>
+                        <p> <strong class="mx-2">Name:</strong> {{ $section->name }}</p>
 
                     </div>
-                    <div class=" my-3">
-                        <p><strong>Active</strong>
-                            <span class="badge bg-{{ $sectionItem->is_active ? 'success' : 'secondary' }}">
-                                {{ $sectionItem->is_active ? 'Yes' : 'No' }}
+                    <div class="card-body my-3">
+                        <p><strong class="mx-2">Active:</strong>
+                            <span class="badge bg-{{ $section->is_active ? 'success' : 'secondary' }}">
+                                {{ $section->is_active ? 'Yes' : 'No' }}
                             </span>
                         </p>
 
                     </div>
-                    <div class=" my-3">
-                        <a class="btn btn-secondary" href="{{ route('sessions.index') }}">Back to List</a>
+                    <div class="my-3">
+                        <a class="btn btn-danger mx-4" href="{{ route('section.index') }}">Back to List</a>
                     </div>
                     </form>
                 </div>

@@ -17,7 +17,7 @@ class QuestionImportController extends Controller
 
     public function preview(Request $request){
         $request->validate([
-           'file'=> 'require|mimes:xlsx,csv',
+           'file'=> 'require|mimes:xlsx,xls,csv',
         ]);
 
         $path = $request->file('file')->getRealPath();
@@ -51,16 +51,16 @@ class QuestionImportController extends Controller
                 continue;
             }
             Questions::create([
-'subject_id'=>$subject->id,
-'year'=> $question['year'],
-'exam_type'=> $question['exam_type'],
-'question'=>$question['question'],
-'option_a'=>$question['option_a'],
-'option_b'=>$question['option_b'],
-'option_c'=>$question['option_c'],
-'option_d'=>$question['option_d'],
-'option_e'=>$question['option_e'],
-'correct_answer'=>$question['correct_answer'],
+                'subject_id'=>$subject->id,
+                'year'=> $question['year'],
+                'exam_type'=> $question['exam_type'],
+                'question'=>$question['question'],
+                'option_a'=>$question['option_a'],
+                'option_b'=>$question['option_b'],
+                'option_c'=>$question['option_c'],
+                'option_d'=>$question['option_d'],
+                'option_e'=>$question['option_e'],
+                'correct_answer'=>$question['correct_answer'],
 
             ]);
         }
@@ -84,13 +84,11 @@ class QuestionImportController extends Controller
         
     // }
 
-    /**
-     * Display the specified resource.
-     */
-    // public function show(questions $questions)
-    // {
     
-    // }
+    public function show(questions $questions)
+    {
+        return view('admin.questions.view', compact('questions'));
+    }
 
    
     // public function edit(questions $questions)

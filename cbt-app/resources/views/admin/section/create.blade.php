@@ -25,7 +25,7 @@
 
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('section.store') }}" method="POST">
+                        <form action="{{ route('section.store') }}" method="POST">
                             @csrf
                             <div class="form-group my-3">
                                 <label for="">Session Name (e.g., 2024/2025)</label>

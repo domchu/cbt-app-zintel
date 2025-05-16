@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin-dashboard')
 
 @section('content')
     <div class="container">
@@ -20,13 +20,13 @@
 
         <form action="{{ route('questions.import') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="form-group">
-                <label>Select File:</label>
+            <div class="form-group my-4">
+                <label class="mb-3">Select File:</label>
                 <input type="file" name="file" class="form-control" required>
             </div>
 
 
-            <button type="submit" class="btn btn-primary">Upload</button>
+            {{-- <button type="submit" class="btn btn-primary">Upload</button> --}}
 
             <button type="submit" class="btn btn-primary">Preview Questions</button>
         </form>
