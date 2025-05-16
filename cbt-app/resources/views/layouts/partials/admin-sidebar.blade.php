@@ -49,7 +49,7 @@
                  <nav class="sb-sidenav-menu-nested nav">
                      <a class="nav-link" href="{{ url('admin/student/create') }}">Add Students</a>
                      <a class="nav-link" href="{{ url('admin/student') }}">View Students</a>
-                     <a class="nav-link" href="{{ url('admin/session/create') }}">Add Section</a>
+                     <a class="nav-link" href="{{ url('admin/section/create') }}">Add Section</a>
                      {{-- <a class="nav-link" href="{{ url('admin/subject/create') }}">Subjects</a> --}}
                      {{-- <a class="nav-link" href="{{ url('admin/students') }}">Add Subjects</a>
                      <a class="nav-link" href="{{ url('admin/students') }}">Add Class</a>
