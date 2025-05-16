@@ -12,7 +12,7 @@ class QuestionImportController extends Controller
 {
     public function showUploadForm()
     {
-        return view('questions.upload');
+        return view('admin.questions.upload');
     }
 
     public function preview(Request $request){
