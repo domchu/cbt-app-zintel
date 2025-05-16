@@ -4,7 +4,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
-                <h2>Preview Uploaded Questions</h2>
+                <h2>Preview/Edit/Delete/Restore Uploaded Questions</h2>
 
                 <form action="{{ route('questions.importConfirmed') }}" method="post">
                     @csrf
@@ -57,9 +57,23 @@
                                             name="questions[{{ $index }}]['option_e']"
                                             value="{{ $question['option_e'] }}"> </td>
                                     <td>
-                                        <select name="" id="">
-                                            {{ $question['correct_answer'] }}
+                                        <select name="questions[{{ $index }}][correct_answer]" class="form-control"
+                                            required>
+                                            <option value="A"
+                                                {{ $question['correct_answer'] == 'A' ? 'selected' : '' }}>A</option>
+                                            <option value="B"
+                                                {{ $question['correct_answer'] == 'B' ? 'selected' : '' }}>A</option>
+                                            <option value="C"
+                                                {{ $question['correct_answer'] == 'C' ? 'selected' : '' }}>A</option>
+                                            <option value="D"
+                                                {{ $question['correct_answer'] == 'D' ? 'selected' : '' }}>A</option>
+                                            <option value="E"
+                                                {{ $question['correct_answer'] == 'E' ? 'selected' : '' }}>A</option>
                                         </select>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger btn-sm"
+                                            onclick="deleteRow({{ $index }})">Delete</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -67,8 +81,38 @@
                     </table>
                     <button type="submit" class="btn btn-success">Confirm & Save</button>
                 </form>
+                <button class="btn btn-warning mt-s" id="undoDeleteBtn" style="display: none" onclick="undoDelete()">Undo
+                    Last Delete</button>
                 <a href="{{ route('questions.upload') }}" class="btn btn-secondary">Cancel</a>
             </div>
         </div>
     </div>
+    <script>
+        let deleteQuestions = [];
+
+        function deleteRow(index) {
+            let row = document.getElementById('row-' + index);
+            if (row) {
+                deleteQuestions.push({
+                    index: index,
+                    html: row.outerHTML
+                });
+                row.remove();
+                document.getElementById("undoDeleteBtn").style.display = "block";
+            }
+        }
+
+        function undoDelete() {
+            if (deleteQuestions.length > 0) {
+                let lastDeleted = deleteQuestions.pop();
+                let tableBody = document.querySelector("#questionsTabletbody");
+                let tempDiv = document.createElement("div");
+                tempDiv.innerHTML = lastDeleted.html;
+                tableBody.appendChild(tempDiv.firstElementChild);
+                if (deleteQuestions.length === 0) {
+                    document.getElementById("undoDeleteBtn").style.display = "none"
+                }
+            }
+        }
+    </script>
 @endsection
