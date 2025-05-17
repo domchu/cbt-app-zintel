@@ -1,10 +1,14 @@
-@extends('layouts.app')
+<h1>take exam page</h1>
+ <a href="{{ url('exam/questions') }}" class="btn btn-primary">Start Exam</a>
+
+
+{{-- @extends('layouts.app')
 
 @section('content')
 <div class="container">
     <h2 class="text-center">Select Year & Subject</h2>
 
-    <form action="{{ route('exam.start') }}" method="GET">
+    <form action="{{ route('exam.questions') }}" method="GET">
         @csrf
         <div class="form-group">
             <label for="subject">Select Subject:</label>
@@ -29,4 +33,4 @@
         <button type="submit" class="btn btn-primary">Start Exam</button>
     </form>
 </div>
-@endsection
+@endsection --}}

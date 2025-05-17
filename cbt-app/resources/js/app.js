@@ -6,7 +6,7 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
-
+// DARK MODE FUNCTIONALITY
 
 document.addEventListener("DOMContentLoaded", function () {
     const darkModeToggle = document.getElementById("darkModeToggle");

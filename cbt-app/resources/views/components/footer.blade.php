@@ -1,8 +1,8 @@
 <!-- No surplus words or unnecessary actions. - Marcus Aurelius -->
 {{-- FOOTER --}}
 <div
-    class="relative w-full h-84 mt-10 bg-[url('../../public/images/BannerHouse.png')] bg-cover bg-center bg-no-repeat text-white p-10">
-    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+    class="relative w-full h-84 mt-10 bg-[#32064a] bg-cover bg-center bg-no-repeat text-white p-10">
+    <div class="absolute inset-0 bg-[#32064a]/40 backdrop-blur-sm"></div>
     <footer class="relative z-10 grid grid-cols-1 lg:grid-cols-3 mr-0 lg:mr-0 xl:mr-40">
         <div class="flex justify-center lg:justify-normal py-8 px-0 lg:px-20 col-span-1">
             <a href="{{ url('/') }}">
@@ -28,7 +28,7 @@
                     </li>
                     <li
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
-                        <a href="{{ url('/why-us') }}">Why Us</a>
+                        <a href="{{ url('/features') }}">Features</a>
                     </li>
 
                     <li
@@ -49,10 +49,10 @@
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
                         <a href="{{ url('/privacy-policy') }}">Privacy Policy</a>
                     </li>
-                    <li
+                    {{-- <li
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
                         <a href="{{ url('/booking') }}">Consultation / Booking</a>
-                    </li>
+                    </li> --}}
                     <li
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
                         <a href="tel:+234 7034278995">+234 703 4278 995</a>
@@ -74,12 +74,12 @@
                             placeholder="Enter Your Email" />
                     </div>
                     <button type="submit"
-                        class="rounded-md bg-sky-800 py-2 px-4 hover:bg-sky-700 hover:text-gray-300">Submit</button>
+                        class="rounded-md bg-transparent py-2 px-4 hover:bg-red-700 hover:text-gray-300" style="border:1px solid #fff">Submit</button>
                 </form>
                 {{-- SOCIAL MEDIA HANDLES --}}
                 <ul class="flex justify-start items-center p-2 lg:flex lg:justify-start lg:items-baseline">
                     <li
-                        class="w-3 bg-gray-700 bg-opacity-20 p-5 mx-0 lg:mx-1 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md">
+                        class="w-3 bg-gray-700 bg-opacity-20 p-5 mx-0 lg:mx-1 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md hover:bg-red-700" style="border:1px solid #fff">
                         <a href="#">                           
                             <svg class="absolute z-10 top-2 right-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -90,7 +90,7 @@
                         </a>
                     </li>
                     <li
-                        class="w-3 mt-0 xl:mt-5 bg-gray-700 bg-opacity-20 p-5 mx-2 lg:mx-4 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md">
+                        class="w-3 mt-0 xl:mt-5 bg-gray-700 bg-opacity-20 p-5 mx-2 lg:mx-4 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md hover:bg-red-700" style="border:1px solid #fff">
                         <a href="#">
                             <svg class="absolute z-10 top-2 right-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -103,7 +103,7 @@
                         </a>
                     </li>
                     <li
-                        class="w-3 bg-gray-700 bg-opacity-20 p-5 mx-0 xl:mx-3 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md">
+                        class="w-3 bg-gray-700 bg-opacity-20 p-5 mx-0 xl:mx-3 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md hover:bg-red-700" style="border:1px solid #fff">
                         <a href="#">
                             <svg class="absolute z-10 top-2 right-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -114,7 +114,7 @@
                         </a>
                     </li>
                     <li
-                        class="w-3 mt-0 xl:mt-5 bg-gray-700 bg-opacity-20 p-5 mx-2 lg:mx-3 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md">
+                        class="w-3 mt-0 xl:mt-5 bg-gray-700 bg-opacity-20 p-5 mx-2 lg:mx-3 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md hover:bg-red-700 " style="border:1px solid #fff">
                         <a href="#">
                             <svg class="absolute z-10 top-2 right-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -127,7 +127,7 @@
                         </a>
                     </li>
                     <li
-                        class="w-3 mt-0 xl:mt-5 bg-gray-700 bg-opacity-20 p-5 mx-2 lg:mx-3 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md">
+                        class="w-3 mt-0 xl:mt-5 bg-gray-700 bg-opacity-20 p-5 mx-2 lg:mx-3 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md hover:bg-red-700" style="border:1px solid #fff">
                         <a href="#">
                             <svg class="absolute z-10 top-2 right-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -144,18 +144,21 @@
         </div>
     </footer>
 </div>
+<div class="text-white py-8 bg-[#32064a] w-full">
+    <hr class="w-[80%] my-0 mx-auto">
+</div>
 {{-- COPYRIGHT --}}
-<div class="w-full p-3 bg-white text-center text-sm text-primaryColor2">
-    <p class="text-lg font-medium ">Copyright &copy; Computer Base Test (CBT) 2025 | All rights reserved | Designed & Powered by <a
+<div class="w-full py-6 bg-[#32064a] text-center text-sm text-primaryColor2 text-white">
+    <p class="text-base "> Copyright &copy; 2025. Computer Base Test (CBT)  | All rights reserved | Designed & Powered by <a
             href="https://www.bridgekode.com" target="_blank"
-            class="text-sky-800 pt-2 text-lg cursor-pointer font-medium">Bridgekode Technology</a></p>
+            class="text-[#fff] pt-2 text-base cursor-pointer font-sm border-[#d6353f]">Bridgekode Technology</a></p>
 </div>
 
 <script src="{{ asset('js/navbar.js') }}"></script>
 <script src="{{ asset('js/slider.js') }}"></script>
 <script src="{{ asset('js/reviews.js') }}"></script>
 <script src="{{ asset('js/faqsection.js')}}" defer></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

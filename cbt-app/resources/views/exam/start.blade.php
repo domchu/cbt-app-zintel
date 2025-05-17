@@ -1,4 +1,10 @@
-@extends('layouts.app')
+<h1>WRONG Exam PAGE</h1>
+<a href="{{ url('exam/result') }}" class="btn btn-primary">Submit Exam</a>
+
+
+
+
+{{-- @extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -123,4 +129,4 @@
     }
 </style>
 
-@endsection
+@endsection --}}
