@@ -12,6 +12,7 @@
                     <table class="table table-stripe table:hover">
                         <thead>
                             <tr>
+                                <th>Subject ID</th>
                                 <th>Subject</th>
                                 <th>Year</th>
                                 <th>Exam Type</th>
@@ -62,13 +63,13 @@
                                             <option value="A"
                                                 {{ $question['correct_answer'] == 'A' ? 'selected' : '' }}>A</option>
                                             <option value="B"
-                                                {{ $question['correct_answer'] == 'B' ? 'selected' : '' }}>A</option>
+                                                {{ $question['correct_answer'] == 'B' ? 'selected' : '' }}>B</option>
                                             <option value="C"
-                                                {{ $question['correct_answer'] == 'C' ? 'selected' : '' }}>A</option>
+                                                {{ $question['correct_answer'] == 'C' ? 'selected' : '' }}>C</option>
                                             <option value="D"
-                                                {{ $question['correct_answer'] == 'D' ? 'selected' : '' }}>A</option>
+                                                {{ $question['correct_answer'] == 'D' ? 'selected' : '' }}>D</option>
                                             <option value="E"
-                                                {{ $question['correct_answer'] == 'E' ? 'selected' : '' }}>A</option>
+                                                {{ $question['correct_answer'] == 'E' ? 'selected' : '' }}>E</option>
                                         </select>
                                     </td>
                                     <td>
@@ -83,7 +84,7 @@
                 </form>
                 <button class="btn btn-warning mt-s" id="undoDeleteBtn" style="display: none" onclick="undoDelete()">Undo
                     Last Delete</button>
-                <a href="{{ route('questions.upload') }}" class="btn btn-secondary">Cancel</a>
+                {{-- <a href="{{ route('questions.upload') }}" class="btn btn-secondary">Cancel</a> --}}
             </div>
         </div>
     </div>
