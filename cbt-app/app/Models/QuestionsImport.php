@@ -5,12 +5,19 @@ namespace App\Models;
 use App\Models\Subject;
 use App\Models\Questions;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\withHeadingRow;
-use Maatwebsite\Excel\Collections\RowCollection;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Illuminate\Support\Collection;
 
-class QuestionsImport implements ToModel, withHeadingRow
+class QuestionsImport implements ToModel, WithHeadingRow
 {
-  public function Model(array $row)
+
+  public $rows;
+
+  public function collection(Collection $collection)
+  {
+      $this->rows = $collection;
+  }
+  public function model(array $row)
       {
            $subject = Subject::where('name', $row['subject'])->first();
             if(!$subject){
@@ -18,17 +25,17 @@ class QuestionsImport implements ToModel, withHeadingRow
             }
 
       return new Questions([
-      'year'=> $row['year'],
       'subject_id'=> $subject->id,
-      'question'=> $row['question'],
+      'subject'=> $row['subject'],
+      'year'=> $row['year'],
       'exam_type'=> $row['exam_type'],
-      'option_b'=> $row['option_b'],
+      'question'=> $row['question'],
       'option_a'=> $row['option_a'],
-      'option_d'=> $row['option_d'],
+      'option_b'=> $row['option_b'],
       'option_c'=> $row['option_c'],
+      'option_d'=> $row['option_d'],
       'option_e'=> $row['option_e'],
       'correct_answer'=> $row['correct_answer'],
-
      ]);
       
    

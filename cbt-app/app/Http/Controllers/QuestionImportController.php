@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\QuestionsImport;
 use App\Models\Subject;
 use App\Models\questions;
 use Illuminate\Http\Request;
-// use App\Models\QuestionsImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
+
 
 class QuestionImportController extends Controller
 {
@@ -17,40 +18,50 @@ class QuestionImportController extends Controller
     }
 
     public function preview(Request $request){
-
+    {
         $validator = Validator::make($request->all(), [
-            'file' => 'require|mimes:xlsx,xls,csv',
+            'file' => 'required|mimes:xlsx,xls,csv',
         ]);
-        
 
-        $path = $request->file('file')->getRealPath();
-        $data =Excel::toArray([], $request->file('file'))[0];
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
-        if(count($data) < 2){
+        $import = new QuestionsImport();
+        Excel::import($import, $request->file('file'));
+
+        $rows = $import->rows;
+
+        if (count($rows) < 2) {
             return redirect()->back()->withErrors(['file' => 'The uploaded file is empty or invalid']);
         }
-        $hearders = array_map('strtolower', $data[0]);
+
+        $headers = array_map('strtolower', $rows[0]->toArray());
         $requiredHeaders = [
-            'subject_id',
-            "subject",
-            'year',
-            'exam_type',
+            'subject_id', 
+            'subject',
+            'year', 
+            'exam_type', 
             'question',
-            'option_a',
-            'option_b',
-            'option_c',
-            'option_d',
-            'option_e',
+            'option_a', 
+            'option_b', 
+            'option_c', 
+            'option_d', 
+            'option_e', 
             'correct_answer'
         ];
-        if(array_diff($requiredHeaders, $hearders)){
-            return redirect()->back()->withErrors(['file' => ' invalid file format. Ensure correct columns haeders.']); 
+
+        if (array_diff($requiredHeaders, $headers)) {
+            return redirect()->back()->withErrors(['file' => 'Invalid file format. Ensure correct column headers.']);
         }
+
         $questions = [];
-        foreach (array_slice($data, 1) as  $row) {
-            $questions[] = array_combine($hearders, $row);
+        foreach ($rows->slice(1) as $row) {
+            $questions[] = array_combine($headers, $row->toArray());
         }
+
         return view('questions.preview', compact('questions'));
+    }
 
     }
     
@@ -64,17 +75,17 @@ class QuestionImportController extends Controller
                 continue;
             }
             Questions::create([
-                'subject_id'=>$subject->id,
+                'subject_id'=> $subject->id,
                 'subject'=> $question['subject'],
                 'year'=> $question['year'],
                 'exam_type'=> $question['exam_type'],
-                'question'=>$question['question'],
-                'option_a'=>$question['option_a'],
-                'option_b'=>$question['option_b'],
-                'option_c'=>$question['option_c'],
-                'option_d'=>$question['option_d'],
-                'option_e'=>$question['option_e'],
-                'correct_answer'=>$question['correct_answer'],
+                'question'=> $question['question'],
+                'option_a'=> $question['option_a'],
+                'option_b'=> $question['option_b'],
+                'option_c'=> $question['option_c'],
+                'option_d'=> $question['option_d'],
+                'option_e'=> $question['option_e'],
+                'correct_answer'=> $question['correct_answer'],
 
             ]);
         }
