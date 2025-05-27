@@ -12,7 +12,7 @@
                     <table class="table table-stripe table:hover">
                         <thead>
                             <tr>
-                                <th>Subject ID</th>
+                                {{-- <th>Subject ID</th> --}}
                                 <th>Subject</th>
                                 <th>Year</th>
                                 <th>Exam Type</th>
