@@ -62,5 +62,7 @@ Route::prefix('admin/questions')->controller(QuestionImportController::class)->g
     Route::get('/import', 'showImportForm')->name('questions.import.form');
     Route::post('/import', 'import')->name('questions.import'); 
     Route::post('/preview', 'preview')->name('questions.preview');
-    Route::get('/importConfirmed', 'importConfirmed')->name('questions.importConfirmed');
+    Route::post('/importConfirmed', 'importConfirmed')->name('questions.importConfirmed');
+
+
 });

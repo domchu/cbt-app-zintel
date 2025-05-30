@@ -12,6 +12,8 @@ class QuestionsImport implements ToModel, WithHeadingRow
 {
     public function model(array $row)
     {
+
+        
         $subject = Subject::where('name', $row['subject'])->first();
 
         if (!$subject) {
@@ -19,7 +21,7 @@ class QuestionsImport implements ToModel, WithHeadingRow
         }
 
         return new Questions([
-            'subject_id'      => $subject->id,
+            'subject_id'      => $subject?->id ?? null,
             'subject'         => $row['subject'],
             'year'            => $row['year'],
             'exam_type'       => $row['exam_type'],

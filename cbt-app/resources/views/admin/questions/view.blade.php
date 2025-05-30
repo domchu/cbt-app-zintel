@@ -12,6 +12,7 @@
                     <table class="table table-stripe table:hover">
                         <thead>
                             <tr>
+                                <th>Subject Id</th>
                                 <th>Subject</th>
                                 <th>Year</th>
                                 <th>Exam Type</th>
@@ -27,6 +28,7 @@
                         <tbody>
                             @foreach ($questions as $index => $question)
                                 <tr>
+                                    <td>{{$question['subject_id']}} </td>
                                     <td>{{$question['subject']}} </td>
                                     <td>{{$question['year']}} </td>
                                     <td>{{$question['exam_type']}} </td>

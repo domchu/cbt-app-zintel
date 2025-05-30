@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subject;
+use App\Models\Questions;
 use Illuminate\Http\Request;
 use App\Imports\QuestionsImport;
-use App\Imports\QuestionsPreviewImport;
-use App\Models\Questions;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\QuestionsPreviewImport;
 use Illuminate\Support\Facades\Validator;
 
 class QuestionImportController extends Controller
@@ -25,13 +26,16 @@ class QuestionImportController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+        if (!$request->hasFile('file')) {
+            return redirect()->back()->withErrors(['file' => 'Missing file for import.']);
+        }
 
         $import = new QuestionsPreviewImport();
         Excel::import($import, $request->file('file'));
 
         $rows = $import->rows ?? collect();
 
-        if ($rows->count() < 1) {
+        if  (count($rows) < 2) {
             return redirect()->back()->withErrors(['file' => 'The uploaded file is empty or invalid']);
         }
 
@@ -58,7 +62,22 @@ class QuestionImportController extends Controller
         $questions = [];
       
         foreach ($rows->slice(1) as $row) {
-            $questions[] = array_combine($headers, array_values($row->toArray()));
+            $rowData = array_combine($headers, array_values($row->toArray()));
+            $subject = Subject::where('name', $rowData['subject'])->first();
+
+            $questions[] = [
+                'subject_id' => $rowData['subject_id'],
+                'subject' => $rowData['subject'],
+                'year' => $rowData['year'],
+                'exam_type' => $rowData['exam_type'],
+                'question' => $rowData['question'],
+                'option_a' => $rowData['option_a'],
+                'option_b' => $rowData['option_b'],
+                'option_c' => $rowData['option_c'],
+                'option_d' => $rowData['option_d'],
+                'option_e' => $rowData['option_e'],
+                'correct_answer' => $rowData['correct_answer'],
+            ];
         }
 
         return view('admin.questions.preview', compact('questions'));
@@ -66,12 +85,28 @@ class QuestionImportController extends Controller
 
     public function importConfirmed(Request $request)
     {
-        if (!$request->has('file_path')) {
-            return redirect()->route('questions.upload')->withErrors(['file' => 'Missing file for import']);
-        }
+        $questions = $request->input('questions');
 
-        Excel::import(new QuestionsImport, $request->file('file_path'));
+        if (!$questions || !is_array($questions)) {
+        return redirect()->route('questions.upload')->withErrors(['file' => 'No questions data found for import.']);
+    }
 
+    foreach ($questions as $questionData) {
+        // dd($questionData);
+        Questions::create([
+            'subject_id' => $questionData['subject_id'] ?? null,
+            'subject' => $questionData['subject'],
+            'year' => $questionData['year'],
+            'exam_type' => $questionData['exam_type'],
+            'question' => $questionData['question'],
+            'option_a' => $questionData['option_a'],
+            'option_b' => $questionData['option_b'],
+            'option_c' => $questionData['option_c'],
+            'option_d' => $questionData['option_d'],
+            'option_e' => $questionData['option_e'],
+            'correct_answer' => $questionData['correct_answer'],
+        ]);
+      }
         return redirect()->route('questions.upload')->with('success', 'Questions Imported Successfully');
     }
 

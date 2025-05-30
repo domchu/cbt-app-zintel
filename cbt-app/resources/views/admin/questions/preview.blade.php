@@ -18,13 +18,13 @@
 
 
                     <div class="card-body">
-                        <form action="{{ route('questions.importConfirmed') }}" method="post">
+                        <form action="{{ route('questions.importConfirmed') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name='questions' value="{{ json_encode($questions) }}">
-                            <table class="table table-stripe table:hover table-bordered">
+                            <table class="table table-stripe table:hover table-bordered" id="questionsTable">
                                 <thead>
                                     <tr>
-                                        {{-- <th>Subject ID</th> --}}
+                                        <th>Subject ID</th>
                                         <th>Subject</th>
                                         <th>Year</th>
                                         <th>Exam Type</th>
@@ -41,11 +41,15 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($questions as $index => $question)
-                                        <tr>
+                                        <tr id="row-{{$index}}">
                                             <td>
-                                                <input type="text" class="form-control pr-10"
-                                                    name="questions[{{ $index }}]['subject']"
-                                                    value="{{ $question['subject'] }}">
+                                                <input type="text" class="form-control" 
+                                                name="questions[{{ $index }}][subject_id]" 
+                                                value="{{ $question['subject_id'] ?? '' }}">
+                                            </td>
+                                            <td>
+                                                
+                                                    <input type="text" class="form-control pr-10" name="questions[{{ $index }}]['subject']" value="{{ $question['subject'] }}">
                                             </td>
                                             <td> <input type="number" class="form-control"
                                                     name="questions[{{ $index }}]['year']"
@@ -55,9 +59,8 @@
                                                     name="questions[{{ $index }}]['exam_type']"
                                                     value="{{ $question['exam_type'] }}"> </td>
                                             <td>
-                                                <textarea class="form-control" name="questions[{{ $index }}][subject]" cols="100" rows="3">
-                                            {{ $question['question'] }}
-                                        </textarea>
+                                                <textarea class="form-control" name="questions[{{ $index }}][question]" cols="10" rows="5">{{ $question['question'] }}</textarea>
+
                                             </td>
                                             <td> <input type="text" class="form-control"
                                                     name="questions[{{ $index }}]['option_a']"
@@ -94,10 +97,10 @@
                                                     </option>
                                                 </select>
                                             </td>
-                                            <td>
-                                                <button class="btn btn-danger btn-sm"
-                                                    onclick="deleteRow({{ $index }})">Delete</button>
-                                            </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger btn-sm" onclick="deleteRow({{ $index }})">Delete</button>
+                                                </td>
+                                                
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -107,9 +110,7 @@
 
                     </div>
                 </div>
-                <button class="btn btn-warning mt-s" id="undoDeleteBtn" style="display: none" onclick="undoDelete()">Undo
-                    Last Delete</button>
-                <a href="{{ route('questions.upload') }}" class="btn btn-warning my-4">Cancel</a>
+                <button class="btn btn-warning mt-s" id="undoDeleteBtn" style="display: none" onclick="undoDelete()">Undo Last Delete</button>
             </div>
         </div>
     </div>
