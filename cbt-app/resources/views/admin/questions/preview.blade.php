@@ -43,39 +43,39 @@
                                     @foreach ($questions as $index => $question)
                                         <tr id="row-{{$index}}">
                                             <td>
-                                                <input type="text" class="form-control" 
+                                                <input type="hidden" class="form-control" 
                                                 name="questions[{{ $index }}][subject_id]" 
                                                 value="{{ $question['subject_id'] ?? '' }}">
                                             </td>
                                             <td>
                                                 
-                                                    <input type="text" class="form-control pr-10" name="questions[{{ $index }}]['subject']" value="{{ $question['subject'] }}">
+                                                    <input type="text" class="form-control pr-10" name="questions[{{ $index }}][subject]" value="{{ $question['subject'] }}">
                                             </td>
                                             <td> <input type="number" class="form-control"
-                                                    name="questions[{{ $index }}]['year']"
+                                                    name="questions[{{ $index }}][year]"
                                                     value="{{ $question['year'] }}">
                                             </td>
                                             <td> <input type="text" class="form-control"
-                                                    name="questions[{{ $index }}]['exam_type']"
+                                                    name="questions[{{ $index }}][exam_type]"
                                                     value="{{ $question['exam_type'] }}"> </td>
                                             <td>
                                                 <textarea class="form-control" name="questions[{{ $index }}][question]" cols="10" rows="5">{{ $question['question'] }}</textarea>
 
                                             </td>
                                             <td> <input type="text" class="form-control"
-                                                    name="questions[{{ $index }}]['option_a']"
+                                                    name="questions[{{ $index }}][option_a]"
                                                     value="{{ $question['option_a'] }}"> </td>
                                             <td> <input type="text" class="form-control"
-                                                    name="questions[{{ $index }}]['option_b']"
+                                                    name="questions[{{ $index }}][option_b]"
                                                     value="{{ $question['option_b'] }}"> </td>
                                             <td> <input type="text" class="form-control"
-                                                    name="questions[{{ $index }}]['option_c']"
+                                                    name="questions[{{ $index }}][option_c]"
                                                     value="{{ $question['option_c'] }}"> </td>
                                             <td> <input type="text" class="form-control"
-                                                    name="questions[{{ $index }}]['option_d']"
+                                                    name="questions[{{ $index }}][option_d]"
                                                     value="{{ $question['option_d'] }}"> </td>
                                             <td> <input type="text" class="form-control"
-                                                    name="questions[{{ $index }}]['option_e']"
+                                                    name="questions[{{ $index }}][option_e]"
                                                     value="{{ $question['option_e'] }}"> </td>
                                             <td>
                                                 <select name="questions[{{ $index }}][correct_answer]"

@@ -85,28 +85,34 @@ class QuestionImportController extends Controller
 
     public function importConfirmed(Request $request)
     {
-        $questions = $request->input('questions');
+        $questions = $request->input('questions', []);
 
-        if (!$questions || !is_array($questions)) {
+    if (!is_array($questions) || empty($questions)) {
         return redirect()->route('questions.upload')->withErrors(['file' => 'No questions data found for import.']);
     }
 
+    
     foreach ($questions as $questionData) {
-        // dd($questionData);
+
+        $cleanData = [];
+        foreach ($questionData as $key => $value) {
+            $cleanKey = trim($key, "'");
+            $cleanData[$cleanKey] = $value;
+        }
         Questions::create([
-            'subject_id' => $questionData['subject_id'] ?? null,
-            'subject' => $questionData['subject'],
-            'year' => $questionData['year'],
-            'exam_type' => $questionData['exam_type'],
-            'question' => $questionData['question'],
-            'option_a' => $questionData['option_a'],
-            'option_b' => $questionData['option_b'],
-            'option_c' => $questionData['option_c'],
-            'option_d' => $questionData['option_d'],
-            'option_e' => $questionData['option_e'],
-            'correct_answer' => $questionData['correct_answer'],
+            'subject_id'     => $cleanData['subject_id'] ?? null,
+            'subject'        => $questionData['subject'] ?? '',
+           'year' => isset($cleanData['year']) && is_numeric($cleanData['year']) ? (int) $cleanData['year'] : null,
+            'exam_type'      => $cleanData['exam_type'] ?? '',
+            'question'       => $cleanData['question'] ?? '',
+            'option_a'       => $cleanData['option_a'] ?? '',
+            'option_b'       => $cleanData['option_b'] ?? '',
+            'option_c'       => $cleanData['option_c'] ?? '',
+            'option_d'       => $cleanData['option_d'] ?? '',
+            'option_e'       => $cleanData['option_e'] ?? '',
+            'correct_answer' => $cleanData['correct_answer'] ?? '',
         ]);
-      }
+    }
         return redirect()->route('questions.upload')->with('success', 'Questions Imported Successfully');
     }
 
