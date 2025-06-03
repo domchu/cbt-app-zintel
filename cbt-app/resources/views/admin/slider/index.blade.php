@@ -81,7 +81,7 @@
             </div>
         </div>
     </div>
-@endsection
+
 
 
 {{-- SWEET SweetAlert --}}
@@ -141,6 +141,6 @@ $(document).ready(function () {
 }
 
 </script> --}}
-
+@endsection
 
 

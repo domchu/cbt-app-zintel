@@ -2,19 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subject;
+use App\Models\Questions;
 use Illuminate\Http\Request;
 use App\Imports\QuestionsImport;
-use App\Imports\QuestionsPreviewImport;
-use App\Models\Questions;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\QuestionsPreviewImport;
 use Illuminate\Support\Facades\Validator;
 
 class QuestionImportController extends Controller
 {
+    public function index()
+    {
+        $questions = Questions::paginate(40);
+        return view('admin.questions.index', compact('questions'));
+    }
+
+
+
+    // SHOW UPLOAD FORM
     public function showUploadForm()
     {
         return view('admin.questions.upload');
     }
+
+
+    // PREVIEW QUESTIONS FUNCTION
 
     public function preview(Request $request)
     {
@@ -25,13 +38,16 @@ class QuestionImportController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+        if (!$request->hasFile('file')) {
+            return redirect()->back()->withErrors(['file' => 'Missing file for import.']);
+        }
 
         $import = new QuestionsPreviewImport();
         Excel::import($import, $request->file('file'));
 
         $rows = $import->rows ?? collect();
 
-        if ($rows->count() < 1) {
+        if  (count($rows) < 2) {
             return redirect()->back()->withErrors(['file' => 'The uploaded file is empty or invalid']);
         }
 
@@ -52,31 +68,72 @@ class QuestionImportController extends Controller
         ];
 
         if (array_diff($requiredHeaders, $headers)) {
-            return redirect()->back()->withErrors(['file' => 'Invalid file format. Ensure correct column headers.']);
+            return redirect()->back()->withErrors(['file' => 'Invalid file format. Ensure correct Excel/CSV column headers.']);
         }
 
         $questions = [];
       
         foreach ($rows->slice(1) as $row) {
-            $questions[] = array_combine($headers, array_values($row->toArray()));
+            $rowData = array_combine($headers, array_values($row->toArray()));
+            $subject = Subject::where('name', $rowData['subject'])->first();
+
+            $questions[] = [
+                'subject_id' => $rowData['subject_id'],
+                'subject' => $rowData['subject'],
+                'year' => $rowData['year'],
+                'exam_type' => $rowData['exam_type'],
+                'question' => $rowData['question'],
+                'option_a' => $rowData['option_a'],
+                'option_b' => $rowData['option_b'],
+                'option_c' => $rowData['option_c'],
+                'option_d' => $rowData['option_d'],
+                'option_e' => $rowData['option_e'],
+                'correct_answer' => $rowData['correct_answer'],
+            ];
         }
 
         return view('admin.questions.preview', compact('questions'));
     }
 
+
+    // CONFIRMED IMPORT FUNCTION
+
     public function importConfirmed(Request $request)
     {
-        if (!$request->has('file_path')) {
-            return redirect()->route('questions.upload')->withErrors(['file' => 'Missing file for import']);
+        $questions = $request->input('questions', []);
+
+    if (!is_array($questions) || empty($questions)) {
+        return redirect()->route('questions.upload')->withErrors(['file' => 'No questions data found for import.']);
+    }
+
+    
+    foreach ($questions as $questionData) {
+
+        $cleanData = [];
+        foreach ($questionData as $key => $value) {
+            $cleanKey = trim($key, "'");
+            $cleanData[$cleanKey] = $value;
         }
-
-        Excel::import(new QuestionsImport, $request->file('file_path'));
-
+        Questions::create([
+            'subject_id'     => $cleanData['subject_id'],
+            'subject'        => $cleanData['subject'],
+           'year' => isset($cleanData['year']) && is_numeric($cleanData['year']) ? (int) $cleanData['year'] : null,
+            'exam_type'      => $cleanData['exam_type'] ?? '',
+            'question'       => $cleanData['question'] ?? '',
+            'option_a'       => $cleanData['option_a'] ?? '',
+            'option_b'       => $cleanData['option_b'] ?? '',
+            'option_c'       => $cleanData['option_c'] ?? '',
+            'option_d'       => $cleanData['option_d'] ?? '',
+            'option_e'       => $cleanData['option_e'] ?? '',
+            'correct_answer' => $cleanData['correct_answer'] ?? '',
+        ]);
+    }
         return redirect()->route('questions.upload')->with('success', 'Questions Imported Successfully');
     }
 
+// SHOW ALL QUESTIONS
     public function show(Questions $questions)
     {
-        return view('admin.questions.view', compact('questions'));
+        return view('admin.questions', compact('questions'));
     }
 }

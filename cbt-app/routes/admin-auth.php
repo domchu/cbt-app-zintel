@@ -57,10 +57,12 @@ Route::prefix('admin/section')->controller(SessionController::class)->group(func
 
 
 Route::prefix('admin/questions')->controller(QuestionImportController::class)->group(function () {
+    Route::get('/', 'index')->name('questions.index'); 
     Route::get('/upload', 'showUploadForm')->name('questions.upload');
-    Route::get('/view', 'view')->name('questions.view'); 
     Route::get('/import', 'showImportForm')->name('questions.import.form');
     Route::post('/import', 'import')->name('questions.import'); 
     Route::post('/preview', 'preview')->name('questions.preview');
-    Route::get('/importConfirmed', 'importConfirmed')->name('questions.importConfirmed');
+    Route::post('/importConfirmed', 'importConfirmed')->name('questions.importConfirmed');
+
+
 });
