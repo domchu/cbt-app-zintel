@@ -12,10 +12,22 @@ use Illuminate\Support\Facades\Validator;
 
 class QuestionImportController extends Controller
 {
+    public function index()
+    {
+        $questions = Questions::paginate(40);
+        return view('admin.questions.index', compact('questions'));
+    }
+
+
+
+    // SHOW UPLOAD FORM
     public function showUploadForm()
     {
         return view('admin.questions.upload');
     }
+
+
+    // PREVIEW QUESTIONS FUNCTION
 
     public function preview(Request $request)
     {
@@ -56,7 +68,7 @@ class QuestionImportController extends Controller
         ];
 
         if (array_diff($requiredHeaders, $headers)) {
-            return redirect()->back()->withErrors(['file' => 'Invalid file format. Ensure correct column headers.']);
+            return redirect()->back()->withErrors(['file' => 'Invalid file format. Ensure correct Excel/CSV column headers.']);
         }
 
         $questions = [];
@@ -83,6 +95,9 @@ class QuestionImportController extends Controller
         return view('admin.questions.preview', compact('questions'));
     }
 
+
+    // CONFIRMED IMPORT FUNCTION
+
     public function importConfirmed(Request $request)
     {
         $questions = $request->input('questions', []);
@@ -100,8 +115,8 @@ class QuestionImportController extends Controller
             $cleanData[$cleanKey] = $value;
         }
         Questions::create([
-            'subject_id'     => $cleanData['subject_id'] ?? null,
-            'subject'        => $questionData['subject'] ?? '',
+            'subject_id'     => $cleanData['subject_id'],
+            'subject'        => $cleanData['subject'],
            'year' => isset($cleanData['year']) && is_numeric($cleanData['year']) ? (int) $cleanData['year'] : null,
             'exam_type'      => $cleanData['exam_type'] ?? '',
             'question'       => $cleanData['question'] ?? '',
@@ -116,8 +131,9 @@ class QuestionImportController extends Controller
         return redirect()->route('questions.upload')->with('success', 'Questions Imported Successfully');
     }
 
+// SHOW ALL QUESTIONS
     public function show(Questions $questions)
     {
-        return view('admin.questions.view', compact('questions'));
+        return view('admin.questions', compact('questions'));
     }
 }

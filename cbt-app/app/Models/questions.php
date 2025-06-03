@@ -13,8 +13,9 @@ class Questions extends Model
 
     protected $fillable = [
 'subject_id', 
-'exam_type', 
+'subject',
 'year',
+'exam_type', 
 'question', 
 'option_a', 
 'option_b', 

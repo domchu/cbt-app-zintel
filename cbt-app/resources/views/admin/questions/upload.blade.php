@@ -5,8 +5,8 @@
         <div class="row">
             <div class="col-md-12">
                 {{-- SUCCESS MESSAGE --}}
-                @if (session('status'))
-                    <h5 class="alert alert-success">{{ session('status') }} </h5>
+                @if (session('success'))
+                    <h5 class="alert alert-success">{{ session('success') }} </h5>
                 @endif
 
                 @if ($errors->any())
@@ -31,6 +31,9 @@
                             <div class="form-group mb-4">
                                 <label for="">Select File:</label>
                                 <input type="file" name="file" class="form-control" required>
+                                 @error('file')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-primary">Preview Questions</button>
                         </form>
