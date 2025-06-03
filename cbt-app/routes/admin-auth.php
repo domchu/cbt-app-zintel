@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\QuestionImportController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ExamsController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\QuestionImportController;
 
 
 // SLIDER ROUTES
@@ -63,6 +64,19 @@ Route::prefix('admin/questions')->controller(QuestionImportController::class)->g
     Route::post('/import', 'import')->name('questions.import'); 
     Route::post('/preview', 'preview')->name('questions.preview');
     Route::post('/importConfirmed', 'importConfirmed')->name('questions.importConfirmed');
+
+
+});
+
+
+
+// USER ROUTES
+Route::prefix('exam')->controller(ExamsController::class)->group(function () {
+    Route::get('/question', '')->name('exam.questions');
+    Route::get('/', '')->name('exam.');
+    Route::post('/', '')->name('exam.'); 
+    Route::post('/', '')->name('exam.');
+    Route::post('/', '')->name('exam.');
 
 
 });

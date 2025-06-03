@@ -1,8 +1,8 @@
-<h1>take exam page</h1>
- <a href="{{ url('exam/questions') }}" class="btn btn-primary">Start Exam</a>
+{{-- <h1>take exam page</h1>
+ <a href="{{ url('exam/questions') }}" class="btn btn-primary">Start Exam</a> --}}
 
 
-{{-- @extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -30,7 +30,17 @@
             </select>
         </div>
 
+        <div class="form-group">
+            <label for="exam_type">Select Exam Type:</label>
+            <select name="exam_type" id="exam_type" class="form-control" required>
+                <option value="">-- Choose Exam Type --</option>
+                @foreach($subjects as $subject)
+                    <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
         <button type="submit" class="btn btn-primary">Start Exam</button>
     </form>
 </div>
-@endsection --}}
+@endsection
