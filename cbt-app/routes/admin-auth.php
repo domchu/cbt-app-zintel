@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\QuestionImportController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ExamsController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\QuestionImportController;
 
 
 // SLIDER ROUTES
@@ -66,3 +67,13 @@ Route::prefix('admin/questions')->controller(QuestionImportController::class)->g
 
 
 });
+
+
+
+// USER ROUTES
+// Route::get('/exam', [ExamsController::class, 'index'])->name('exam.index');
+Route::get('/exam', [ExamsController::class, 'showExamForm'])->name('exam.index');
+Route::POST('/exam/start', [ExamsController::class, 'startExam'])->name('exam.start');
+Route::post('/exam/submit', [ExamsController::class, 'submitExam'])->name('exam.submit');
+Route::get('/exam/result', [ExamsController::class, 'showResult'])->name('exam.result');
+Route::get('/exam/history', [ExamsController::class, 'examHistory'])->name('exam.history');

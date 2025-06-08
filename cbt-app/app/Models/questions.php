@@ -12,20 +12,21 @@ class Questions extends Model
     protected $table = 'questions';
 
     protected $fillable = [
-'subject_id', 
-'subject',
-'year',
-'exam_type', 
-'question', 
-'option_a', 
-'option_b', 
-'option_c', 
-'option_d', 
-'option_e', 
-'correct_answer'
+        'subject_id', 
+        'subject',
+        'year',
+        'exam_type', 
+        'question', 
+        'option_a', 
+        'option_b', 
+        'option_c', 
+        'option_d', 
+        'option_e', 
+        'correct_answer'
 
-];
-public function subject(){
-    return $this->belongsTo(Subject::class);
-}
+        ];
+        public function subject(){
+            return $this->belongsTo(Subject::class);
+        }
+
 }
