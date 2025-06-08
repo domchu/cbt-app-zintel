@@ -1,221 +1,209 @@
-@php
-    $questionsPerPage = 5;
-    $totalPages = ceil(count($questions) / $questionsPerPage);
-@endphp
-
 @extends('layouts.dashboard')
 
 @section('content')
-    <div class="container mt-8">
-        {{-- <h2 class="text-center">Exam - {{ $subject }}</h2> --}}
-        <h1>Exam - {{ $subject }} - {{ $year }} ({{ $exam_type }})</h1>
-        <div class="timer-container float-end">
-            <div id="timer" class="text-danger text-2xl">Time Left: <span id="time"></span></div>
+<div class="container mt-8">
+    <h1>Exam - {{ $subject }} - {{ $year }} ({{ $exam_type }})</h1>
 
-
-            <!-- Question Navigation Panel -->
-            <div class="question-navigation">
-                @foreach ($questions as $index => $question)
-                    <div class="question-box" id="question-box-{{ $question->id }}"
-                        onclick="goToQuestion({{ $index }})">
-                        {{ $index + 1 }}
-                    </div>
-                @endforeach
+    <div class="timer-container float-end">
+        <div id="timer" class="text-danger text-2xl">Time Left: <span id="time"></span></div>
+        <!-- Question Navigation Panel -->
+    <div class="question-navigation">
+        @foreach ($questions as $index => $question)
+            <div class="question-box" id="question-box-{{ $question->id }}"
+                onclick="goToQuestion({{ $index }})">
+                {{ $index + 1 }}
             </div>
-            <!--End Navigation Panel -->
-        </div>
+        @endforeach
+    </div>
+    </div>
 
-        <form id="examForm" method="POST" action="{{ route('exam.submit') }}" onsubmit="return confirmSubmission()">
-            @csrf
-            {{-- <input type="hidden" name="exam_id" value="{{ $exam->id }}"> --}}
+    
 
-            <!-- Display Questions -->
-            @if (!empty($questions) && count($questions))
-                @foreach ($questions as $index => $question)
-                    <div class="question-container" id="question-{{ $index }}"
-                        style="{{ $index > 0 ? 'display:none;' : '' }}">
-                        <h4>Question {{ $index + 1 }}</h4>
+    <form id="examForm" method="POST" action="{{ route('exam.submit') }}" onsubmit="return confirmSubmission()">
+        @csrf
+
+        @php
+            $questionsPerPage = 5;
+            $totalPages = ceil(count($questions) / $questionsPerPage);
+        @endphp
+
+        @for ($page = 0; $page < $totalPages; $page++)
+            <div class="question-page" id="question-page-{{ $page }}" style="{{ $page > 0 ? 'display:none;' : '' }}">
+                @for ($i = $page * $questionsPerPage; $i < min(($page + 1) * $questionsPerPage, count($questions)); $i++)
+                    @php $question = $questions[$i]; @endphp
+
+                    <div class="question-container" id="question-{{ $i }}">
+                        <h4>Question {{ $i + 1 }}</h4>
                         <p>{{ $question->question }}</p>
 
-                        @php
-                            $options = ['A', 'B', 'C', 'D', 'E'];
-                        @endphp
-
-                        @foreach ($options as $option)
-                            @php
-                                $optionText = $question->{'option_' . strtolower($option)};
-                            @endphp
-
-                            @if ($optionText)
+                        @foreach (['A', 'B', 'C', 'D', 'E'] as $option)
+                            @if (!empty($question['option_' . strtolower($option)]))
                                 <div>
                                     <label class="answer-option">
                                         <input type="radio" name="answers[{{ $question->id }}]"
                                             value="{{ $option }}" onchange="markAnswered({{ $question->id }})">
-                                        {{ $option }}. {{ $optionText }}
+                                        {{ $option }}. {{ $question['option_' . strtolower($option)] }}
                                     </label>
                                 </div>
                             @endif
                         @endforeach
 
-
-                        {{-- SPEAKER --}}
+                        <!-- Speaker -->
                         <button type="button" class="btn btn-sm btn-info read-aloud"
                             data-question="{{ $question->question }}">
                             🔊 Read Aloud
                         </button>
-                        <!-- Review Later Checkbox -->
+
+                        <!-- Review Later -->
                         <label class="review-checkbox">
                             <input type="checkbox" id="review-{{ $question->id }}"
                                 onclick="markReviewLater({{ $question->id }})">
                             Review Later
                         </label>
                     </div>
-                @endforeach
-            @else
-                <p>No questions available for this exam.</p>
-            @endif
+                @endfor
 
-
-            <div class="mt-3 text-center">
-                <button type="button" id="prevBtn" class="btn btn-secondary" onclick="prevQuestion()">Previous</button>
-                <button type="button" id="nextBtn" class="btn btn-primary" onclick="nextQuestion()">Next</button>
-                <button type="submit" id="submitBtn" class="btn btn-success" style="display: none;">Submit Exam</button>
+                <div class="mt-3 text-center">
+                    <button type="button" class="btn btn-secondary" onclick="prevQuestion()">Previous</button>
+                    <button type="button" class="btn btn-primary" onclick="nextQuestion()">Next</button>
+                    <button type="submit" class="btn btn-success submit-btn" style="display: none;">Submit Exam</button>
+                </div>
             </div>
-        </form>
-    </div>
+        @endfor
+    </form>
+</div>
 
+<script>
+    let timeLeft = 5400;
+    let currentPage = 0;
+    const totalPages = {{ $totalPages }};
 
+    function updateTimer() {
+        let hours = Math.floor(timeLeft / 3600);
+        let minutes = Math.floor((timeLeft % 3600) / 60);
+        let seconds = timeLeft % 60;
+        document.getElementById('time').textContent =
+            `${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        if (timeLeft === 0) document.getElementById('examForm').submit();
+        timeLeft--;
+    }
+    setInterval(updateTimer, 1000);
 
-    <script>
-        let timeLeft = 5400; //1:30 minutes
-        let currentQuestion = 0;
-        const totalQuestions = {{ count($questions) }};
+    function showPage(index) {
+        document.querySelectorAll('.question-page').forEach((page, i) => {
+            page.style.display = i === index ? 'block' : 'none';
+        });
 
-        function updateTimer() {
-            let hours = Math.floor(timeLeft / 3600);
-            let minutes = Math.floor((timeLeft % 3600) / 60);
-            let seconds = timeLeft % 60;
-            document.getElementById('time').textContent =
-                `${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
-            if (timeLeft === 0) document.getElementById('examForm').submit();
-            timeLeft--;
+        // Update buttons
+        document.querySelectorAll('.submit-btn').forEach(btn => btn.style.display = 'none');
+        if (index === totalPages - 1) {
+            document.querySelector(`#question-page-${index} .submit-btn`).style.display = 'inline';
         }
-        setInterval(updateTimer, 1000);
+    }
 
-        function nextQuestion() {
-            document.getElementById(`question-${currentQuestion}`).style.display = 'none';
-            currentQuestion++;
-            document.getElementById(`question-${currentQuestion}`).style.display = 'block';
-            document.getElementById('prevBtn').style.display = currentQuestion > 0 ? 'inline' : 'none';
-            document.getElementById('nextBtn').style.display = currentQuestion < totalQuestions - 1 ? 'inline' : 'none';
-            document.getElementById('submitBtn').style.display = currentQuestion === totalQuestions - 1 ? 'inline' : 'none';
+    function nextQuestion() {
+        if (currentPage < totalPages - 1) {
+            currentPage++;
+            showPage(currentPage);
         }
+    }
 
-        function prevQuestion() {
-            document.getElementById(`question-${currentQuestion}`).style.display = 'none';
-            currentQuestion--;
-            document.getElementById(`question-${currentQuestion}`).style.display = 'block';
-            document.getElementById('prevBtn').style.display = currentQuestion > 0 ? 'inline' : 'none';
-            document.getElementById('nextBtn').style.display = currentQuestion < totalQuestions - 1 ? 'inline' : 'none';
-            document.getElementById('submitBtn').style.display = currentQuestion === totalQuestions - 1 ? 'inline' : 'none';
+    function prevQuestion() {
+        if (currentPage > 0) {
+            currentPage--;
+            showPage(currentPage);
         }
+    }
 
+    document.addEventListener("DOMContentLoaded", () => {
+        showPage(currentPage);
 
-
-        document.querySelectorAll('.read-aloud').forEach(button => { // Text-to-Speech Functionality
-            button.addEventListener('click', function() {
+        document.querySelectorAll('.read-aloud').forEach(button => {
+            button.addEventListener('click', function () {
                 let text = this.getAttribute('data-question');
                 let speech = new SpeechSynthesisUtterance(text);
                 speech.lang = "en-US";
-                speech.rate = 1; // Adjust speed if necessary
+                speech.rate = 1;
                 speech.volume = 1;
                 window.speechSynthesis.cancel();
                 window.speechSynthesis.speak(speech);
             });
         });
+    });
 
+    function markAnswered(questionId) {
+        let box = document.getElementById("question-box-" + questionId);
+        box.classList.remove("review-later");
+        box.classList.add("answered");
+    }
 
+    function markReviewLater(questionId) {
+        let box = document.getElementById("question-box-" + questionId);
+        let checkbox = document.getElementById("review-" + questionId);
 
-        // REVIEW LATER
-        function markAnswered(questionId) {
-            let box = document.getElementById("question-box-" + questionId);
+        if (checkbox.checked) {
+            box.classList.add("review-later");
+        } else {
             box.classList.remove("review-later");
-            box.classList.add("answered");
         }
+    }
 
-        function markReviewLater(questionId) {
-            let box = document.getElementById("question-box-" + questionId);
-            let checkbox = document.getElementById("review-" + questionId);
+    function goToQuestion(index) {
+        let pageIndex = Math.floor(index / {{ $questionsPerPage }});
+        currentPage = pageIndex;
+        showPage(pageIndex);
+    }
 
-            if (checkbox.checked) {
-                box.classList.add("review-later");
-            } else {
-                box.classList.remove("review-later");
-            }
+    function confirmSubmission() {
+        let reviewLaterQuestions = document.querySelectorAll('.question-box.review-later');
+        if (reviewLaterQuestions.length > 0) {
+            return confirm("You have questions marked for review. Are you sure you want to submit?");
         }
+        return true;
+    }
+</script>
 
-        function goToQuestion(index) {
-            let allQuestions = document.querySelectorAll('.question-container');
-            allQuestions.forEach(q => q.style.display = 'none');
+<style>
+    .question-navigation {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
 
-            document.getElementById("question-" + index).style.display = 'block';
-        }
+    .question-box {
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+        margin: 5px;
+        text-align: center;
+        line-height: 40px;
+        border: 2px solid #ccc;
+        cursor: pointer;
+        font-weight: bold;
+    }
 
-        function confirmSubmission() {
-            let reviewLaterQuestions = document.querySelectorAll('.question-box.review-later');
-            if (reviewLaterQuestions.length > 0) {
-                return confirm("You have questions marked for review. Are you sure you want to submit?");
-            }
-            return true;
-        }
+    .question-box.answered {
+        background-color: green;
+        color: white;
+    }
 
-        document.getElementById('prevBtn').style.display = currentQuestion === 0 ? 'none' : 'inline';
-        document.getElementById('nextBtn').style.display = totalQuestions > 1 ? 'inline' : 'none';
-        document.getElementById('submitBtn').style.display = totalQuestions === 1 ? 'inline' : 'none';
-    </script>
+    .question-box.review-later {
+        background-color: yellow;
+    }
 
-    <style>
-        .question-navigation {
-            display: flex;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
+    .question-container {
+        margin-bottom: 20px;
+    }
 
-        .question-box {
-            width: 40px;
-            height: 40px;
-            border-radius:5px;
-            margin: 5px;
-            text-align: center;
-            line-height: 40px;
-            border: 2px solid #ccc;
-            cursor: pointer;
-            font-weight: bold;
-        }
+    .answer-option {
+        display: block;
+        margin: 5px 0;
+    }
 
-        .question-box.answered {
-            background-color: green;
-            color: white;
-        }
-
-        .question-box.review-later {
-            background-color: yellow;
-        }
-
-        .question-container {
-            margin-bottom: 20px;
-        }
-
-        .answer-option {
-            display: block;
-            margin: 5px 0;
-        }
-
-        .review-checkbox {
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-    </style>
+    .review-checkbox {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+</style>
 @endsection

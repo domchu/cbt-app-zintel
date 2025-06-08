@@ -77,3 +77,4 @@ Route::POST('/exam/start', [ExamsController::class, 'startExam'])->name('exam.st
 Route::post('/exam/submit', [ExamsController::class, 'submitExam'])->name('exam.submit');
 Route::get('/exam/result', [ExamsController::class, 'showResult'])->name('exam.result');
 Route::get('/exam/history', [ExamsController::class, 'examHistory'])->name('exam.history');
+// Route::POST('/exam/example', [ExamsController::class, 'startExam'])->name('exam.example');
