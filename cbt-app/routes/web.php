@@ -54,18 +54,18 @@ Route::get('/frequently-asked-questions', function () {
 
 
 // EXAMINATION ROUTES
-Route::get('/exam', function () {
-    return view('exam.select_year_subject');
-});
-Route::get('/exam/questions', function () {
-    return view('exam.questions');
-});
-Route::get('/exam/result', function () {
-    return view('exam.result');
-});
-Route::get('/exam/history', function () {
-    return view('exam.history');
-});
+// Route::get('/exam', function () {
+//     return view('exam.index');
+// });
+// Route::get('/exam/start', function () {
+//     return view('exam.start');
+// });
+// Route::get('/exam/result', function () {
+//     return view('exam.result');
+// });
+// Route::get('/exam/history', function () {
+//     return view('exam.history');
+// });
 
 
 

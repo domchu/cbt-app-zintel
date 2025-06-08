@@ -2,64 +2,94 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\exams;
+
+use App\Models\Questions;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\ExamResult;
 
 class ExamsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
-    {
-        //
+{
+    return view('exam.index');
+}
+    // SELECT YEAR/SUBJECT/EXAMTYPE
+    public function showExamForm()
+{
+
+    $subjects = Questions::select('subject')->distinct()->pluck('subject');
+    $years = Questions::select('year')->distinct()->pluck('year');
+    $examTypes = Questions::select('exam_type')->distinct()->pluck('exam_type');
+
+    return view('exam.index', compact('subjects', 'years', 'examTypes'));
+}
+
+// START EXAMINATION
+public function startExam(Request $request)
+{
+    $validated = $request->validate([
+        'subject' => 'required|string',
+        'year' => 'required|numeric',
+        'exam_type' => 'required|string',
+    ]);
+
+    // Find matching questions
+    $questions = Questions::where('subject', $validated['subject'])
+        ->where('year', $validated['year'])
+        ->where('exam_type', $validated['exam_type'])
+        ->inRandomOrder()
+        ->get();
+
+    if ($questions->isEmpty()) {
+        return back()->with('error', 'No questions found for selected criteria.');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    return view('exam.start', [
+        'questions' => $questions,
+        'subject' => $validated['subject'],
+        'year' => $validated['year'],
+        'exam_type' => $validated['exam_type'],
+    ]);
+}
+
+
+
+public function submitExam(Request $request)
+{
+    $answers = $request->input('answers', []);
+    // Save or grade logic goes here
+
+    return redirect()->route('dashboard')->with('success', 'Exam submitted successfully!');
+}
+public function examHistory()
+{
+    $user = Auth::user();
+
+    $results = ExamResult::where('user_id', $user->id)
+                ->orderBy('created_at', 'desc')
+                ->get();
+
+    return view('exam.history', compact('results'));
+}
+public function showResult()
+{
+    $user = Auth::user();
+
+    // Example: fetch the most recent result
+    $latestResult = ExamResult::where('user_id', $user->id)
+                    ->latest()
+                    ->first();
+
+    if (!$latestResult) {
+        return redirect()->route('exam.index')->with('error', 'No exam result found.');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(exams $exams)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(exams $exams)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, exams $exams)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(exams $exams)
-    {
-        //
-    }
+    return view('exam.result', compact('latestResult'));
+}
+    
+    
+    
+    
 }
