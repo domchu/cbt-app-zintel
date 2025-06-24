@@ -5,7 +5,9 @@
     </div>
 
 {{-- ABOUT US --}}
-<h2>About us page</h2>
+<div>
+    <x-about-us />
+</div>
 
 {{-- FOOTER / COPYRIGHT --}}
     <div>
