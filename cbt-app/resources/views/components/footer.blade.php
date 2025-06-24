@@ -26,10 +26,10 @@
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
                         <a href="{{ url('/contact-us') }}">Contact Us</a>
                     </li>
-                    <li
+                    {{-- <li
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
                         <a href="{{ url('/features') }}">Features</a>
-                    </li>
+                    </li> --}}
 
                     <li
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
@@ -126,7 +126,7 @@
 
                         </a>
                     </li>
-                    <li
+                    {{-- <li
                         class="w-3 mt-0 xl:mt-5 bg-gray-700 bg-opacity-20 p-5 mx-2 lg:mx-3 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md hover:bg-red-700" style="border:1px solid #fff">
                         <a href="#">
                             <svg class="absolute z-10 top-2 right-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg"
@@ -138,7 +138,7 @@
                             </svg>
 
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>

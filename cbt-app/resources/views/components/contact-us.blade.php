@@ -5,7 +5,7 @@
             <div class="contact-title max-w-full  bg-[#32064a] text-center py-16 md:py-36 lg:py-36">
                 <h2 class="text-white font-semibold text-3xl py-4 md:text-3xl lg:text-5xl">Contact Us</h2>
                 <p
-                    class="text-white text-xl px-7 pb-4 text-wrap md:w-4/5 md:mx-auto md:my-0 lg:w-3/6 lg:mx-auto lg:my-0">
+                    class="text-white font-light text-xl px-7 pb-4 text-wrap md:w-4/5 md:mx-auto md:my-0 lg:w-3/6 lg:mx-auto lg:my-0">
                     <span class="text-[#e9492d] font-bold text-xl px-1"> We’re here to help!</span>
                     Whether you have questions, need support, or want to learn more about our services, feel free to
                     reach out. Connect with us through any of the options below, and our team will respond promptly to
@@ -17,7 +17,7 @@
         {{-- FORM SECTION --}}
         <div>
             <div class="p-3 lg:flex lg:w-5/6 lg:mx-auto lg:my-32">
-                <div class="p-5 lg:w-3/6">
+                <div class="p-5 lg:w-3/6 lg:text-xl">
                     <p> <span class="text-[#e9492d] font-bold text-xl px-1">Need an expert?</span> You are more than
                         welcome to leave your contact information and we will be in touch shortly.
                     </p>
@@ -89,7 +89,7 @@
                 <div>
                     <h4 class="text-center text-[#32064a] font-semibold text-xl py-3 md:py-2 md:text-2xl lg:text-2xl">
                         Visit Us</h4>
-                    <div class="px-8">
+                    <div class="px-8 lg:text-xl">
                         <p>We’d love to see you in person! Visit us at our school and let’s discuss how we can
                             assist with your examinations needs.</p>
                         <li class="pt-5">
@@ -118,7 +118,7 @@
                 <div class="flex flex-col">
                     <h4 class="text-center text-[#32064a] font-semibold text-xl py-1 md:py-2 md:text-2xl lg:text-2xl">
                         Call Us</h4>
-                    <div class="px-8">
+                    <div class="px-8 lg:text-xl">
                         <p>Have questions or need assistance? Our support team is ready to help. Give us a call, and
                             we'll guide you through every step.</p>
                         <li class="pt-5">
@@ -152,7 +152,7 @@
                 <div class="flex flex-col">
                     <h4 class="text-center text-[#32064a] font-semibold text-xl py-1 md:py-2 md:text-2xl lg:text-2xl">
                         Message Us</h4>
-                    <div class="px-8">
+                    <div class="px-8 lg:text-xl">
                         <p>Prefer to write to us? Drop us a message using the contact form ablove or email below,
                             and we’ll get back to you as soon as possible.</p>
                         <li class="pt-5">
