@@ -16,7 +16,6 @@ return new class extends Migration
 
     $table->unsignedBigInteger('user_id');    // FK to users
     $table->unsignedBigInteger('subject_id'); // FK to subjects
-
     $table->integer('year');
     $table->integer('score')->nullable();
     $table->enum('status', ['ongoing', 'completed'])->default('ongoing');

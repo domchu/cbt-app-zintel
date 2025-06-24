@@ -90,10 +90,10 @@
                     <h4 class="text-center text-sky-800 font-semibold text-xl py-3 md:py-2 md:text-2xl lg:text-2xl">
                         Visit Us</h4>
                     <div class="px-8">
-                        <p>We’d love to see you in person! Visit us at our office and let’s discuss how we can
-                            assist with your rental needs.</p>
+                        <p>We’d love to see you in person! Visit us at our school and let’s discuss how we can
+                            assist with your examinations needs.</p>
                         <li class="pt-5">
-                            <a href="tel:(+234) 70 34278995">Vintage Park Estate, Lekki Phase 1, Lagos State.
+                            <a href="tel:(+234) 70 34278995">No 1 Zintel Academy close, Off Ikoga/Ado-Odo Road, Ogun State.
                                 Nigeria</a>
 
                         </li>
@@ -122,12 +122,12 @@
                         <p>Have questions or need assistance? Our support team is ready to help. Give us a call, and
                             we'll guide you through every step.</p>
                         <li class="pt-5">
-                            <a href="tel:(+234) 70 34278995">(+234) 703 4278 995</a>
+                            <a href="tel:(+234) 805 6256 805">(+234) 805 6256 805</a>
 
                         </li>
                         <li>
 
-                            <a href="tel:(+234) 70 34278995">(+234) 903 9028 399</a>
+                            <a href="tel:(+234) 902 5364 124">(+234) 902 5364 124</a>
                         </li>
                     </div>
                 </div>
@@ -156,16 +156,16 @@
                         <p>Prefer to write to us? Drop us a message using the contact form ablove or email below,
                             and we’ll get back to you as soon as possible.</p>
                         <li class="pt-5">
-                            <a href="mailto:support@rentify247">support@rentify247</a>
+                            <a href="mailto:zintelacademy@gmail.com">zintelacademy@gmail.com</a>
                         </li>
                         <li>
-                            <a href="mailto:info@rentify247">info@rentify247</a>
+                            <a href="mailto:zintelacademy@yahoo.com">zintelacademy@yahoo.com</a>
 
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="mailto:customercare@rentify247">customercare@rentify247</a>
 
-                        </li>
+                        </li> --}}
                     </div>
                 </div>
             </div>
@@ -183,25 +183,25 @@
             <h2 class="text-sky-800 font-semibold text-3xl py-3 md:text-3xl lg:text-4xl">FOLLOW US</h2>
             <div class="flex space-x-4 py-2">
                 <div>
-                    <a href="https://www.facebook.com/rentify247" target="_blank" rel="noopener noreferrer"><img
+                    <a href="https://www.facebook.com/zintelacademy" target="_blank" rel="noopener noreferrer"><img
                             src="/assets/social-media-icons/facebook.png" alt="FACEBOOK ICON"
                             class="h-7 w-7 rounded cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500"></a>
                 </div>
                 <div>
-                    <a href="https://www.instagram.com/rentify247" target="_blank" rel="noopener noreferrer"><img
+                    <a href="https://www.instagram.com/zintelacademy" target="_blank" rel="noopener noreferrer"><img
                             src="/assets/social-media-icons/instagram.png" alt="INSTAGRAM ICON"
                             class="h-7 w-7 rounded cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500"></a>
                 </div>
                 <div>
-                    <a href="https://www.linkedin.com/rentify247" target="_blank" rel="noopener noreferrer"><img
+                    <a href="https://www.linkedin.com/zintelacademy" target="_blank" rel="noopener noreferrer"><img
                             src="/assets/social-media-icons/linkedin.png" alt="LINKEDIN ICON"
                             class="h-7 w-7 rounded cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500"></a>
                 </div>
-                <div>
+                {{-- <div>
                     <a href="https://www.whatsapp.com/rentify247" target="_blank" rel="noopener noreferrer"><img
                             src="/assets/social-media-icons/whatsapp.png" alt="WHATSAPP ICON"
                             class="h-7 w-7 rounded cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500"></a>
-                </div>
+                </div> --}}
             </div>
         </div>
 

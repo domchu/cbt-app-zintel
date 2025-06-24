@@ -17,10 +17,19 @@
     </div>
     </div>
 
-    
+    {{-- {{ dd($questions->first()) }} --}}
 
-    <form id="examForm" method="POST" action="{{ route('exam.submit') }}" onsubmit="return confirmSubmission()">
+    <form id="examForm"  method="POST" action="{{ route('exam.submit') }}" onsubmit="return confirmSubmission()">
         @csrf
+
+
+<!-- Hidden inputs to pass exam context -->
+<input type="hidden" name="subject" value="{{ $subject }}">
+<input type="hidden" name="year" value="{{ $year }}">
+<input type="hidden" name="exam_type" value="{{ $exam_type }}">
+<input type="hidden" name="subject_id" value="{{ $subject_id }}">
+<input type="hidden" name="name" value="{{ Auth::user()->name }}">
+<input type="hidden" name="subject_id" value="{{ $subject_id }}">
 
         @php
             $questionsPerPage = 5;

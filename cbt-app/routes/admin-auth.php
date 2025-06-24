@@ -71,10 +71,8 @@ Route::prefix('admin/questions')->controller(QuestionImportController::class)->g
 
 
 // USER ROUTES
-// Route::get('/exam', [ExamsController::class, 'index'])->name('exam.index');
 Route::get('/exam', [ExamsController::class, 'showExamForm'])->name('exam.index');
 Route::POST('/exam/start', [ExamsController::class, 'startExam'])->name('exam.start');
 Route::post('/exam/submit', [ExamsController::class, 'submitExam'])->name('exam.submit');
 Route::get('/exam/result', [ExamsController::class, 'showResult'])->name('exam.result');
 Route::get('/exam/history', [ExamsController::class, 'examHistory'])->name('exam.history');
-// Route::POST('/exam/example', [ExamsController::class, 'startExam'])->name('exam.example');
