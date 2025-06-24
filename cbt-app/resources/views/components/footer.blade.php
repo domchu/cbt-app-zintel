@@ -151,7 +151,7 @@
 <div class="w-full py-6 bg-[#32064a] text-center text-sm text-primaryColor2 text-white">
     <p class="text-base "> Copyright &copy; 2025. Computer Base Test (CBT)  | All rights reserved | Designed & Powered by <a
             href="https://www.bridgekode.com" target="_blank"
-            class="text-[#fff] pt-2 text-base cursor-pointer font-sm border-[#d6353f]">Bridgekode Technology</a></p>
+            class="text-[#e9492d] pt-2 text-base cursor-pointer font-sm font-[800]">Bridgekode Technology</a></p>
 </div>
 
 <script src="{{ asset('js/navbar.js') }}"></script>
