@@ -65,7 +65,7 @@
             <nav>
                 <header class="flex justify-between text-center align-middle px-[10rem] py-4">
                     <a href="/">
-                        <img src="./images/logo.png" alt="Brand Logo" sizes="50" width="150px" srcset="">
+                        <img src="./images/logo.png" alt="Brand Logo" sizes="0" width="40px" srcset="">
                     </a>
 
                     <ul class="flex">

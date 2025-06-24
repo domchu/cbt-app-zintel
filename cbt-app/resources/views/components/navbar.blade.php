@@ -88,7 +88,7 @@
     {{-- MAIN MENU  --}}
     <nav class="nav-container">
         <div class="lg:flex-1">
-            <a href="{{ url('/') }}"><img src="/assets/logo.png" alt="Nav-logo"></a>
+            <a href="{{ url('/') }}"><img src="/assets/logo.png" alt="Nav-logo" sizes="0" width="150px"></a>
         </div>
 
         {{-- LARGE SCREENS --}}

@@ -2,7 +2,7 @@
     <div>
         {{-- CONTACT BANNER --}}
         <div class="my-12">
-            <div class="contact-title max-w-full  bg-sky-800 text-center py-16 md:py-36 lg:py-36">
+            <div class="contact-title max-w-full  bg-[#32064a] text-center py-16 md:py-36 lg:py-36">
                 <h2 class="text-white font-semibold text-3xl py-4 md:text-3xl lg:text-5xl">Contact Us</h2>
                 <p
                     class="text-white text-xl px-7 pb-4 text-wrap md:w-4/5 md:mx-auto md:my-0 lg:w-3/6 lg:mx-auto lg:my-0">
@@ -22,12 +22,12 @@
                         welcome to leave your contact information and we will be in touch shortly.
                     </p>
                     <div class="flex justify-center text-center items-center">
-                        <img src="./assets/contact.jpg" alt="Someone Pointing The Form">
+                        <img src="./assets/hero_image_cbt.png" alt="Someone Pointing The Form" class="lg:mt-24 lg:pr-24">
 
                     </div>
                 </div>
                 {{-- CONTACT FORM --}}
-                <div class="form-section bg-sky-800 py-3 px-3 w-full my-8 mx-auto rounded lg:w-3/6">
+                <div class="form-section bg-[#32064a] py-3 px-3 w-full my-8 mx-auto rounded lg:w-3/6">
                     <form action="" method="POST">
                         @csrf
                         <div>
@@ -64,7 +64,7 @@
 
                         </div>
                         <button type="submit"
-                            class="rounded-md bg-sky-800 border-2 py-2 px-4 lg:px-10 text-white hover:bg-sky-700 hover:text-gray-300">Submit</button>
+                            class="rounded-md bg-[#32064a] border-2 py-2 px-4 lg:px-10 text-white hover:bg-sky-700 hover:text-gray-300">Submit</button>
                     </form>
                 </div>
             </div>
@@ -87,7 +87,7 @@
                     </li>
                 </div>
                 <div>
-                    <h4 class="text-center text-sky-800 font-semibold text-xl py-3 md:py-2 md:text-2xl lg:text-2xl">
+                    <h4 class="text-center text-[#32064a] font-semibold text-xl py-3 md:py-2 md:text-2xl lg:text-2xl">
                         Visit Us</h4>
                     <div class="px-8">
                         <p>We’d love to see you in person! Visit us at our school and let’s discuss how we can
@@ -116,7 +116,7 @@
 
                 </div>
                 <div class="flex flex-col">
-                    <h4 class="text-center text-sky-800 font-semibold text-xl py-1 md:py-2 md:text-2xl lg:text-2xl">
+                    <h4 class="text-center text-[#32064a] font-semibold text-xl py-1 md:py-2 md:text-2xl lg:text-2xl">
                         Call Us</h4>
                     <div class="px-8">
                         <p>Have questions or need assistance? Our support team is ready to help. Give us a call, and
@@ -150,7 +150,7 @@
 
                 </div>
                 <div class="flex flex-col">
-                    <h4 class="text-center text-sky-800 font-semibold text-xl py-1 md:py-2 md:text-2xl lg:text-2xl">
+                    <h4 class="text-center text-[#32064a] font-semibold text-xl py-1 md:py-2 md:text-2xl lg:text-2xl">
                         Message Us</h4>
                     <div class="px-8">
                         <p>Prefer to write to us? Drop us a message using the contact form ablove or email below,

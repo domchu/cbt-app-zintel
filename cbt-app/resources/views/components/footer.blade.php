@@ -6,7 +6,7 @@
     <footer class="relative z-10 grid grid-cols-1 lg:grid-cols-3 mr-0 lg:mr-0 xl:mr-40">
         <div class="flex justify-center lg:justify-normal py-8 px-0 lg:px-20 col-span-1">
             <a href="{{ url('/') }}">
-                <img class="w-96 lg:w-64 h-24 lg:h-16" src="{{ asset('assets/logo.png') }}" alt="logo">
+                <img class="w-40 lg:w-40 h-24 lg:h-24" src="{{ asset('assets/logo.png') }}" alt="logo">
             </a>
         </div>
 
@@ -55,11 +55,11 @@
                     </li> --}}
                     <li
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
-                        <a href="tel:+234 7034278995">+234 703 4278 995</a>
+                        <a href="tel:+234 805 6256 805">(+234) 805 6256 805</a>
                     </li>
                     <li
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
-                        <a href="mailto:support@rentify247.com">support@bridgekode.com</a>
+                        <a href="mailto:zintelacademy@gmail.com">zintelacademy@gmail.com</a>
                     </li>
 
                 </ul>

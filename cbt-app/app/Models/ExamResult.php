@@ -17,7 +17,7 @@
 
 
 namespace App\Models;
-use App\Models\ExamResult;
+// use App\Models\ExamResult;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,8 +27,8 @@ class ExamResult extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'subject_id',
+            'user_id',
+            'subject_id',
             'subject',
             'name',
             'exam_type',
