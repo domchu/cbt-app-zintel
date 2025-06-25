@@ -153,6 +153,22 @@
             href="https://www.bridgekode.com" target="_blank"
             class="text-[#e9492d] pt-2 text-base cursor-pointer font-sm font-[800]">Bridgekode Technology</a></p>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileBtn.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('max-h-0')) {
+                mobileMenu.classList.remove('max-h-0');
+                mobileMenu.classList.add('max-h-96');
+            } else {
+                mobileMenu.classList.add('max-h-0');
+                mobileMenu.classList.remove('max-h-96');
+            }
+        });
+    });
+</script>
 
 <script src="{{ asset('js/navbar.js') }}"></script>
 <script src="{{ asset('js/slider.js') }}"></script>
