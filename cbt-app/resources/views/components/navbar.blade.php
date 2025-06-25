@@ -19,7 +19,7 @@
 <body class="antialiased">
 {{-- NAVBAR --}}
 <!-- Topnav: Contact Info & Auth Links (Hidden on mobile) -->
-<div class="bg-gray-100 dark:bg-gray-900 text-sm py-2 px-4 hidden sm:flex justify-between items-center">
+<div class="bg-gray-100 dark:bg-gray-900 text-sm py-6 my-3 px-4 hidden sm:flex justify-between items-center max-w-7xl mx-auto sm:px-6 lg:px-8">
     <!-- Left: Contact Info -->
     <div class="text-gray-600 dark:text-gray-300 space-x-4">
         <span>📞 +234-800-123-4567</span>
@@ -27,8 +27,8 @@
     </div>
     <!-- Right: Login / Sign Up -->
     <div class="space-x-4">
-        <a href="#" class="text-gray-700 dark:text-gray-200 hover:text-blue-500">Login</a>
-        <a href="#" class="text-blue-600 dark:text-blue-400 font-semibold hover:underline">Sign Up</a>
+        <a href={{ url('/login') }} class="text-gray-700 dark:text-gray-200 hover:text-blue-500">Login</a>
+        <a href={{ url('/register') }} class="text-blue-600 dark:text-blue-400 font-semibold hover:underline">Sign Up</a>
     </div>
 </div>
 
@@ -38,16 +38,19 @@
         <div class="flex justify-between items-center h-16">
             <!-- Logo -->
             <div class="flex-shrink-0">
-                <a href="#" class="text-xl font-bold text-gray-800 dark:text-white">MyLogo</a>
+                <a href="/">
+                    <img src="./assets/logo.png" alt="Brand Logo" sizes="0" width="80px" srcset="">
+                </a>
+                {{-- <a href="#" class="text-xl font-bold text-gray-800 dark:text-white">MyLogo</a> --}}
             </div>
 
             <!-- Desktop Links -->
             <div class="hidden md:flex space-x-8 items-center">
-                <a href="#" class="text-gray-700 dark:text-gray-200 hover:text-blue-500">Home</a>
-                <a href="#" class="text-gray-700 dark:text-gray-200 hover:text-blue-500">About Us</a>
-                <a href="#" class="text-gray-700 dark:text-gray-200 hover:text-blue-500">Gallery</a>
-                <a href="#" class="text-gray-700 dark:text-gray-200 hover:text-blue-500">Contact</a>
-                <a href="#" class="text-gray-700 dark:text-gray-200 hover:text-blue-500">FAQ</a>
+                <a href="/" class="text-gray-700 dark:text-gray-200 hover:text-blue-500">Home</a>
+                <a href={{ url('/about-us') }} class="text-gray-700 dark:text-gray-200 hover:text-blue-500">About Us</a>
+                <a href={{ url('/gallery') }} class="text-gray-700 dark:text-gray-200 hover:text-blue-500">Gallery</a>
+                <a href={{ url('/contact-us') }} class="text-gray-700 dark:text-gray-200 hover:text-blue-500">Contact</a>
+                <a href={{ url('/frequently-asked-questions.') }} class="text-gray-700 dark:text-gray-200 hover:text-blue-500">FAQ</a>
             </div>
 
             <!-- Mobile Menu Button -->
@@ -65,10 +68,10 @@
     <!-- Mobile Menu -->
     <div id="mobileMenu" class="overflow-hidden max-h-0 transition-all duration-500 ease-in-out md:hidden px-4">
         <a href="#" class="block py-2 text-gray-700 dark:text-gray-200 hover:text-blue-500">Home</a>
-        <a href="#" class="block py-2 text-gray-700 dark:text-gray-200 hover:text-blue-500">About Us</a>
-        <a href="#" class="block py-2 text-gray-700 dark:text-gray-200 hover:text-blue-500">Gallery</a>
-        <a href="#" class="block py-2 text-gray-700 dark:text-gray-200 hover:text-blue-500">Contact</a>
-        <a href="#" class="block py-2 text-gray-700 dark:text-gray-200 hover:text-blue-500">FAQ</a>
+        <a href={{ url('/about-us') }} class="block py-2 text-gray-700 dark:text-gray-200 hover:text-blue-500">About Us</a>
+        <a href={{ url('/gallery') }} class="block py-2 text-gray-700 dark:text-gray-200 hover:text-blue-500">Gallery</a>
+        <a href={{ url('/contact-us') }} class="block py-2 text-gray-700 dark:text-gray-200 hover:text-blue-500">Contact</a>
+        <a href={{ url('/frequently-asked-questions.') }} class="block py-2 text-gray-700 dark:text-gray-200 hover:text-blue-500">FAQ</a>
     </div>
 </nav>
 
