@@ -5,6 +5,7 @@
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">Admin Dashboard</li>
     </ol>
+    {{-- DATA --}}
     <div class="container mt-4">
         <div class="row g-4 py-4">
             <div class="col-md-4">

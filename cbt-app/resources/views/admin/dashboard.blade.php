@@ -16,18 +16,6 @@
                     </div>
                 </div>
             </div>
-
-            {{-- @if (auth()->user()->role)
-                <div class="col-md-4">
-                    <div class="card shadow-sm border-success">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">👥 Students</h5>
-                            <p class="fs-4 fw-bold">{{$userData['totalUsers']  }}</p>
-                        </div>
-                    </div>
-                </div>
-            @endif --}}
-
             <div class="col-md-4">
                 <div class="card shadow-sm border-info">
                     <div class="card-body text-center">
