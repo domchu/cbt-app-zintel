@@ -552,4 +552,35 @@
             </table>
         </div>
     </div>
+       {{-- JAVASCRIPT --}}
+       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+       <script>
+           const correctFailedCtx = document.getElementById('correctFailedChart').getContext('2d');
+           new Chart(correctFailedCtx, {
+               type: 'doughnut',
+               data: {
+                   labels: ['Correct', 'Failed'],
+                   datasets: [{
+                       data: [{{ $correctAnswers }}, {{ $failedAnswers }}],
+                       backgroundColor: ['#28a745', '#dc3545'],
+                       borderWidth: 1
+                   }]
+               }
+           });
+   
+           const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+           new Chart(performanceCtx, {
+               type: 'line',
+               data: {
+                   labels: {!! json_encode($performanceDates) !!}, // e.g., ['May', 'June', 'July']
+                   datasets: [{
+                       label: 'Score (%)',
+                       data: {!! json_encode($performanceScores) !!}, // e.g., [50, 80, 60]
+                       fill: false,
+                       borderColor: '#007bff',
+                       tension: 0.1
+                   }]
+               }
+           });
+       </script>
 @endsection
