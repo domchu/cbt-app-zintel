@@ -1,10 +1,10 @@
  <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
      <div class="sb-sidenav-menu">
          <div class="nav">
-             <div class="sb-sidenav-menu-heading">Core</div>
+             <div class="sb-sidenav-menu-heading text-white">Core Menu</div>
              <a class="nav-link" href="{{ url('admin/super-dashboard') }}">
                  <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                 Dashboard Super
+                 Super Admin Dashboard 
              </a>
              <a class="nav-link" href="{{ url('admin/academics') }}">
                  <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
@@ -13,7 +13,7 @@
 
 
              {{-- QUESTIONS --}}
-             <div class="sb-sidenav-menu-heading">Examination</div>
+             <div class="sb-sidenav-menu-heading text-white">Examination</div>
              <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseQuestions"
                  aria-expanded="false" aria-controls="collapseQuestions">
                  <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>

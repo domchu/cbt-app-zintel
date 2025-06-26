@@ -19,16 +19,16 @@
 <body class="antialiased">
 {{-- NAVBAR --}}
 <!-- Topnav: Contact Info & Auth Links (Hidden on mobile) -->
-<div class="bg-gray-100 dark:bg-gray-900 text-sm py-6 my-3 px-4 hidden sm:flex justify-between items-center max-w-7xl mx-auto sm:px-6 lg:px-8">
+<div class="bg-[#32064a] border-[5px] dark:bg-gray-900 text-sm py-6 my-3 px-4 hidden sm:flex justify-between items-center max-w-7xl mx-auto sm:px-6 lg:px-8">
     <!-- Left: Contact Info -->
-    <div class="text-gray-600 dark:text-gray-300 space-x-4">
+    <div class="text-white dark:text-gray-300 space-x-4">
         <span>📞 +234-800-123-4567</span>
         <span>✉️ info@example.com</span>
     </div>
     <!-- Right: Login / Sign Up -->
     <div class="space-x-4">
-        <a href={{ url('/login') }} class="text-gray-700 dark:text-gray-200 hover:text-blue-500">Login</a>
-        <a href={{ url('/register') }} class="text-blue-600 dark:text-blue-400 font-semibold hover:underline">Sign Up</a>
+        <a href={{ url('/login') }} class="text-white dark:text-white font-bold hover:text-blue-500">Login</a>
+        <a href={{ url('/register') }} class="text-white dark:text-white font-bold hover:underline">Sign Up</a>
     </div>
 </div>
 
