@@ -10965,10 +10965,16 @@ body {
 }
 .sb-topnav .navbar-brand {
   width: 225px;
-  margin: 0;
+  margin-left: 30px;
+}
+.navbar-brand{
+  width: 225px;
+  margin-left: 50px;
 }
 .sb-topnav.navbar-dark #sidebarToggle {
-  color: rgba(255, 255, 255, 0.5);
+  color:#fff;
+  /* color: rgba(255, 255, 255, 0.5); */
+  font-size:25px
 }
 .sb-topnav.navbar-light #sidebarToggle {
   color: #212529;

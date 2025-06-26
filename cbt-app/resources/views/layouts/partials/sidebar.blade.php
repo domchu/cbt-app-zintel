@@ -25,6 +25,7 @@
                  <nav class="sb-sidenav-menu-nested nav">
                      <a class="nav-link" href="{{ url('exam') }}">Take Exams</a>
                      <a class="nav-link" href="{{ url('exam/history') }}">Exams History</a>
+                     {{-- <a href={{ url('/auth/register') }} class="text-white dark:text-white font-semibold hover:text-blue-500">Sign Up</a> --}}
                  </nav>
              </div>
 
@@ -99,7 +100,9 @@
          </div>
      </div>
      <div class="sb-sidenav-footer">
-         <div class="small">Logged in as:</div>
-        User
+        <div class="text-white font-bold text-sm">
+            <div class="font-medium text-sm">{{ Auth::user()->name }}</div>
+            <div class="font-medium text-sm">{{ Auth::user()->email }}</div>
+        </div>
      </div>
  </nav>
