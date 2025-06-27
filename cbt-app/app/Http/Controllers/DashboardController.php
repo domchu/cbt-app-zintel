@@ -18,45 +18,66 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
-             // Admin stats
-        if ($user->is_admin) {
-                $adminData = [
-                'totalStudent' => User::where('role', 'role')->count(),
-                'totalUsers' => User::where('is_admin', false)->count(),
-                'totalQuestions' => Questions::count(),
-                'totalSubjects' => Subject::count(),
-                'questionsAnswered' => ExamResult::count(),
-                'correctAnswers' => ExamResult::where('is_correct', true)->count(),
-                'failedAnswers' => ExamResult::sum('failed'),
     
-                 ];
-        }
-        else {
-                // Student stats
-                $result = ExamResult::where('user_id', $user->id);
-                $userData = [
+        // Always define these to avoid undefined variable errors
+        $adminData = [];
+        $userData = [];
+    
+        if ($user->role == 1) {
+            $adminData = [
+                'totalStudents' => User::where('role', 2)->count(),
+                'totalUsers' => User::where('role', '!=', 1)->count(),
+                'totalQuestions' => Questions::count(),
+                'totalSubjects' => Subject::count(),
+                'questionsAnswered' => ExamResult::sum('answered'),
+                'correctAnswers' => ExamResult::sum('score'),
+                'failedAnswers' => ExamResult::sum('total') - ExamResult::sum('score'),
+            ];
+        
+            // $correctAnswers = $adminData['correctAnswers'];
+            // $failedAnswers = $adminData['failedAnswers'];
+        
+            $performance = ExamResult::selectRaw('DATE(created_at) as date, AVG(score / total * 100) as avg_score')
+                ->groupBy('date')
+                ->orderBy('date')
+                ->get();
+        } else {
+            $results = ExamResult::where('user_id', $user->id);
+        
+            $userData = [
                 'totalSubjects' => Subject::count(),
                 'totalQuestions' => Questions::count(),
-                'answeredQuestions' => $result->sum('answered'),
-                'correctAnswers' => $result->sum('correct'),
-                'failedAnswers' => $result->sum('failed'),
-                ];
+                'answeredQuestions' => $results->sum('answered'),
+                'correctAnswers' => $results->sum('score'),
+                'failedAnswers' => $results->sum('total') - $results->sum('score'),
+            ];
+        
+            $correctAnswers = $userData['correctAnswers'];
+            $failedAnswers = $userData['failedAnswers'];
+        
+            $performance = $results->selectRaw('DATE(created_at) as date, AVG(score / total * 100) as avg_score')
+                ->groupBy('date')
+                ->orderBy('date')
+                ->get();
         }
-
-    // For line chart - group by date
-        $performanceOverTime = ExamResult::selectRaw('DATE(created_at) as date, AVG(score / total * 100) as avg_score')
-        ->groupBy('date')
-        ->orderBy('date')
-        ->get();
-
+        
+        // For chart.js
+        $performanceDates = $performance->pluck('date')->toArray();
+        $performanceScores = $performance->pluck('avg_score')->toArray();
+        
         return view('dashboard', compact(
-            'UserData', 
-            'adminData',   
-                        'performanceOverTime'
- 
-       
+            'userData',
+            'adminData',
+            'correctAnswers',
+            'failedAnswers',
+            'performanceDates',
+            'performanceScores'
         ));
+        
     }
+    
+
+
 
     /**
      * Show the form for creating a new resource.

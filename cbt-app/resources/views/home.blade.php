@@ -12,8 +12,8 @@
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="
-    https://cdn.jsdelivr.net/npm/sweetalert2/dist/sweetalert2.all.min.js
-    "></script>
+                https://cdn.jsdelivr.net/npm/sweetalert2/dist/sweetalert2.all.min.js
+                "></script>
 
     <!-- Styles / Scripts -->
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
@@ -26,24 +26,14 @@
     <header class="w-full lg:max-w-full max-w-[100%] text-sm mb-6 not-has-[nav]:hidden ">
 
         @if (Route::has('login'))
-            <nav
-                class="hidden lg:flex lg:items-center lg:justify-between lg:gap-4 lg:bg-[#32064a] lg:text-white px-[10rem] py-3">
-                <header>
-                    <ul class="flex gap-4">
-                        <li><a class="px-5 py-1.5 dark:text-[#EDEDEC] text-[#fff] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] font-semibold text-l leading-normal"
-                                href="mailto:info@cbtapp.com">Email: info@cbtapp.com</a></li>
-                        <li><a class=" px-5 py-1.5 dark:text-[#EDEDEC] text-[#fff] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] font-semibold text-l leading-normal"
-                                href="tel: +234 7034278995">Contact Us: (+234) 703-4278-995</a></li>
-                    </ul>
-                </header>
+            <nav>
                 <header class="gap-3">
-
                     @auth
 
-                        <a href="{{ url('/dashboard') }}"
+                        {{-- <a href="{{ url('/dashboard') }}"
                             class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
                             Dashboard
-                        </a>
+                        </a> --}}
                     @else
                         <a href="{{ route('login') }}"
                             class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#ccc] text-[#fff] hover:bg-red-700 hover:border-[#32064a] dark:hover:border-[#3E3E3A] font-semibold text-l leading-normal rounded-md mx-3"
@@ -58,51 +48,17 @@
                                 Register
                             </a>
                         @endif
-                    </header>
-
-                @endauth
-            </nav>
-            <nav>
-                <header class="flex justify-between text-center align-middle px-[10rem] py-4">
-                    <a href="/">
-                        <img src="./images/logo.png" alt="Brand Logo" sizes="0" width="40px" srcset="">
-                    </a>
-
-                    <ul class="flex">
-                        <li class="mr-4 font-semibold text-xl text-sky-900"><a href="/">Home</a></li>
-                        <li class="mr-4 font-semibold text-xl text-sky-900"><a href={{ url('/about-us') }}>About Us</a>
-                        </li>
-                        <li class="mr-4 font-semibold text-xl text-sky-900"><a href={{ url('/gallery') }}>Gallery</a>
-                        </li>
-                        <li class="mr-4 font-semibold text-xl text-sky-900"><a href={{ url('/pricing') }}>Pricing</a>
-                        </li>
-                        <li class="mr-4 font-semibold text-xl text-sky-900"><a href={{ url('/contact-us') }}>Contact
-                                Us</a></li>
-                        <li class="mr-4 font-semibold text-xl text-sky-900"><a
-                                href={{ url('/frequently-asked-questions.') }}>Faq</a></li>
-                    </ul>
+                    @endauth
                 </header>
             </nav>
         @endif
+        <div>
+            <x-navbar></x-navbar>
+        </div>
     </header>
     <div
         class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
-        <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row">
 
-
-
-
-
-            {{-- <div>
-    <x-navbar></x-navbar>
-</div> --}}
-
-
-
-
-
-
-        </main>
     </div>
 
     @if (Route::has('login'))
@@ -111,7 +67,7 @@
 
     {{-- <div>
     <x-slider>
-</div> --}}
+    </div> --}}
 
     <div>
         <x-footer />

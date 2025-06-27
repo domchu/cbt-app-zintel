@@ -3,12 +3,15 @@
 use Admin\SliderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
 
 // PAGES ROUTES
 Route::get('/', function () {
     return view('home');
 });
 
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 // DASHBOARD ROUTES
 Route::get('/dashboard', function () {

@@ -23,17 +23,28 @@
         class="bg-[#32064a] rounded-lg dark:bg-gray-900 text-sm py-6 my-3 px-4 hidden sm:flex justify-between items-center max-w-7xl mx-auto sm:px-6 lg:px-8">
         <!-- Left: Contact Info -->
         <div class="text-white dark:text-gray-300 space-x-8">
-            <a href="tel=+234 805 6256 805 " class="text-white dark:text-white font-semibold hover:text-blue-500">📞 (+234)
+            <a href="tel=+234 805 6256 805 " class="text-white dark:text-white font-semibold hover:text-gray-300 transition">📞
+                (+234)
                 805 6256 805</a>
 
-            <a href="mailto=zintelacademy@gmail.com" class="text-white dark:text-white font-semibold hover:text-blue-500">✉️
+            <a href="mailto=zintelacademy@gmail.com"
+                class="text-white dark:text-white font-semibold hover:text-gray-300 transition">✉️
                 zintelacademy@gmail.com</a>
 
         </div>
         <!-- Right: Login / Sign Up -->
         <div class="space-x-4">
-            <a href={{ url('/login') }} class="text-white dark:text-white font-semibold hover:text-blue-500">Login</a>
-            <a href={{ url('/register') }} class="text-white dark:text-white font-semibold hover:text-blue-500">Sign Up</a>
+            <a href="{{ url('/login') }}"
+            class="inline-block px-4 py-2 bg-[#e9492d] text-white font-semibold rounded hover:bg-red-700 transition hover:text-gray-300">
+            Login
+        </a>
+            <a href={{ url('/register') }} class="text-white dark:text-white font-semibold hover:text-blue-500">Sign
+                Up</a>
+            <a href="{{ url('/login') }}"
+                class="inline-block px-4 py-2 bg-[#e9492d] text-white font-semibold rounded hover:bg-red-700 transition hover:text-gray-300">
+                Go to CBT
+            </a>
+
         </div>
     </div>
 
@@ -46,20 +57,20 @@
                     <a href="/">
                         <img src="./assets/logo.png" alt="Brand Logo" sizes="0" width="80px" srcset="">
                     </a>
-                    {{-- <a href="#" class="text-xl font-bold text-gray-800 dark:text-white">MyLogo</a> --}}
+                    
                 </div>
 
                 <!-- Desktop Links -->
                 <div class="hidden md:flex space-x-8 items-center">
-                    <a href="/" class="text-gray-700 dark:text-gray-200 hover:text-blue-500">Home</a>
-                    <a href={{ url('/about-us') }} class="text-gray-700 dark:text-gray-200 hover:text-blue-500">About
+                    <a href="/" class="text-gray-700 dark:text-gray-200 font-bold hover:text-red-700 transition">Home</a>
+                    <a href={{ url('/about-us') }} class="text-gray-700 font-bold dark:text-gray-200 hover:text-red-700 transition">About
                         Us</a>
                     <a href={{ url('/gallery') }}
-                        class="text-gray-700 dark:text-gray-200 hover:text-blue-500">Gallery</a>
+                        class="text-gray-700 dark:text-gray-200 font-bold hover:text-red-700 transition">Gallery</a>
                     <a href={{ url('/contact-us') }}
-                        class="text-gray-700 dark:text-gray-200 hover:text-blue-500">Contact</a>
+                        class="text-gray-700 dark:text-gray-200 font-bold hover:text-red-700 transition">Contact</a>
                     <a href={{ url('/frequently-asked-questions.') }}
-                        class="text-gray-700 dark:text-gray-200 hover:text-blue-500">FAQ</a>
+                        class="text-gray-700 dark:text-gray-200 font-bold hover:text-red-700 transition">FAQ</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -76,14 +87,14 @@
 
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="overflow-hidden max-h-0 transition-all duration-500 ease-in-out md:hidden px-4">
-            <a href="#" class="block py-2 text-gray-700 dark:text-gray-200 hover:text-blue-500">Home</a>
-            <a href={{ url('/about-us') }} class="block py-2 text-gray-700 dark:text-gray-200 hover:text-blue-500">About
+            <a href="#" class="block py-2 text-gray-700 dark:text-gray-200 hover:text-red-700 transition">Home</a>
+            <a href={{ url('/about-us') }} class="block py-2 text-gray-700 dark:text-gray-200 hover:text-red-700 transition">About
                 Us</a>
             <a href={{ url('/gallery') }}
-                class="block py-2 text-gray-700 dark:text-gray-200 hover:text-blue-500">Gallery</a>
+                class="block py-2 text-gray-700 dark:text-gray-200 hover:text-red-700 transition">Gallery</a>
             <a href={{ url('/contact-us') }}
-                class="block py-2 text-gray-700 dark:text-gray-200 hover:text-blue-500">Contact</a>
+                class="block py-2 text-gray-700 dark:text-gray-200 hover:text-red-700 transition">Contact</a>
             <a href={{ url('/frequently-asked-questions.') }}
-                class="block py-2 text-gray-700 dark:text-gray-200 hover:text-blue-500">FAQ</a>
+                class="block py-2 text-gray-700 dark:text-gray-200 hover:text-red-700 transition">FAQ</a>
         </div>
     </nav>
