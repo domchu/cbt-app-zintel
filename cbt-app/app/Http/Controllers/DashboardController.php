@@ -12,118 +12,61 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+  
+   
     public function index()
     {
         $user = Auth::user();
     
-        // Always define these to avoid undefined variable errors
-        $adminData = [];
+        // Initialize both variables to prevent "undefined variable" error
         $userData = [];
-    
+        $adminData = [];
+        // dd(Auth::user()->role);
         if ($user->role == 1) {
+            // Admin stats
             $adminData = [
-                'totalStudents' => User::where('role', 2)->count(),
-                'totalUsers' => User::where('role', '!=', 1)->count(),
-                'totalQuestions' => Questions::count(),
-                'totalSubjects' => Subject::count(),
+                'totalStudents'     => User::where('role', 2)->count(),
+                'totalUsers'        => User::where('role', '!=', 1)->count(),
+                'totalQuestions'    => Questions::count(),
+                'totalSubjects'     => Subject::count(),
                 'questionsAnswered' => ExamResult::sum('answered'),
-                'correctAnswers' => ExamResult::sum('score'),
-                'failedAnswers' => ExamResult::sum('total') - ExamResult::sum('score'),
+                'correctAnswers'    => ExamResult::sum('score'),
+                'failedAnswers'     => ExamResult::sum('total') - ExamResult::sum('score'),
             ];
-        
-            // $correctAnswers = $adminData['correctAnswers'];
-            // $failedAnswers = $adminData['failedAnswers'];
-        
-            $performance = ExamResult::selectRaw('DATE(created_at) as date, AVG(score / total * 100) as avg_score')
-                ->groupBy('date')
-                ->orderBy('date')
-                ->get();
-        } else {
+        } elseif ($user->role == 2) {
+            // Student stats
             $results = ExamResult::where('user_id', $user->id);
-        
+    
             $userData = [
-                'totalSubjects' => Subject::count(),
-                'totalQuestions' => Questions::count(),
-                'answeredQuestions' => $results->sum('answered'),
-                'correctAnswers' => $results->sum('score'),
-                'failedAnswers' => $results->sum('total') - $results->sum('score'),
+                'totalSubjects'      => Subject::count(),
+                'totalQuestions'     => Questions::count(),
+                'answeredQuestions'  => $results->sum('answered'),
+                'correctAnswers'     => $results->sum('score'),
+                'failedAnswers'      => $results->sum('total') - $results->sum('score'),
             ];
-        
-            $correctAnswers = $userData['correctAnswers'];
-            $failedAnswers = $userData['failedAnswers'];
-        
-            $performance = $results->selectRaw('DATE(created_at) as date, AVG(score / total * 100) as avg_score')
-                ->groupBy('date')
-                ->orderBy('date')
-                ->get();
         }
-        
-        // For chart.js
-        $performanceDates = $performance->pluck('date')->toArray();
-        $performanceScores = $performance->pluck('avg_score')->toArray();
-        
+    
+        // Line chart data
+        $performanceOverTime = ExamResult::selectRaw('DATE(created_at) as date, AVG(score / total * 100) as avg_score')
+        ->where('total', '>', 0) // avoid division by zero
+        ->groupBy('date')
+        ->orderBy('date')
+        ->get();
+    
+        // Prepare data for chart.js
+      // Extract dates and scores for Chart.js
+$performanceDates = $performanceOverTime->pluck('date')->toArray();
+$performanceScores = $performanceOverTime->pluck('avg_score')->map(fn($s) => round($s, 2))->toArray();
+
+    
         return view('dashboard', compact(
             'userData',
             'adminData',
-            'correctAnswers',
-            'failedAnswers',
+            'performanceOverTime',
             'performanceDates',
             'performanceScores'
         ));
-        
     }
     
 
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }
