@@ -147,7 +147,7 @@ class SliderController extends Controller
         Storage::disk('public')->delete($slider->image);
     }
 
-         $slider->delete($id);
+         $slider->delete();
         return redirect('add-slider')->with('status', 'Slider deleted successfully.');
     }
 
