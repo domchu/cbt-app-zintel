@@ -21,8 +21,8 @@
     @else
     @endif
 </head>
-
-<body class="bg-[#fcfcfd] dark:bg-[#0a0a0a] text-[#1b1b18] flex items-center lg:justify-center min-h-screen flex-col">
+<!-- dark:bg-[#0a0a0a] -->
+<body class="bg-[#fcfcfd] text-[#1b1b18] flex items-center lg:justify-center min-h-screen flex-col">
     <header class="w-full lg:max-w-full max-w-[100%] text-sm mb-6 not-has-[nav]:hidden ">
 
         @if (Route::has('login'))
@@ -112,6 +112,27 @@
     {{-- <div>
     <x-slider>
 </div> --}}
+
+
+<div class="w-full sm:px-32 px-10 border">
+    <x-banner/>
+</div>
+
+<div>
+    <x-features/>
+</div>
+
+<div>
+    <x-categories/>
+</div>
+
+<div class="w-full">
+    <x-students-section/>
+</div>
+
+<div class="w-full">
+    <x-testimonials/>
+</div>
 
     <div>
         <x-footer />
