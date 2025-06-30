@@ -1,117 +1,65 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <h1 class="mt-4"> Student Dashboard</h1>
+    <h1 class="mt-4">📊  Student Dashboard</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">Student Dashboard</li>
     </ol>
-    
+   
+    {{-- Student/Normal User Stats --}}
     <div class="container mt-4">
         <div class="row g-4 py-4">
-            {{-- Student/Normal User Stats --}}
             @if (empty($userData))
                 <div class="col-md-4">
-                    {{-- <div class="card shadow-sm border-primary">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">📚 Subjects</h5>
-                            <p class="fs-4 fw-bold">{{ $userData['totalSubjects'] ?? 0 }}</p>
-                        </div>
-                    </div> --}}
-                    <div class="card shadow-sm border-0 bg-primary text-white">
+                    <div class="card shadow-sm bg-primary text-white border-0">
                         <div class="card-body text-center">
                             <h5 class="card-title">📚 Subjects</h5>
                             <p class="fs-3 fw-bold">{{ $userData['totalSubjects'] ?? 0 }}</p>
                         </div>
                     </div>
-                    
                 </div>
                 <div class="col-md-4">
-                    <div class="card shadow-sm border-info bg-info text-white">
+                    <div class="card shadow-sm bg-info text-white border-0">
                         <div class="card-body text-center">
                             <h5 class="card-title">❓ Questions</h5>
-                            <p class="fs-4 fw-bold">{{ $userData['totalQuestions'] ?? 0 }}</p>
+                            <p class="fs-3 fw-bold">{{ $userData['totalQuestions'] ?? 0 }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card shadow-sm border-warning bg-warning text-white">
+                    <div class="card shadow-sm bg-warning text-white border-0">
                         <div class="card-body text-center">
                             <h5 class="card-title">✅ Answered</h5>
-                            <p class="fs-4 fw-bold">{{ $userData['answeredQuestions'] ?? 0 }}</p>
+                            <p class="fs-3 fw-bold">{{ $userData['answeredQuestions'] ?? 0 }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card shadow-sm border-success bg-success text-white">
+                    <div class="card shadow-sm bg-success text-white border-0">
                         <div class="card-body text-center">
                             <h5 class="card-title">✔️ Correct</h5>
-                            <p class="fs-4 fw-bold">{{ $userData['correctAnswers'] ?? 0 }}</p>
+                            <p class="fs-3 fw-bold">{{ $userData['correctAnswers'] ?? 0 }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card shadow-sm border-danger bg-danger text-white">
+                    <div class="card shadow-sm bg-danger text-white border-0">
                         <div class="card-body text-center">
                             <h5 class="card-title">❌ Failed</h5>
-                            <p class="fs-4 fw-bold">{{ $userData['failedAnswers'] ?? 0 }}</p>
+                            <p class="fs-3 fw-bold">{{ $userData['failedAnswers'] ?? 0 }}</p>
                         </div>
                     </div>
                 </div>
-            @endif
-
-            {{-- Admin Stats --}}
-            @if (!empty($adminData))
-                <div class="col-md-4">
-                    <div class="card shadow-sm border-primary">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">👨‍🎓 Total Students</h5>
-                            <p class="fs-4 fw-bold">{{ $adminData['totalStudents'] }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card shadow-sm border-info">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">👥 All Users (non-admin)</h5>
-                            <p class="fs-4 fw-bold">{{ $adminData['totalUsers'] }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card shadow-sm border-warning">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">❓ Total Questions</h5>
-                            <p class="fs-4 fw-bold">{{ $adminData['totalQuestions'] }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card shadow-sm border-success">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">✅ Correct Answers</h5>
-                            <p class="fs-4 fw-bold">{{ $adminData['correctAnswers'] }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card shadow-sm border-danger">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">❌ Failed Answers</h5>
-                            <p class="fs-4 fw-bold">{{ $adminData['failedAnswers'] }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card shadow-sm border-secondary">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">📝 Questions Answered</h5>
-                            <p class="fs-4 fw-bold">{{ $adminData['questionsAnswered'] }}</p>
-                        </div>
+            @else
+                <div class="col-12">
+                    <div class="alert alert-warning text-center">
+                        No exam data available for this student.
                     </div>
                 </div>
             @endif
         </div>
     </div>
+    
 
 
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\ExamsController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\SubjectsController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\QuestionImportController;
 
@@ -76,3 +77,7 @@ Route::POST('/exam/start', [ExamsController::class, 'startExam'])->name('exam.st
 Route::post('/exam/submit', [ExamsController::class, 'submitExam'])->name('exam.submit');
 Route::get('/exam/result', [ExamsController::class, 'showResult'])->name('exam.result');
 Route::get('/exam/history', [ExamsController::class, 'examHistory'])->name('exam.history');
+
+// routes/web.php
+// Route::get('/dashboard', [DashboardController::class, 'index']);
+// Route::middleware('auth')->get('/dashboard', [DashboardController::class, 'index']);

@@ -11,12 +11,12 @@ Route::get('/', function () {
 });
 
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 // DASHBOARD ROUTES
 Route::get('/dashboard', function () {
     return view('admin/dashboard');
-})->middleware(['auth', 'verified','rolemanager:dashboard'])->name('dashboard');
+})->middleware(['auth', 'verified','rolemanager:dashboard',])->name('dashboard');
 
 Route::get('/admin/dashboard', function () {
     return view('admin/admin-dashboard');
