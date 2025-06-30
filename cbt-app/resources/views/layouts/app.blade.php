@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="color-scheme" content="light dark">
+    {{-- <meta name="color-scheme" content="light dark"> --}}
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -69,33 +69,35 @@
         .dark-mode-container {
             transition: background-color 0.4s, color 0.4s;
         }
-        body:not(.dark-mode) .dark-mode-container {
-    background-color: #ffffff !important;
-    color: #212529 !important;
-}
-body.dark-mode #resultCard {
-    border-color: #444 !important;
-}
-body.dark-mode {
-    background-color: #121212 !important;
-    color: #f1f1f1 !important;
-}
 
+        body:not(.dark-mode) .dark-mode-container {
+            background-color: #ffffff !important;
+            color: #212529 !important;
+        }
+
+        body.dark-mode #resultCard {
+            border-color: #444 !important;
+        }
+
+        body.dark-mode {
+            background-color: #121212 !important;
+            color: #f1f1f1 !important;
+        }
     </style>
 </head>
 
-<body class="font-sans antialiased" id="appBody">
+<body class="font-sans antialiased dark-mode" id="appBody">
 
     <div class="min-vh-100 dark-mode-container">
         @include('layouts.navigation')
 
         <!-- Page Heading -->
         @isset($header)
-        <header class="bg-white shadow">
-            <div class="container max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
-            </div>
-        </header>
+            <header class="bg-white shadow">
+                <div class="container max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    {{ $header }}
+                </div>
+            </header>
         @endisset
 
         <!-- Page Content -->
@@ -107,40 +109,46 @@ body.dark-mode {
     </div>
 
     <script>
-       document.addEventListener('DOMContentLoaded', function () {
-    const toggleButton = document.getElementById('darkModeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-    const body = document.getElementById('appBody');
-
-    function applyTheme(theme) {
-        if (theme === 'dark') {
-            body.classList.add('dark-mode');
-            if (themeIcon) themeIcon.textContent = '🌞';
-        } else {
-            body.classList.remove('dark-mode');
-            if (themeIcon) themeIcon.textContent = '🌙';
-        }
-    }
-
-    const savedTheme = localStorage.getItem('theme');
-
-    if (savedTheme) {
-        applyTheme(savedTheme);
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        applyTheme('dark');
-    } else {
-        applyTheme('light');
-    }
-
-    toggleButton.addEventListener('click', () => {
-        const newTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
-        applyTheme(newTheme);
-        localStorage.setItem('theme', newTheme);
-    });
-});
-
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleButton = document.getElementById('darkModeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const body = document.getElementById('appBody');
+    
+            function applyTheme(theme) {
+                if (theme === 'dark-mode') {
+                    body.classList.add('dark-mode');
+                    body.classList.remove('light-mode');
+                    if (themeIcon) themeIcon.textContent = '🌞';
+                } else {
+                    body.classList.add('light-mode');
+                    body.classList.remove('dark-mode');
+                    if (themeIcon) themeIcon.textContent = '🌙';
+                }
+            }
+    
+            // Get stored theme or default to system preference
+            let savedTheme = localStorage.getItem('theme');
+    
+            if (!savedTheme) {
+                savedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+                    ? 'dark-mode'
+                    : 'light-mode';
+            }
+    
+            applyTheme(savedTheme);
+            localStorage.setItem('theme', savedTheme); // Save it once applied
+    
+            // Toggle theme on click
+            toggleButton.addEventListener('click', () => {
+                const currentTheme = body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
+                const newTheme = currentTheme === 'dark-mode' ? 'light-mode' : 'dark-mode';
+                applyTheme(newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+        });
     </script>
     
+
 </body>
 
 </html>
