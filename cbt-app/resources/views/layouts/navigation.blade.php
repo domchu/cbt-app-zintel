@@ -11,15 +11,6 @@
                        
                     </a>
                 </div>
-
-                <!-- Navigation Links -->
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div> --}}
-                {{-- DARK MODE --}}
-                
                     <div class="nav-item">
                         <button id="darkModeToggle" class="btn btn-outline-secondary ms-3">
                             <span id="themeIcon">🌙</span> Toggle Theme

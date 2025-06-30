@@ -1,11 +1,11 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <h1 class="mt-4">📊  Student Dashboard</h1>
+    <h1 class="mt-4">📊 Student Dashboard</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">Student Dashboard</li>
     </ol>
-   
+
     {{-- Student/Normal User Stats --}}
     <div class="container mt-4">
         <div class="row g-4 py-4">
@@ -59,7 +59,7 @@
             @endif
         </div>
     </div>
-    
+
 
 
 
@@ -118,19 +118,20 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                    {{-- <tr>
-                        <td>{{ $latestResult->name }}</td>
-                        <td>{{ $latestResult->subject }}</td>
-                        <td>{{ $latestResult->exam_type }}</td>
-                        <td>{{ $latestResult->year }}</td>
-                        <td>{{ $latestResult->score }} / {{ $latestResult->total }}</td>
-                        <td>
-                            {{ $latestResult->total > 0 ? round(($latestResult->score / $latestResult->total) * 100, 2) : 0 }}%
-                          </td>
-                          <td>
-                            <td>{{ \Carbon\Carbon::parse($exam->created_at)->format('d M, Y') }}</td>
-                          </td>
-                    </tr> --}}
+                    {{-- @foreach ($results as $history)
+                        <tr>
+                            <td>{{ $history->name }}</td>
+                            <td>{{ $history->subject }}</td>
+                            <td>{{ $history->year }}</td>
+                            <td>{{ $history->score }}</td>
+                            <td>{{ $history->total }}</td>
+                            <td>
+                                {{ $history->total > 0 ? round(($history->score / $history->total) * 100, 2) : 0 }}%
+                            </td>
+                            <td>{{ $history->created_at->format('d M Y, h:i A') }}</td>
+                        </tr>
+                    @endforeach --}}
+
 
                     <td>Colleen Hurst</td>
                     <td>Javascript Developer</td>
