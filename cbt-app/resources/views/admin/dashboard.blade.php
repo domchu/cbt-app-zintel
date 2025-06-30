@@ -99,33 +99,38 @@
             <table id="datatablesSimple">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Candidate Name</th>
+                        <th>Subject</th>
+                        <th>Exam Type</th>
+                        <th>Year</th>
+                        <th>Score</th>
+                        <th>Date</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Candidate Name</th>
+                        <th>Subject</th>
+                        <th>Exam Type</th>
+                        <th>Year</th>
+                        <th>Score</th>
+                        <th>Date</th>
                     </tr>
                 </tfoot>
                 <tbody>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                    </tr>
+                    {{-- <tr>
+                        <td>{{ $latestResult->name }}</td>
+                        <td>{{ $latestResult->subject }}</td>
+                        <td>{{ $latestResult->exam_type }}</td>
+                        <td>{{ $latestResult->year }}</td>
+                        <td>{{ $latestResult->score }} / {{ $latestResult->total }}</td>
+                        <td>
+                            {{ $latestResult->total > 0 ? round(($latestResult->score / $latestResult->total) * 100, 2) : 0 }}%
+                          </td>
+                          <td>
+                            <td>{{ \Carbon\Carbon::parse($exam->created_at)->format('d M, Y') }}</td>
+                          </td>
+                    </tr> --}}
 
                     <td>Colleen Hurst</td>
                     <td>Javascript Developer</td>

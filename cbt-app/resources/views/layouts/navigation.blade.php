@@ -7,17 +7,17 @@
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
                         
-                            <img src="./assets/logo.png" alt="Brand Logo" sizes="0" width="80px" srcset="">
+                        <img src="../assets/logo.png" alt="Brand Logo" sizes="0" width="80px" srcset="">
                        
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                {{-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                </div>
+                </div> --}}
                 {{-- DARK MODE --}}
                 
                     <div class="nav-item">

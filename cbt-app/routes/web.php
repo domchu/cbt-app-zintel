@@ -50,6 +50,9 @@ Route::get('/pricing', function () {
 Route::get('/gallery', function () {
     return view('pages.gallery');
 });
+Route::get('/instructions', function () {
+    return view('pages.instructions');
+});
 Route::get('/frequently-asked-questions', function () {
     return view('pages.frequently-asked-questions');
 });

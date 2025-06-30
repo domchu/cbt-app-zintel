@@ -92,39 +92,48 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            Students DataTable
+            <h4 class="mb-3">📊 All Students' Exam History</h4>
         </div>
         <div class="card-body">
+            @if ($results->isEmpty())
+            <div class="alert alert-info">No exam results found.</div>
+        @else
             <table id="datatablesSimple">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Candidate</th>
+                        <th>Subject</th>
+                        <th>Exam Type</th>
+                        <th>Year</th>
+                        <th>Score</th>
+                        <th>Date</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Candidate</th>
+                        <th>Subject</th>
+                        <th>Exam Type</th>
+                        <th>Year</th>
+                        <th>Score</th>
+                        <th>Date</th>
                     </tr>
                 </tfoot>
                 <tbody>
+                    @foreach ($results as $index => $result)
                     <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $result->user->name ?? 'N/A' }}</td>
+                        <td>{{ $result->subject }}</td>
+                        <td>{{ $result->exam_type }}</td>
+                        <td>{{ $result->year }}</td>
+                        <td>{{ $result->score }} / {{ $result->total }}</td>
+                        <td>
+                            {{ $result->total > 0 ? round(($result->score / $result->total) * 100, 2) : 0 }}%
+                        </td>
+                        <td>{{ \Carbon\Carbon::parse($result->created_at)->format('d M, Y') }}</td>
                     </tr>
+                    @endforeach
                     <tr>
                         <td>Colleen Hurst</td>
                         <td>Javascript Developer</td>

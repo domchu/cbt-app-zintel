@@ -23,11 +23,11 @@
         class="bg-[#32064a] rounded-lg dark:bg-gray-900 text-sm py-6 my-3 px-4 hidden sm:flex justify-between items-center max-w-7xl mx-auto sm:px-6 lg:px-8">
         <!-- Left: Contact Info -->
         <div class="text-white dark:text-gray-300 space-x-8">
-            <a href="tel=+234 805 6256 805 " class="text-white dark:text-white font-semibold hover:text-gray-300 transition">📞
+            <a href="tel:+234 805 6256 805 " class="text-white dark:text-white font-semibold hover:text-gray-300 transition">📞
                 (+234)
                 805 6256 805</a>
 
-            <a href="mailto=zintelacademy@gmail.com"
+            <a href="mailto:zintelacademy@gmail.com"
                 class="text-white dark:text-white font-semibold hover:text-gray-300 transition">✉️
                 zintelacademy@gmail.com</a>
 
@@ -65,8 +65,9 @@
                     <a href="/" class="text-gray-700 dark:text-gray-200 font-bold hover:text-red-700 transition">Home</a>
                     <a href={{ url('/about-us') }} class="text-gray-700 font-bold dark:text-gray-200 hover:text-red-700 transition">About
                         Us</a>
-                    <a href={{ url('/gallery') }}
-                        class="text-gray-700 dark:text-gray-200 font-bold hover:text-red-700 transition">Gallery</a>
+                        <a href={{ url('/instructions') }} class="text-gray-700 font-bold dark:text-gray-200 hover:text-red-700 transition">Instructions</a>
+                    {{-- <a href={{ url('/gallery') }}
+                        class="text-gray-700 dark:text-gray-200 font-bold hover:text-red-700 transition">Gallery</a> --}}
                     <a href={{ url('/contact-us') }}
                         class="text-gray-700 dark:text-gray-200 font-bold hover:text-red-700 transition">Contact</a>
                     <a href={{ url('/frequently-asked-questions.') }}
