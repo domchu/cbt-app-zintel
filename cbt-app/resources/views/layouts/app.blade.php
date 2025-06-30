@@ -86,7 +86,7 @@
     </style>
 </head>
 
-<body class="font-sans antialiased dark-mode" id="appBody">
+<body class="font-sans antialiased light-mode" id="appBody">
 
     <div class="min-vh-100 dark-mode-container">
         @include('layouts.navigation')
