@@ -6,6 +6,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\QuestionImportController;
 
@@ -81,3 +82,10 @@ Route::get('/exam/history', [ExamsController::class, 'examHistory'])->name('exam
 // routes/web.php
 // Route::get('/dashboard', [DashboardController::class, 'index']);
 // Route::middleware('auth')->get('/dashboard', [DashboardController::class, 'index']);
+
+
+
+Route::middleware(['auth', 'rolemanager:admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/admin/results', [AdminController::class, 'allStudentResults'])->name('admin.results');
+});
