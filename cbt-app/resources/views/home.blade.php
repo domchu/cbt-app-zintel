@@ -27,13 +27,13 @@
 
         @if (Route::has('login'))
             <nav>
-                <header class="gap-3">
+                {{-- <header class="gap-3">
                     @auth
 
-                        {{-- <a href="{{ url('/dashboard') }}"
+                        <a href="{{ url('/dashboard') }}"
                             class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
                             Dashboard
-                        </a> --}}
+                        </a>
                     @else
                         <a href="{{ route('login') }}"
                             class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#ccc] text-[#fff] hover:bg-red-700 hover:border-[#32064a] dark:hover:border-[#3E3E3A] font-semibold text-l leading-normal rounded-md mx-3"
@@ -49,7 +49,7 @@
                             </a>
                         @endif
                     @endauth
-                </header>
+                </header> --}}
             </nav>
         @endif
         <div>

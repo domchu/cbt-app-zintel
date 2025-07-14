@@ -1,6 +1,5 @@
 <?php
 
-use Admin\SliderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
@@ -11,12 +10,25 @@ Route::get('/', function () {
 });
 
 
-// Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 // DASHBOARD ROUTES
+
+
+// Student/User (role = 2)
+// Shared dashboard route
+// Route::get('/dashboard', [DashboardController::class, 'index'])
+//     ->middleware(['auth', 'verified'])
+//     ->name('dashboard');
+// Route::middleware(['auth', 'verified', 'rolemanager:2'])->group(function () {
+//         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+//     });
+// Route::middleware(['auth', 'verified', 'rolemanager:1'])->group(function () {
+//     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+// });
+
 Route::get('/dashboard', function () {
     return view('admin/dashboard');
-})->middleware(['auth', 'verified','rolemanager:dashboard',])->name('dashboard');
+})->middleware(['auth', 'verified','rolemanager:dashboard'])->name('dashboard');
 
 Route::get('/admin/dashboard', function () {
     return view('admin/admin-dashboard');
@@ -25,6 +37,9 @@ Route::get('/admin/dashboard', function () {
 Route::get('/super-admin/dashboard', function () {
     return view('admin/super-dashboard');
 })->middleware(['auth', 'verified','rolemanager:super-admin'])->name('super-admin');
+
+
+
 
 
 // PROFILE ROUTES
@@ -59,19 +74,6 @@ Route::get('/frequently-asked-questions', function () {
 
 
 
-// EXAMINATION ROUTES
-// Route::get('/exam', function () {
-//     return view('exam.index');
-// });
-// Route::get('/exam/start', function () {
-//     return view('exam.start');
-// });
-// Route::get('/exam/result', function () {
-//     return view('exam.result');
-// });
-// Route::get('/exam/history', function () {
-//     return view('exam.history');
-// });
 
 
 

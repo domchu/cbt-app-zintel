@@ -5,8 +5,6 @@ use App\Http\Controllers\ExamsController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\SubjectsController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\QuestionImportController;
 
@@ -79,13 +77,19 @@ Route::post('/exam/submit', [ExamsController::class, 'submitExam'])->name('exam.
 Route::get('/exam/result', [ExamsController::class, 'showResult'])->name('exam.result');
 Route::get('/exam/history', [ExamsController::class, 'examHistory'])->name('exam.history');
 
-// routes/web.php
-// Route::get('/dashboard', [DashboardController::class, 'index']);
-// Route::middleware('auth')->get('/dashboard', [DashboardController::class, 'index']);
 
 
 
-Route::middleware(['auth', 'rolemanager:admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-    Route::get('/admin/results', [AdminController::class, 'allStudentResults'])->name('admin.results');
-});
+// Admin (role = 1)
+// Route::middleware(['auth', 'rolemanager:1'])->prefix('admin')->group(function () {
+//     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+// });
+
+// Student/User (role = 2)
+// Route::middleware(['auth', 'rolemanager:2'])->prefix('dashboard')->group(function () {
+//     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+// });
+// Route::middleware(['auth', 'rolemanager:1'])->group(function () {
+//     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+//     Route::get('/admin/results', [AdminController::class, 'allStudentResults'])->name('admin.results');
+// });
