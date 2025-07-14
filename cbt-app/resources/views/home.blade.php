@@ -68,6 +68,7 @@
     {{-- <div>
     <x-slider>
     </div> --}}
+<h1>Home Page</h1>
 
     <div>
         <x-footer />

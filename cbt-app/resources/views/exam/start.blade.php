@@ -233,6 +233,7 @@
         }
 
         .exam-title {
+            margin-top: 30px;
             margin-bottom: 10px;
             text-align: center;
         }

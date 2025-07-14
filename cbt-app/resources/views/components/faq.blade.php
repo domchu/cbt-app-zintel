@@ -1,0 +1,1 @@
+<h2>frequently-asked-questions page</h2>
