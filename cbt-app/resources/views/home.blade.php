@@ -65,10 +65,25 @@
         <div class="h-14.5 hidden lg:block"></div>
     @endif
 
-    {{-- <div>
-    <x-slider>
-    </div> --}}
-<h1>Home Page</h1>
+    <div class="w-full sm:px-32 px-10 border">
+        <x-banner/>
+    </div>
+    
+    <div>
+        <x-features/>
+    </div>
+    
+    <div>
+        <x-categories/>
+    </div>
+    
+    <div class="w-full">
+        <x-students-section/>
+    </div>
+    
+    <div class="w-full">
+        <x-testimonials/>
+    </div>
 
     <div>
         <x-footer />
