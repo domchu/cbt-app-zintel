@@ -12,49 +12,49 @@
         <div class="w-80 sm:w-72 lg:w-60 xl:w-72 h-48 sm:h-40 py-6 border border-gray-300 text-center rounded-md">
          <h1 class="font-bold text-lg">Grammar Minefield</h1>
          <p class="font-semibold text-gray-600">English Language</p>
-        <button class="w-4/5 h-10 bg-[#32064a] rounded-md text-white my-6 cursor-pointer transform hover:scale-110 transition-all ease-in-out duration-500">Explore</button>
+        <button class="w-4/5 h-10 bg-[#32064a] rounded-md text-white my-6 cursor-pointer transform hover:scale-110 transition-all ease-in-out duration-500"><a href="{{url('/login')}}">Explore</a></button>
      </div>
      
      <div class="w-80 sm:w-72 lg:w-60 xl:w-72 h-48 sm:h-40 py-6 border border-gray-300 text-center rounded-md">
          <h1 class="font-bold text-lg">Brainy Numbers</h1>
          <p class="font-semibold text-gray-600">Mathematics</p>
-        <button class="w-4/5 h-10 bg-[#32064a] rounded-md text-white my-6 cursor-pointer transform hover:scale-110 transition-all ease-in-out duration-500">Explore</button>
+        <button class="w-4/5 h-10 bg-[#32064a] rounded-md text-white my-6 cursor-pointer transform hover:scale-110 transition-all ease-in-out duration-500"><a href="{{url('/login')}}">Explore</a></button>
      </div>
 
      <div class="w-80 sm:w-72 lg:w-60 xl:w-72 h-48 sm:h-40 py-6 border border-gray-300 text-center rounded-md">
          <h1 class="font-bold text-lg">Inside Life</h1>
          <p class="font-semibold text-gray-600">Biology</p>
-        <button class="w-4/5 h-10 bg-[#32064a] rounded-md text-white my-6 cursor-pointer transform hover:scale-110 transition-all ease-in-out duration-500">Explore</button>
+        <button class="w-4/5 h-10 bg-[#32064a] rounded-md text-white my-6 cursor-pointer transform hover:scale-110 transition-all ease-in-out duration-500"><a href="{{url('/login')}}">Explore</a></button>
      </div>
 
      <div class="w-80 sm:w-72 lg:w-60 xl:w-72 h-48 sm:h-40 py-6 border border-gray-300 text-center rounded-md">
          <h1 class="font-bold text-lg">Know Your Nation</h1>
          <p class="font-semibold text-gray-600">Civic Education</p>
-        <button class="w-4/5 h-10 bg-[#32064a] rounded-md text-white my-6 cursor-pointer transform hover:scale-110 transition-all ease-in-out duration-500">Explore</button>
+        <button class="w-4/5 h-10 bg-[#32064a] rounded-md text-white my-6 cursor-pointer transform hover:scale-110 transition-all ease-in-out duration-500"><a href="{{url('/login')}}">Explore</a></button>
      </div>
 
      <div class="w-80 sm:w-72 lg:w-60 xl:w-72 h-48 sm:h-40 py-6 border border-gray-300 text-center rounded-md">
          <h1 class="font-bold text-lg">World Explorer</h1>
          <p class="font-semibold text-gray-600">Geography</p>
-        <button class="w-4/5 h-10 bg-[#32064a] rounded-md text-white my-6 cursor-pointer transform hover:scale-110 transition-all ease-in-out duration-500">Explore</button>
+        <button class="w-4/5 h-10 bg-[#32064a] rounded-md text-white my-6 cursor-pointer transform hover:scale-110 transition-all ease-in-out duration-500"><a href="{{url('/login')}}">Explore</a></button>
      </div>
 
      <div class="w-80 sm:w-72 lg:w-60 xl:w-72 h-48 sm:h-40 py-6 border border-gray-300 text-center rounded-md">
          <h1 class="font-bold text-lg">Lines and Legends</h1>
          <p class="font-semibold text-gray-600">Literature</p>
-        <button class="w-4/5 h-10 bg-[#32064a] rounded-md text-white my-6 cursor-pointer transform hover:scale-110 transition-all ease-in-out duration-500">Explore</button>
+        <button class="w-4/5 h-10 bg-[#32064a] rounded-md text-white my-6 cursor-pointer transform hover:scale-110 transition-all ease-in-out duration-500"><a href="{{url('/login')}}">Explore</a></button>
      </div>
 
      <div class="w-80 sm:w-72 lg:w-60 xl:w-72 h-48 sm:h-40 py-6 border border-gray-300 text-center rounded-md">
-         <h1 class="font-bold text-lg">Code or Cap</h1>
+         <h1 class="font-bold text-lg">Coding and Technology</h1>
          <p class="font-semibold text-gray-600">Computer Science</p>
-        <button class="w-4/5 h-10 bg-[#32064a] rounded-md text-white my-6 cursor-pointer transform hover:scale-110 transition-all ease-in-out duration-500">Explore</button>
+        <button class="w-4/5 h-10 bg-[#32064a] rounded-md text-white my-6 cursor-pointer transform hover:scale-110 transition-all ease-in-out duration-500"><a href="{{url('/login')}}">Explore</a></button>
      </div>
 
      <div class="w-80 sm:w-72 lg:w-60 xl:w-72 h-48 sm:h-40 py-6 border border-gray-300 text-center rounded-md">
          <h1 class="font-bold text-lg">Fast Facts Frenzy</h1>
          <p class="font-semibold text-gray-600">General Knowledge</p>
-        <button class="w-4/5 h-10 bg-[#32064a] rounded-md text-white my-6 cursor-pointer transform hover:scale-110 transition-all ease-in-out duration-500">Explore</button>
+        <button class="w-4/5 h-10 bg-[#32064a] rounded-md text-white my-6 cursor-pointer transform hover:scale-110 transition-all ease-in-out duration-500"><a href="{{url('/login')}}">Explore</a></button>
      </div>
      </main>
 </div>
