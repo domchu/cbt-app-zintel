@@ -2,7 +2,7 @@
 <div class="my-20 mx-6 sm:mx-28 md:mx-36 xl:mx-32 border">
     <div class="text-center">
         <p class="text-orange-500 font-bold">TESTIMONIALS</p>
-     <h1 class="py-2 text-4xl font-bold text-[#32064a]">Our parents and students love us</h1>
+     <h1 class="py-2 text-4xl font-bold text-[#32064a]">Our Parents and Students Love Us</h1>
         <p class="text-gray-500 text-lg pb-6">Hear it directly from our students</p>
     </div>
 
@@ -18,7 +18,7 @@
        <div class="sm:mt-3">
            <div class="relative bg-white border borrder-gray-300 rounded-md p-9 shadow-md max-w-xl">
            <p class="text-[#32064a] text-6xl">&ldquo;</p>
-           <p class="text-gray-700 text-lg">Mock test on QwikTest helped me develop my exam strategy. I was able to focus on my
+           <p class="text-gray-700 text-lg">Mock test on CBT helped me develop my exam strategy. I was able to focus on my
                shortcomings and improve them!
            </p>
            <div class="absolute bottom-[-8px] left-10 w-4 h-4 bg-white border-l-2 border-b-2 border-gray-300 rotate-[-45deg]"></div>
@@ -41,7 +41,7 @@
        
             <div class="relative bg-white border borrder-gray-300 rounded-md p-9 shadow-md max-w-xl">
            <p class="text-[#32064a] text-6xl">&ldquo;</p>
-           <p class="text-gray-700 text-lg">QwikTest helped me get AIR 1 in KCET and AIR 105 in NEET. Thank you QwikTest!</p>
+           <p class="text-gray-700 text-lg">CBT helped me get A1 in Mathematics and A1  in Further Math. Thank you CBT!</p>
            <div class="absolute bottom-[-8px] left-10 w-4 h-4 bg-white border-l-2 border-b-2 border-gray-300 rotate-[-45deg]"></div>
             </div>
        

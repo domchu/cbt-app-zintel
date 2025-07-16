@@ -51,7 +51,7 @@ class DashboardController extends Controller
         // In case role is not 1 or 2
         abort(403, 'Unauthorized');
     }
-}
+
     
     
     

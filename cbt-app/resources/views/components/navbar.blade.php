@@ -70,7 +70,7 @@
                         class="text-gray-700 dark:text-gray-200 font-bold hover:text-red-700 transition">Gallery</a> --}}
                     <a href={{ url('/contact-us') }}
                         class="text-gray-700 dark:text-gray-200 font-bold hover:text-red-700 transition">Contact</a>
-                    <a href={{ url('/frequently-asked-questions.') }}
+                    <a href={{ url('/faq') }}
                         class="text-gray-700 dark:text-gray-200 font-bold hover:text-red-700 transition">FAQ</a>
                 </div>
 

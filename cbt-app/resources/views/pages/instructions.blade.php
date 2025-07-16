@@ -1,6 +1,5 @@
 {{-- NAVBAR --}}
 <div>
-
     <x-navbar></x-navbar>
 </div>
 
