@@ -1,7 +1,7 @@
 <!-- No surplus words or unnecessary actions. - Marcus Aurelius -->
 {{-- FOOTER --}}
 <div
-    class="relative w-full h-84 mt-10 bg-[#32064a] bg-cover bg-center bg-no-repeat text-white p-10">
+    class="relative w-full h-84 bg-[#32064a] bg-cover bg-center bg-no-repeat text-white p-10">
     <div class="absolute inset-0 bg-[#32064a]/40 backdrop-blur-sm"></div>
     <footer class="relative z-10 grid grid-cols-1 lg:grid-cols-3 mr-0 lg:mr-0 xl:mr-40">
         <div class="flex justify-center lg:justify-normal py-8 px-0 lg:px-20 col-span-1">
@@ -39,7 +39,7 @@
             </div>
 
             <div class="p-10">
-                <h1 class="font-semibold text-2xl pb-3">Company</h1>
+                <h1 class="font-semibold text-2xl pb-3">Organisation</h1>
                 <ul>
                     <li
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
@@ -47,8 +47,12 @@
                     </li>
                     <li
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
-                        <a href="{{ url('/privacy-policy') }}">Privacy Policy</a>
+                        <a href="{{ url('/login') }}">CBT</a>
                     </li>
+                    {{-- <li
+                        class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
+                        <a href="{{ url('/privacy-policy') }}">Privacy Policy</a>
+                    </li> --}}
                     {{-- <li
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
                         <a href="{{ url('/booking') }}">Consultation / Booking</a>

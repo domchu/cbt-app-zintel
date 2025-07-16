@@ -5,7 +5,7 @@
         <p class="text-white mt-2">25,000+ Happy students</p>
      </div>
 
-     <div class="flex justify-center text-white py-6">
+     <div class="lg:flex justify-center text-white py-6 grid">
         <div class="mr-12">
             <h1 class="font-bold text-4xl">9578+</h1>
             <p class="text-sm text-center mt-2"> Questions Practiced </p>
