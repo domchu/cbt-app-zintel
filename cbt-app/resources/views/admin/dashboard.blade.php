@@ -9,7 +9,7 @@
     {{-- Student/Normal User Stats --}}
     <div class="container mt-4">
         <div class="row g-4 py-4">
-            {{-- @if (empty($userData)) --}}
+            @if (empty($userData))
                 <div class="col-md-4">
                     <div class="card shadow-sm bg-primary text-white border-0">
                         <div class="card-body text-center">
@@ -50,13 +50,13 @@
                         </div>
                     </div>
                 </div>
-            {{-- @else --}}
+            @else
                 <div class="col-12">
                     <div class="alert alert-warning text-center">
                         No exam data available for this student.
                     </div>
                 </div>
-            {{-- @endif --}}
+            @endif
         </div>
     </div>
 
