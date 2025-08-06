@@ -76,20 +76,3 @@ Route::POST('/exam/start', [ExamsController::class, 'startExam'])->name('exam.st
 Route::post('/exam/submit', [ExamsController::class, 'submitExam'])->name('exam.submit');
 Route::get('/exam/result', [ExamsController::class, 'showResult'])->name('exam.result');
 Route::get('/exam/history', [ExamsController::class, 'examHistory'])->name('exam.history');
-
-
-
-
-// Admin (role = 1)
-// Route::middleware(['auth', 'rolemanager:1'])->prefix('admin')->group(function () {
-//     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-// });
-
-// Student/User (role = 2)
-// Route::middleware(['auth', 'rolemanager:2'])->prefix('dashboard')->group(function () {
-//     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-// });
-// Route::middleware(['auth', 'rolemanager:1'])->group(function () {
-//     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-//     Route::get('/admin/results', [AdminController::class, 'allStudentResults'])->name('admin.results');
-// });

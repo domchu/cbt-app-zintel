@@ -40,19 +40,19 @@ class RoleManager
                 }
                 break;
         }
-        switch ($authUserRole) {
-            case 0:
-                return redirect()->route('super-admin');
+        // switch ($authUserRole) {
+        //     case 0:
+        //         return redirect()->route('super-admin');
                
-            case 1:
-                return redirect()->route('admin');
+        //     case 1:
+        //         return redirect()->route('admin');
               
-            case 2:
-                return redirect()->route('dashboard');
+        //     case 2:
+        //         return redirect()->route('dashboard');
                
             
           
-        }
+        // }
       return redirect()->route('login');
     }
     

@@ -6,8 +6,7 @@ use App\Models\Exams;
 use App\Models\User;
 use App\Models\Subject;
 use App\Models\Questions;
-// use Illuminate\Support\Carbon;
-// use Illuminate\Support\Facades\Auth;
+
 
 
 class DashboardController extends Controller
@@ -17,6 +16,7 @@ class DashboardController extends Controller
     public function index()
     {
         $user = auth()->user();
+       
     
         if ($user->role == 1) {
             $adminData = [
@@ -25,11 +25,11 @@ class DashboardController extends Controller
                 'totalQuestions'    => Exams::sum('total'),
                 'totalSubjects'     => Subject::count(),
                 'totalExamQuestions'=> Questions::count(),
-                'questionsAnswered' => Exams::sum('total'),
+                'answeredQuestions' => Exams::sum('total'),
                 'correctAnswers'    => Exams::sum('score'),
                 'failedAnswers'     => Exams::sum('total') - Exams::sum('score'),
             ];
-    
+            dd($adminData);
             return view('admin.admin-dashboard', compact('adminData'));
         }
     
@@ -55,24 +55,7 @@ class DashboardController extends Controller
     
     
     
-    // public function index()
-    // {
-    //         $totalStudent = User::where('role', 2)->count();
-    //         $totalAdmin = User::where('role', 1)->count();
-    //         $totalUsers     = User::where('role', '!=', 1)->count();
-    //         $totalQuestions     = Exams::sum('total');
-    //         $totalSubjects      = Subject::count();
-    //         $totalExamQuestions = Questions::count();
-    //         $questionsAnswered  = Exams::sum('total');
-    //         $correctAnswers     = Exams::sum('score');
-    //         $failedAnswers      = Exams::sum('total') - Exams::sum('score');
-    //         $monthDate      =        Carbon::now()->format('m');
-    //         $MonthlyExam      = Exams::whereDate('created_at', $monthDate)->count();
-        
-
-    //     return view('admin-dashboard', compact('totalStudent', 'totalAdmin', 'totalUsers', 'totalQuestions', 'totalExamQuestions', 'questionsAnswered', 'correctAnswers', 'failedAnswers', 'MonthlyExam')); 
-    // }
-
+   
     
         
         

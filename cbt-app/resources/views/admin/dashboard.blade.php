@@ -7,14 +7,14 @@
     </ol>
 
     {{-- Student/Normal User Stats --}}
-    <div class="container mt-4">
+    <div class="container mt-4" >
         <div class="row g-4 py-4">
-            @if (empty($userData))
+            @if (!empty($userData))
                 <div class="col-md-4">
                     <div class="card shadow-sm bg-primary text-white border-0">
                         <div class="card-body text-center">
                             <h5 class="card-title">📚 Subjects</h5>
-                            <p class="fs-3 fw-bold">{{ $userData['totalSubjects'] ?? 0  }}</p>
+                            <p class="fs-3 fw-bold">{{ $userData['totalSubjects'] ?? 0 }}</p>
                         </div>
                     </div>
                 </div>
@@ -72,9 +72,9 @@
                     <i class="fas fa-chart-area me-1"></i>
                     Correct/Failed Chart
                 </div>
-                {{-- <canvas id="correctFailedChart" width="400" height="400"></canvas> --}}
+                {{-- <canvas id="correctFailedChart" width="400" height="300"></canvas> --}}
 
-                <div class="card-body"><canvas id="correctFailedChart" width="100%" height="300"></canvas></div>
+                <div class="card-body"><canvas id="correctFailedChart" width="100%" height="400"></canvas></div>
             </div>
         </div>
         <div class="col-xl-6">
@@ -83,8 +83,8 @@
                     <i class="fas fa-chart-bar me-1"></i>
                     Students performance Chart
                 </div>
-                {{-- <canvas id="performanceChart" width="600" height="300"></canvas> --}}
-                <div class="card-body"><canvas id="performanceChart" width="100%" height="300"></canvas></div>
+                {{-- <canvas id="performanceChart" width="400" height="300"></canvas> --}}
+                <div class="card-body"><canvas id="performanceChart" width="100%" height="400"></canvas></div>
             </div>
         </div>
     </div>
