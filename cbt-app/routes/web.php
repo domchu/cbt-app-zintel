@@ -1,8 +1,8 @@
 <?php
 
-use Admin\SliderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
 
 // PAGES ROUTES
 Route::get('/', function () {
@@ -10,18 +10,38 @@ Route::get('/', function () {
 });
 
 
-// DASHBOARD ROUTES
-Route::get('/dashboard', function () {
-    return view('admin/dashboard');
-})->middleware(['auth', 'verified','rolemanager:dashboard'])->name('dashboard');
+// new route
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified', 'rolemanager:dashboard'])
+    ->name('dashboard');
 
-Route::get('/admin/dashboard', function () {
-    return view('admin/admin-dashboard');
-})->middleware(['auth', 'verified','rolemanager:admin'])->name('admin');
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified', 'rolemanager:admin'])
+    ->name('admin');
 
 Route::get('/super-admin/dashboard', function () {
-    return view('admin/super-dashboard');
-})->middleware(['auth', 'verified','rolemanager:super-admin'])->name('super-admin');
+    return view('admin.super-dashboard');
+})->middleware(['auth', 'verified', 'rolemanager:super-admin'])->name('super-admin');
+
+
+
+
+
+// Route::get('/dashboard', function () {
+//     return view('admin/dashboard');
+// })->middleware(['auth', 'verified','rolemanager:dashboard'])->name('dashboard');
+
+// Route::get('/admin/dashboard', function () {
+//     return view('admin/admin-dashboard');
+// })->middleware(['auth', 'verified','rolemanager:admin'])->name('admin');
+
+// Route::get('/super-admin/dashboard', function () {
+//     return view('admin/super-dashboard');
+// })->middleware(['auth', 'verified','rolemanager:super-admin'])->name('super-admin');
+
+
+
+
 
 
 // PROFILE ROUTES
@@ -47,25 +67,15 @@ Route::get('/pricing', function () {
 Route::get('/gallery', function () {
     return view('pages.gallery');
 });
-Route::get('/frequently-asked-questions', function () {
+Route::get('/instructions', function () {
+    return view('pages.instructions');
+});
+Route::get('/faq', function () {
     return view('pages.frequently-asked-questions');
 });
 
 
 
-// EXAMINATION ROUTES
-// Route::get('/exam', function () {
-//     return view('exam.index');
-// });
-// Route::get('/exam/start', function () {
-//     return view('exam.start');
-// });
-// Route::get('/exam/result', function () {
-//     return view('exam.result');
-// });
-// Route::get('/exam/history', function () {
-//     return view('exam.history');
-// });
 
 
 

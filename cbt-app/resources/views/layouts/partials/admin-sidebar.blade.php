@@ -1,19 +1,19 @@
  <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
      <div class="sb-sidenav-menu">
          <div class="nav">
-             <div class="sb-sidenav-menu-heading">Core</div>
+             <div class="sb-sidenav-menu-heading text-white">Core Menu</div>
              <a class="nav-link" href="{{ url('admin/dashboard') }}">
                  <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                  Dashboard Admin
              </a>
-             <a class="nav-link" href="{{ url('admin/academics') }}">
+             {{-- <a class="nav-link" href="{{ url('admin/academics') }}">
                  <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                  Academics
-             </a>
+             </a> --}}
 
 
              {{-- QUESTIONS --}}
-             <div class="sb-sidenav-menu-heading">Examination</div>
+             <div class="sb-sidenav-menu-heading text-white">Examination</div>
              <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseQuestions"
                  aria-expanded="false" aria-controls="collapseQuestions">
                  <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -26,9 +26,17 @@
                      <a class="nav-link" href="{{ url('admin/questions/upload') }}">Add Questions</a>
                      <a class="nav-link" href="{{ url('admin/questions/import') }}">Import Questions</a>
                      <a class="nav-link" href="{{ url('admin/questions') }}">preview Questions</a>
+                     <a class="nav-link" href="{{ url('admin/questions') }}">Exam History</a>
                  </nav>
              </div>
-             <div class="collapse" id="collapseQuestions" aria-labelledby="headingOne"
+             <div class="sb-sidenav-menu-heading text-white">Courses/Subjects</div>
+             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSubjects"
+                 aria-expanded="false" aria-controls="collapseSubjects">
+                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                 Subjects
+                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+             </a>
+             <div class="collapse" id="collapseSubjects" aria-labelledby="headingOne"
                  data-bs-parent="#sidenavAccordion">
                  <nav class="sb-sidenav-menu-nested nav">
                      <a class="nav-link" href="{{ url('admin/subject/create') }}">Add Subject</a>
@@ -37,7 +45,7 @@
              </div>
 
              {{-- ACADEMICS --}}
-             <div class="sb-sidenav-menu-heading">ACADEMICS</div>
+             <div class="sb-sidenav-menu-heading text-white">ACADEMICS</div>
              <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseStudents"
                  aria-expanded="false" aria-controls="collapseStudents">
                  <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -61,7 +69,7 @@
 
 
              {{-- FRONTEND --}}
-             <div class="sb-sidenav-menu-heading">Frontend</div>
+             <div class="sb-sidenav-menu-heading text-white">Frontend</div>
              <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseFrontend"
                  aria-expanded="false" aria-controls="collapseFrontend">
                  <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -72,7 +80,6 @@
                  data-bs-parent="#sidenavAccordion">
                  <nav class="sb-sidenav-menu-nested nav">
                      <a class="nav-link" href="{{ url('home-slider') }}">Slider</a>
-                     {{-- <a class="nav-link" href="{{ url('admin/questions') }}">View Questions</a> --}}
                  </nav>
              </div>
 

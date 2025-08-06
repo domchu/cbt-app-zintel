@@ -1,11 +1,12 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-
+    
     <form method="POST" action="{{ route('login') }}">
         @csrf
-
-        <!-- Email Address -->
+        {{-- <div class="d-flex justify-center text-center w-full m-3-auto"> --}}
+            <a  href="{{ url('/') }}"><img src="../../assets/logo.png" alt="Brand Logo" sizes="0" width="60px" srcset=""></a>
+/        <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />

@@ -1,12 +1,12 @@
 <!-- No surplus words or unnecessary actions. - Marcus Aurelius -->
 {{-- FOOTER --}}
 <div
-    class="relative w-full h-84 mt-10 bg-[#32064a] bg-cover bg-center bg-no-repeat text-white p-10">
+    class="relative w-full h-84 bg-[#32064a] bg-cover bg-center bg-no-repeat text-white p-10">
     <div class="absolute inset-0 bg-[#32064a]/40 backdrop-blur-sm"></div>
     <footer class="relative z-10 grid grid-cols-1 lg:grid-cols-3 mr-0 lg:mr-0 xl:mr-40">
         <div class="flex justify-center lg:justify-normal py-8 px-0 lg:px-20 col-span-1">
             <a href="{{ url('/') }}">
-                <img class="w-96 lg:w-64 h-24 lg:h-16" src="{{ asset('assets/logo.png') }}" alt="logo">
+                <img class="w-40 lg:w-40 h-24 lg:h-24" src="{{ asset('assets/logo.png') }}" alt="logo">
             </a>
         </div>
 
@@ -26,10 +26,10 @@
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
                         <a href="{{ url('/contact-us') }}">Contact Us</a>
                     </li>
-                    <li
+                    {{-- <li
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
                         <a href="{{ url('/features') }}">Features</a>
-                    </li>
+                    </li> --}}
 
                     <li
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
@@ -39,7 +39,7 @@
             </div>
 
             <div class="p-10">
-                <h1 class="font-semibold text-2xl pb-3">Company</h1>
+                <h1 class="font-semibold text-2xl pb-3">Organisation</h1>
                 <ul>
                     <li
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
@@ -47,19 +47,23 @@
                     </li>
                     <li
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
-                        <a href="{{ url('/privacy-policy') }}">Privacy Policy</a>
+                        <a href="{{ url('/login') }}">CBT</a>
                     </li>
+                    {{-- <li
+                        class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
+                        <a href="{{ url('/privacy-policy') }}">Privacy Policy</a>
+                    </li> --}}
                     {{-- <li
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
                         <a href="{{ url('/booking') }}">Consultation / Booking</a>
                     </li> --}}
                     <li
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
-                        <a href="tel:+234 7034278995">+234 703 4278 995</a>
+                        <a href="tel:+234 805 6256 805">(+234) 805 6256 805</a>
                     </li>
                     <li
                         class="pt-2 font-light text-lg transition-all hover:text-xl ease-in-out duration-150 cursor-pointer">
-                        <a href="mailto:support@rentify247.com">support@bridgekode.com</a>
+                        <a href="mailto:zintelacademy@gmail.com">zintelacademy@gmail.com</a>
                     </li>
 
                 </ul>
@@ -126,7 +130,7 @@
 
                         </a>
                     </li>
-                    <li
+                    {{-- <li
                         class="w-3 mt-0 xl:mt-5 bg-gray-700 bg-opacity-20 p-5 mx-2 lg:mx-3 relative z-0 cursor-pointer transform hover:scale-125 transition-all ease-in-out duration-500 rounded-md hover:bg-red-700" style="border:1px solid #fff">
                         <a href="#">
                             <svg class="absolute z-10 top-2 right-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg"
@@ -138,7 +142,7 @@
                             </svg>
 
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>
@@ -151,8 +155,24 @@
 <div class="w-full py-6 bg-[#32064a] text-center text-sm text-primaryColor2 text-white">
     <p class="text-base "> Copyright &copy; 2025. Computer Base Test (CBT)  | All rights reserved | Designed & Powered by <a
             href="https://www.bridgekode.com" target="_blank"
-            class="text-[#fff] pt-2 text-base cursor-pointer font-sm border-[#d6353f]">Bridgekode Technology</a></p>
+            class="text-[#e9492d] pt-2 text-base cursor-pointer font-sm font-[400]">Bridgekode Technology</a></p>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileBtn.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('max-h-0')) {
+                mobileMenu.classList.remove('max-h-0');
+                mobileMenu.classList.add('max-h-96');
+            } else {
+                mobileMenu.classList.add('max-h-0');
+                mobileMenu.classList.remove('max-h-96');
+            }
+        });
+    });
+</script>
 
 <script src="{{ asset('js/navbar.js') }}"></script>
 <script src="{{ asset('js/slider.js') }}"></script>

@@ -5,7 +5,8 @@
     </div>
 
 
-
+{{-- FAQ --}}
+<x-faq/>
 
 {{-- FOOTER / COPYRIGHT --}}
     <div>

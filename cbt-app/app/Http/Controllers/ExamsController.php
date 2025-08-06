@@ -7,6 +7,8 @@ use App\Models\Questions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ExamResult;
+use App\Models\Subject;
+
 
 class ExamsController extends Controller
 {
@@ -46,23 +48,63 @@ public function startExam(Request $request)
         return back()->with('error', 'No questions found for selected criteria.');
     }
 
+
+    $subjectModel = Subject::where('name', $validated['subject'])->first();
+
+    if (!$subjectModel) {
+        return back()->with('error', 'Subject not found in database.');
+    }
     return view('exam.start', [
         'questions' => $questions,
         'subject' => $validated['subject'],
         'year' => $validated['year'],
         'exam_type' => $validated['exam_type'],
+        'subject_id' => $subjectModel->id,
     ]);
 }
+// dd($questions->first())
 
-
-
+// SUBMIT EXAMINATION QUESTIONS
 public function submitExam(Request $request)
 {
+    
+    $user = Auth::user();
     $answers = $request->input('answers', []);
-    // Save or grade logic goes here
+    $subject = $request->input('subject');
+    $year = $request->input('year');
+    $exam_type = $request->input('exam_type');
 
-    return redirect()->route('dashboard')->with('success', 'Exam submitted successfully!');
+    $questions = Questions::where('subject', $subject)
+                ->where('year', $year)
+                ->where('exam_type', $exam_type)
+                ->get();
+
+    $score = 0;
+    $total = $questions->count();
+
+    foreach ($questions as $question) {
+        if (isset($answers[$question->id]) && $answers[$question->id] == $question->correct_answer) {
+            $score++;
+        }
+    }
+    // dd($request->all());
+
+    // Save result
+    $result = ExamResult::create([
+        'user_id' => $user->id,
+        'subject_id' => $request->input('subject_id'),
+        'subject' => $subject,
+        'name' => $user->name,
+        'year' => $year,
+        'exam_type' => $exam_type,
+        'score' => $score,
+        'total' => $total,
+    ]);
+
+    return redirect()->route('exam.result')->with('success', 'Exam submitted successfully!');
 }
+
+// EXAMINATION HISTORY
 public function examHistory()
 {
     $user = Auth::user();
@@ -73,6 +115,8 @@ public function examHistory()
 
     return view('exam.history', compact('results'));
 }
+
+
 public function showResult()
 {
     $user = Auth::user();
