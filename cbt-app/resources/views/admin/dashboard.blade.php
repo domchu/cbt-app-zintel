@@ -118,29 +118,19 @@
                     </tr>
                 </tfoot>
                 <tbody>
-
-                    <tr>
-                        <td>{{ $latestResult->name }}</td>
-                        <td>{{ $latestResult->subject }}</td>
-                        <td>{{ $latestResult->exam_type }}</td>
-                        <td> {{ $latestResult->year }}</td>
-                        <td>{{ $latestResult->score }} / {{ $latestResult->total }}</td>
-                        <td>
-                            {{ $latestResult->total > 0 ? round(($latestResult->score / $latestResult->total) * 100, 2) : 0 }}%
-                        </td>
-{{-- <td>{{ $latestResult->created_at->format('d M Y, h:i A') }}</td> --}}
-                    </tr>
-
-
-                    <td>Colleen Hurst</td>
-                    <td>Javascript Developer</td>
-                    <td>San Francisco</td>
-                    <td>39</td>
-                    <td>2009/09/15</td>
-                    <td>$205,500</td>
-
-
-
+                    @foreach ($results as $history)
+                        <tr>
+                            <td>{{ $history->name }}</td>
+                            <td>{{ $history->subject }}</td>
+                            <td>{{ $history->exam_type }}</td>
+                            <td> {{ $history->year }}</td>
+                            <td>{{ $history->score }} / {{ $history->total }}</td>
+                            <td>
+                                {{ $history->total > 0 ? round(($history->score / $history->total) * 100, 2) : 0 }}%
+                            </td>
+                            {{-- <td>{{ $history->created_at->format('d M Y, h:i A') }}</td> --}}
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

@@ -32,22 +32,22 @@ class DashboardController extends Controller
                 'answeredQuestions'  => $correctAnswers + $failedAnswers,
             ];
 
-              // 👇 Fetch the exam history for the logged-in user
-            $latestResult = Exams::with(['user', 'subject']) // assuming relationships exist
-            ->where('user_id', $user->id)
-            ->latest()
-             ->get();
-
+            
 
             return view('admin.admin-dashboard', compact('adminData'));
         }
     
+
+        // USER/STUDENT DASHBOARD
         if ($user->role == 2) {
                // 👇 Fetch the exam history for the logged-in user
-            $latestResult = Exams::where('user_id', auth()->id())
-            ->latest()
-            ->first();
+            // Get ALL exam results for the current user
+     $results = Exams::where('user_id', $user->id)
+                    ->orderByDesc('created_at')
+                    ->get();
 
+    // Optional: If you still want to show latest separately
+    $latestResult = $results->first();
             $userData = [
                 'totalStudents'     => User::where('role', 2)->count(),
                 'totalUsers'        => User::where('role', '!=', 1)->count(),
@@ -59,7 +59,7 @@ class DashboardController extends Controller
                 'answeredQuestions'  => $correctAnswers + $failedAnswers,
             ];
     
-            return view('admin.dashboard', compact('userData','latestResult'));
+            return view('admin.dashboard', compact('userData', 'results','latestResult'));
         }
     
         // In case role is not 1 or 2
