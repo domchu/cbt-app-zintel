@@ -7,7 +7,7 @@
     </ol>
 
     {{-- Student/Normal User Stats --}}
-    <div class="container mt-4" >
+    <div class="container mt-4">
         <div class="row g-4 py-4">
             @if (!empty($userData))
                 <div class="col-md-4">
@@ -93,7 +93,7 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            DataTable Example
+            <span class="fw-bold">Student Exam History</span>
         </div>
         <div class="card-body">
             <table id="datatablesSimple">
@@ -104,7 +104,7 @@
                         <th>Exam Type</th>
                         <th>Year</th>
                         <th>Score</th>
-                        <th>Date</th>
+                        <th>Percentage</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -114,23 +114,22 @@
                         <th>Exam Type</th>
                         <th>Year</th>
                         <th>Score</th>
-                        <th>Date</th>
+                        <th>Percentage</th>
                     </tr>
                 </tfoot>
                 <tbody>
-                    {{-- @foreach ($results as $history)
-                        <tr>
-                            <td>{{ $history->name }}</td>
-                            <td>{{ $history->subject }}</td>
-                            <td>{{ $history->year }}</td>
-                            <td>{{ $history->score }}</td>
-                            <td>{{ $history->total }}</td>
-                            <td>
-                                {{ $history->total > 0 ? round(($history->score / $history->total) * 100, 2) : 0 }}%
-                            </td>
-                            <td>{{ $history->created_at->format('d M Y, h:i A') }}</td>
-                        </tr>
-                    @endforeach --}}
+
+                    <tr>
+                        <td>{{ $latestResult->name }}</td>
+                        <td>{{ $latestResult->subject }}</td>
+                        <td>{{ $latestResult->exam_type }}</td>
+                        <td> {{ $latestResult->year }}</td>
+                        <td>{{ $latestResult->score }} / {{ $latestResult->total }}</td>
+                        <td>
+                            {{ $latestResult->total > 0 ? round(($latestResult->score / $latestResult->total) * 100, 2) : 0 }}%
+                        </td>
+{{-- <td>{{ $latestResult->created_at->format('d M Y, h:i A') }}</td> --}}
+                    </tr>
 
 
                     <td>Colleen Hurst</td>
@@ -149,8 +148,8 @@
 
     {{-- JAVASCRIPT --}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.js"></script> --}}
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/    chart.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/    chart.min.js"></script>
 
     <script>
         const correctFailedCtx = document.getElementById('correctFailedChart')?.getContext('2d');
@@ -196,3 +195,4 @@
         }
     </script>
 @endsection
+{{-- <td>{{ $latestResult->created_at->format('d M Y, h:i A') }}</td> --}}
