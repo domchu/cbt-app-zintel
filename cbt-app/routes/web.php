@@ -19,25 +19,20 @@ Route::get('/admin/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified', 'rolemanager:admin'])
     ->name('admin');
 
-Route::get('/super-admin/dashboard', function () {
-    return view('admin.super-dashboard');
-})->middleware(['auth', 'verified', 'rolemanager:super-admin'])->name('super-admin');
+    Route::get('/super-admin/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified', 'rolemanager:super-admin'])
+    ->name('super-admin');
 
-
-
-
-
-// Route::get('/dashboard', function () {
-//     return view('admin/dashboard');
-// })->middleware(['auth', 'verified','rolemanager:dashboard'])->name('dashboard');
-
-// Route::get('/admin/dashboard', function () {
-//     return view('admin/admin-dashboard');
-// })->middleware(['auth', 'verified','rolemanager:admin'])->name('admin');
 
 // Route::get('/super-admin/dashboard', function () {
-//     return view('admin/super-dashboard');
-// })->middleware(['auth', 'verified','rolemanager:super-admin'])->name('super-admin');
+//     return view('admin.super-dashboard');
+// })->middleware(['auth', 'verified', 'rolemanager:super-admin'])->name('super-admin');
+
+
+
+
+
+
 
 
 
@@ -85,3 +80,9 @@ Route::get('/faq', function () {
 require __DIR__.'/auth.php';
 
 require __DIR__.'/admin-auth.php';
+
+
+// CHATGPT
+// Browserslist: browsers data (caniuse-lite) is 6 months old. Please run:
+//   npx update-browserslist-db@latest
+//   Why you should do it regularly: https://github.com/browserslist/update-db#readme
