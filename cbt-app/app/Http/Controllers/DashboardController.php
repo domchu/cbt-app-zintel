@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Exams;
 use App\Models\User;
+use App\Models\Exams;
 use App\Models\Subject;
 use App\Models\Questions;
+use App\Models\ExamResult;
 
 
 
@@ -41,13 +42,13 @@ class DashboardController extends Controller
         // USER/STUDENT DASHBOARD
         if ($user->role == 2) {
                // 👇 Fetch the exam history for the logged-in user
-            // Get ALL exam results for the current user
-     $results = Exams::where('user_id', $user->id)
+               // Get ALL exam results for the current user
+                   $results = Exams::where('user_id', $user->id)
                     ->orderByDesc('created_at')
                     ->get();
 
-    // Optional: If you still want to show latest separately
-    $latestResult = $results->first();
+            // Optional: If you still want to show latest separately
+            $latestResult = $results->first();
             $userData = [
                 'totalStudents'     => User::where('role', 2)->count(),
                 'totalUsers'        => User::where('role', '!=', 1)->count(),
@@ -66,8 +67,12 @@ class DashboardController extends Controller
         abort(403, 'Unauthorized');
     }
 
-    
-    
+    // HISTORY LOGIC
+    public function history()
+{
+    $results = ExamResult::orderBy('created_at', 'desc')->get();
+    return view('admin.history', compact('results'));
+}
     
    
     
