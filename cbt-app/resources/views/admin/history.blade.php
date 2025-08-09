@@ -1,11 +1,11 @@
- @extends('layouts.app')
+ @extends('layouts.dashboard')
 
 @section('content')
  {{-- TABLE --}}
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            <span class="fw-bold">Student Exam History</span>
+            <span class="fw-bold">All Student Exam History</span>
         </div>
         <div class="card-body">
             <table id="datatablesSimple">
