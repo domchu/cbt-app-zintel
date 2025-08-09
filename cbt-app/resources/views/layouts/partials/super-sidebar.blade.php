@@ -23,8 +23,10 @@
              <div class="collapse" id="collapseQuestions" aria-labelledby="headingOne"
                  data-bs-parent="#sidenavAccordion">
                  <nav class="sb-sidenav-menu-nested nav">
-                     <a class="nav-link" href="{{ url('admin/questions/create') }}">Add Questions</a>
-                     <a class="nav-link" href="{{ url('admin/questions') }}">View Questions</a>
+                     <a class="nav-link" href="{{ url('admin/questions/upload') }}">Add Questions</a>
+                     <a class="nav-link" href="{{ url('admin/questions/import') }}">Import Questions</a>
+                     <a class="nav-link" href="{{ url('admin/questions') }}">preview Questions</a>
+                     <a class="nav-link" href="{{ url('admin/history') }}">Exam History<
                      
                  </nav>
              </div>

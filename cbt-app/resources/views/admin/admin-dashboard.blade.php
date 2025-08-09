@@ -106,39 +106,38 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
-                            <th>Candidate</th>
-                            <th>Subject</th>
-                            <th>Exam Type</th>
-                            <th>Year</th>
-                            <th>Score</th>
-                            <th>Date</th>
+                            <th>Candidate Name</th>
+                        <th>Subjects</th>
+                        <th>Exam Type</th>
+                        <th>Years</th>
+                        <th>Score</th>
+                        <th>Percentage</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Candidate</th>
-                            <th>Subject</th>
-                            <th>Exam Type</th>
-                            <th>Year</th>
-                            <th>Score</th>
-                            <th>Date</th>
+                              <th>Candidate Name</th>
+                        <th>Subjects</th>
+                        <th>Exam Type</th>
+                        <th>Years</th>
+                        <th>Score</th>
+                        <th>Percentage</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach ($results as $index => $result)
-                            <tr>
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ $result->user->name ?? 'N/A' }}</td>
-                                <td>{{ $result->subject }}</td>
-                                <td>{{ $result->exam_type }}</td>
-                                <td>{{ $result->year }}</td>
-                                <td>{{ $result->score }} / {{ $result->total }}</td>
-                                <td>
-                                    {{ $result->total > 0 ? round(($result->score / $result->total) * 100, 2) : 0 }}%
-                                </td>
-                                <td>{{ \Carbon\Carbon::parse($result->created_at)->format('d M, Y') }}</td>
-                            </tr>
-                        @endforeach
+                         @foreach ($results as $history)
+                        <tr>
+                            <td>{{ $history->name }}</td>
+                            <td>{{ $history->subject }}</td>
+                            <td>{{ $history->exam_type }}</td>
+                            <td> {{ $history->year }}</td>
+                            <td>{{ $history->score }} / {{ $history->total }}</td>
+                            <td>
+                                {{ $history->total > 0 ? round(($history->score / $history->total) * 100, 2) : 0 }}%
+                            </td>
+                            <td>{{ $history->created_at->format('d M Y, h:i A') }}</td> 
+                        </tr>
+                    @endforeach
                         <tr>
                             <td>Colleen Hurst</td>
                             <td>Javascript Developer</td>
