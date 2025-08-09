@@ -8,61 +8,66 @@
     {{-- DATA --}}
     <div class="container mt-4">
         <div class="row g-4 py-4">
-            <div class="col-md-4">
-                <div class="card shadow-sm border-primary">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">📚 Subjects</h5>
-                        <p class="fs-4 fw-bold">{{ $adminData['totalSubjects'] }}</p>
+
+            @if (!empty($userData))
+                <div class="col-md-4">
+                    <div class="card shadow-sm border-primary">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">📚 Total Subjects</h5>
+                            <p class="fs-4 fw-bold">{{ $adminData['totalSubjects'] }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            @if (auth()->user()->is_admin)
                 <div class="col-md-4">
                     <div class="card shadow-sm border-success">
                         <div class="card-body text-center">
-                            <h5 class="card-title">👥 Students</h5>
+                            <h5 class="card-title">👥Total Students</h5>
                             <p class="fs-4 fw-bold">{{ $adminData['totalUsers'] }}</p>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm border-info">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">❓Total Questions</h5>
+                            <p class="fs-4 fw-bold">{{ $adminData['totalQuestions'] }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card shadow-sm border-warning">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">✅ Answered</h5>
+                            <p class="fs-4 fw-bold">{{ $adminData['answeredQuestions'] }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card shadow-sm border-success">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">✔️ Correct</h5>
+                            <p class="fs-4 fw-bold">{{ $adminData['correctAnswers'] }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card shadow-sm border-danger">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">❌ Failed</h5>
+                            <p class="fs-4 fw-bold">{{ $adminData['failedAnswers'] }}</p>
+                        </div>
+                    </div>
+                </div>
+            @else
+                <div class="col-12">
+                    <div class="alert alert-warning text-center">
+                        No Exam Data Available for this student.
+                    </div>
+                </div>
             @endif
-
-            <div class="col-md-4">
-                <div class="card shadow-sm border-info">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">❓ Questions</h5>
-                        <p class="fs-4 fw-bold">{{ $adminData['totalQuestions'] }}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card shadow-sm border-warning">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">✅ Answered</h5>
-                        <p class="fs-4 fw-bold">{{ $adminData['answeredQuestions'] }}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card shadow-sm border-success">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">✔️ Correct</h5>
-                        <p class="fs-4 fw-bold">{{ $adminData['correctAnswers'] }}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card shadow-sm border-danger">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">❌ Failed</h5>
-                        <p class="fs-4 fw-bold">{{ $adminData['failedAnswers'] }}</p>
-                    </div>
-                </div>
-            </div>
         </div>
 
     </div>
@@ -96,54 +101,54 @@
         </div>
         <div class="card-body">
             @if ($results->isEmpty())
-            <div class="alert alert-info">No exam results found.</div>
-        @else
-            <table id="datatablesSimple">
-                <thead>
-                    <tr>
-                        <th>Candidate</th>
-                        <th>Subject</th>
-                        <th>Exam Type</th>
-                        <th>Year</th>
-                        <th>Score</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>Candidate</th>
-                        <th>Subject</th>
-                        <th>Exam Type</th>
-                        <th>Year</th>
-                        <th>Score</th>
-                        <th>Date</th>
-                    </tr>
-                </tfoot>
-                <tbody>
-                    @foreach ($results as $index => $result)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $result->user->name ?? 'N/A' }}</td>
-                        <td>{{ $result->subject }}</td>
-                        <td>{{ $result->exam_type }}</td>
-                        <td>{{ $result->year }}</td>
-                        <td>{{ $result->score }} / {{ $result->total }}</td>
-                        <td>
-                            {{ $result->total > 0 ? round(($result->score / $result->total) * 100, 2) : 0 }}%
-                        </td>
-                        <td>{{ \Carbon\Carbon::parse($result->created_at)->format('d M, Y') }}</td>
-                    </tr>
-                    @endforeach
-                    <tr>
-                        <td>Colleen Hurst</td>
-                        <td>Javascript Developer</td>
-                        <td>San Francisco</td>
-                        <td>39</td>
-                        <td>2009/09/15</td>
-                        <td>$205,500</td>
-                    </tr>
-                </tbody>
-            </table>
+                <div class="alert alert-info">No exam results found.</div>
+            @else
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Candidate</th>
+                            <th>Subject</th>
+                            <th>Exam Type</th>
+                            <th>Year</th>
+                            <th>Score</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Candidate</th>
+                            <th>Subject</th>
+                            <th>Exam Type</th>
+                            <th>Year</th>
+                            <th>Score</th>
+                            <th>Date</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach ($results as $index => $result)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $result->user->name ?? 'N/A' }}</td>
+                                <td>{{ $result->subject }}</td>
+                                <td>{{ $result->exam_type }}</td>
+                                <td>{{ $result->year }}</td>
+                                <td>{{ $result->score }} / {{ $result->total }}</td>
+                                <td>
+                                    {{ $result->total > 0 ? round(($result->score / $result->total) * 100, 2) : 0 }}%
+                                </td>
+                                <td>{{ \Carbon\Carbon::parse($result->created_at)->format('d M, Y') }}</td>
+                            </tr>
+                        @endforeach
+                        <tr>
+                            <td>Colleen Hurst</td>
+                            <td>Javascript Developer</td>
+                            <td>San Francisco</td>
+                            <td>39</td>
+                            <td>2009/09/15</td>
+                            <td>$205,500</td>
+                        </tr>
+                    </tbody>
+                </table>
         </div>
     </div>
 
@@ -181,3 +186,6 @@
         });
     </script>
 @endsection
+
+
+{{-- <center><span><?php echo date("Y");?> &copy;Copyright Zintel Academy | All Right Reserved</span></center>  --}}

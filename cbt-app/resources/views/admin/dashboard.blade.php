@@ -13,7 +13,7 @@
                 <div class="col-md-4">
                     <div class="card shadow-sm bg-primary text-white border-0">
                         <div class="card-body text-center">
-                            <h5 class="card-title">📚 Subjects</h5>
+                            <h5 class="card-title">📚 Total Subjects</h5>
                             <p class="fs-3 fw-bold">{{ $userData['totalSubjects'] ?? 0 }}</p>
                         </div>
                     </div>
@@ -21,7 +21,7 @@
                 <div class="col-md-4">
                     <div class="card shadow-sm bg-info text-white border-0">
                         <div class="card-body text-center">
-                            <h5 class="card-title">❓ Questions</h5>
+                            <h5 class="card-title">❓Total Questions</h5>
                             <p class="fs-3 fw-bold">{{ $userData['totalQuestions'] ?? 0 }}</p>
                         </div>
                     </div>
@@ -100,9 +100,9 @@
                 <thead>
                     <tr>
                         <th>Candidate Name</th>
-                        <th>Subject</th>
+                        <th>Subjects</th>
                         <th>Exam Type</th>
-                        <th>Year</th>
+                        <th>Years</th>
                         <th>Score</th>
                         <th>Percentage</th>
                     </tr>
@@ -110,9 +110,9 @@
                 <tfoot>
                     <tr>
                         <th>Candidate Name</th>
-                        <th>Subject</th>
+                        <th>Subjects</th>
                         <th>Exam Type</th>
-                        <th>Year</th>
+                        <th>Years</th>
                         <th>Score</th>
                         <th>Percentage</th>
                     </tr>
