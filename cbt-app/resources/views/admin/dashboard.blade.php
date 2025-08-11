@@ -13,7 +13,7 @@
                 <div class="col-md-4">
                     <div class="card shadow-sm bg-primary text-white border-0">
                         <div class="card-body text-center">
-                            <h5 class="card-title">📚 Subjects</h5>
+                            <h5 class="card-title">📚 Total Subjects</h5>
                             <p class="fs-3 fw-bold">{{ $userData['totalSubjects'] ?? 0 }}</p>
                         </div>
                     </div>
@@ -21,7 +21,7 @@
                 <div class="col-md-4">
                     <div class="card shadow-sm bg-info text-white border-0">
                         <div class="card-body text-center">
-                            <h5 class="card-title">❓ Questions</h5>
+                            <h5 class="card-title">❓Total Questions</h5>
                             <p class="fs-3 fw-bold">{{ $userData['totalQuestions'] ?? 0 }}</p>
                         </div>
                     </div>
@@ -66,25 +66,41 @@
 
     {{-- CHARTTING --}}
     <div class="row">
-        <div class="col-xl-6">
+        <div class="col-xl-4">
             <div class="card mb-4">
                 <div class="card-header">
-                    <i class="fas fa-chart-area me-1"></i>
-                    Correct/Failed Chart
+                   <i class="fas fa-chart-pie me-1"></i>
+                    Student Correct/Failed Chart
                 </div>
-                {{-- <canvas id="correctFailedChart" width="400" height="300"></canvas> --}}
 
-                <div class="card-body"><canvas id="correctFailedChart" width="100%" height="400"></canvas></div>
+                <div style="width: 100%; max-width: 300px; margin: auto; margin-top: 30px; margin-bottom:30px">
+                    <canvas id="subjectChart"></canvas>
+                </div>
             </div>
         </div>
-        <div class="col-xl-6">
+       
+        <div class="col-xl-4">
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-chart-bar me-1"></i>
-                    Students performance Chart
+                    Students Performance History 
                 </div>
-                {{-- <canvas id="performanceChart" width="400" height="300"></canvas> --}}
-                <div class="card-body"><canvas id="performanceChart" width="100%" height="400"></canvas></div>
+                <div style="width: 100%; max-width: 300px; margin: auto; margin-top: 40px;">
+                  <canvas id="barChart" ></canvas>
+                </div>
+                
+            </div>
+        </div>
+         <div class="col-xl-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                   <i class="fas fa-chart-pie me-1"></i>
+                   Average % Score Per Subject
+                </div>
+                <div style="width: 100%; max-width: 300px; margin: auto; ;margin-top: 40px;">
+                   <canvas id="pieChart" ></canvas>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -100,9 +116,9 @@
                 <thead>
                     <tr>
                         <th>Candidate Name</th>
-                        <th>Subject</th>
+                        <th>Subjects</th>
                         <th>Exam Type</th>
-                        <th>Year</th>
+                        <th>Years</th>
                         <th>Score</th>
                         <th>Percentage</th>
                     </tr>
@@ -110,9 +126,9 @@
                 <tfoot>
                     <tr>
                         <th>Candidate Name</th>
-                        <th>Subject</th>
+                        <th>Subjects</th>
                         <th>Exam Type</th>
-                        <th>Year</th>
+                        <th>Years</th>
                         <th>Score</th>
                         <th>Percentage</th>
                     </tr>
@@ -128,7 +144,6 @@
                             <td>
                                 {{ $history->total > 0 ? round(($history->score / $history->total) * 100, 2) : 0 }}%
                             </td>
-                            {{-- <td>{{ $history->created_at->format('d M Y, h:i A') }}</td> --}}
                         </tr>
                     @endforeach
                 </tbody>
@@ -137,22 +152,37 @@
     </div>
 
     {{-- JAVASCRIPT --}}
+    @php
+        $isAdmin = Auth::user()->role == 2;
+        $correct = $isAdmin ? $adminData['correctAnswers'] ?? 0 : $userData['correctAnswers'] ?? 0;
+        $failed = $isAdmin ? $adminData['failedAnswers'] ?? 0 : $userData['failedAnswers'] ?? 0;
+    @endphp
+    //
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/    chart.min.js"></script>
+    @php
+        $isAdmin = Auth::user()->role == 1;
 
+        $correct = $isAdmin
+            ? $adminData['correctAnswers'] ?? 0
+            : (isset($userData['correctAnswers'])
+                ? $userData['correctAnswers']
+                : 0);
+
+        $failed = $isAdmin
+            ? $adminData['failedAnswers'] ?? 0
+            : (isset($userData['failedAnswers'])
+                ? $userData['failedAnswers']
+                : 0);
+       
+    @endphp
     <script>
-        const correctFailedCtx = document.getElementById('correctFailedChart')?.getContext('2d');
-        const performanceCtx = document.getElementById('performanceChart')?.getContext('2d');
-        const performanceCtx = document.getElementById('performanceChart')?.getContext('2d');
+    const correctFailedCtx = document.getElementById('subjectChart')?.getContext('2d');
+    const barCtx = document.getElementById('barChart').getContext('2d');
+    const pieCtx = document.getElementById('pieChart').getContext('2d');
 
-        @php
-            $isAdmin = Auth::user()->role == 1;
-
-            $correct = $isAdmin ? $adminData['correctAnswers'] ?? 0 : (isset($userData['correctAnswers']) ? $userData['correctAnswers'] : 0);
-
-            $failed = $isAdmin ? $adminData['failedAnswers'] ?? 0 : (isset($userData['failedAnswers']) ? $userData['failedAnswers'] : 0);
-        @endphp
 
         if (correctFailedCtx) {
             new Chart(correctFailedCtx, {
@@ -168,21 +198,62 @@
             });
         }
 
-        if (performanceCtx) {
-            new Chart(performanceCtx, {
-                type: 'line',
-                data: {
-                    labels: {!! json_encode($performanceDates ?? []) !!},
-                    datasets: [{
-                        label: 'Score (%)',
-                        data: {!! json_encode($performanceScores ?? []) !!},
-                        fill: false,
-                        borderColor: '#007bff',
-                        tension: 0.3
-                    }]
+      
+  
+
+// Bar Chart (Subject vs Latest Score)
+    new Chart(barCtx, {
+        type: 'bar',
+        data: {
+            labels: {!! json_encode($barSubjects) !!},
+            datasets: [{
+                label: 'Latest Score',
+                data: {!! json_encode($barScores) !!},
+                backgroundColor: '#007bff',
+                borderRadius: 5
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    // Assuming max score known or optional
                 }
-            });
+            }
         }
-    </script>
+    });
+
+    // Pie Chart (Subject vs Average Percentage)
+    new Chart(pieCtx, {
+        type: 'pie',
+        data: {
+            labels: {!! json_encode($pieSubjects) !!},
+            datasets: [{
+                data: {!! json_encode($piePercentages) !!},
+                backgroundColor: [
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56',
+                    '#4BC0C0',
+                    '#9966FF',
+                    '#FF9F40'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+   
+   
+   
+   </script>
 @endsection
 {{-- <td>{{ $latestResult->created_at->format('d M Y, h:i A') }}</td> --}}

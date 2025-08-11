@@ -28,7 +28,7 @@
             <input type="hidden" name="subject_id" value="{{ $subject_id }}">
             <input type="hidden" name="name" value="{{ Auth::user()->name }}">
             <input type="hidden" name="subject_id" value="{{ $subject_id }}">
-            {{-- end --}}
+            {{-- END --}}
             @php
                 $questionsPerPage = 5;
                 $totalPages = ceil(count($questions) / $questionsPerPage);
@@ -63,14 +63,14 @@
                                 </div>
 
                                 <div class="speaker-review">
-                                    <!-- Speaker -->
-                                    <button type="button" class="btn btn-sm btn-info read-aloud"
+                                    <!-- SPEAKER -->
+                                    <button type="button" class="btn btn-sm read-aloud"
                                         data-question="{{ $question->question }}">
                                         🔊 Read Aloud
                                     </button>
 
-                                    <!-- Review Later -->
-                                    <label class="review-checkbox">
+                                    <!-- REVIEW LATER -->
+                                    <label class="review-checkbox btn btn-sm">
                                         <input type="checkbox" id="review-{{ $question->id }}"
                                             onclick="markReviewLater({{ $question->id }})">
                                         Review Later
@@ -223,6 +223,8 @@
             display: block;
             margin-top: 10px;
             font-weight: bold;
+          background-color: yellow;
+            color:black;
         }
 
         .timer,
@@ -242,7 +244,21 @@
             display: flex;
         }
         .speaker-review{
-margin-left:50px;
+         margin-left:50px;
         }
+        .read-aloud{
+            color:#fff;
+            font-weight:600;
+            font-family:sans-serif;
+            background-color:#32064a;
+        }
+        .read-aloud:hover, .review-checkbox:hover{
+            color:#000;
+            font-weight:bold;
+            font-family:sans-serif;
+            border:2px solid #968c9d;
+             transition: all 1s ease;
+        }
+        
     </style>
 @endsection

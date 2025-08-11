@@ -26,7 +26,7 @@
                      <a class="nav-link" href="{{ url('admin/questions/upload') }}">Add Questions</a>
                      <a class="nav-link" href="{{ url('admin/questions/import') }}">Import Questions</a>
                      <a class="nav-link" href="{{ url('admin/questions') }}">preview Questions</a>
-                     <a class="nav-link" href="{{ url('admin/questions') }}">Exam History</a>
+                     <a class="nav-link" href="{{ url('admin/history') }}">Exam History</a>
                  </nav>
              </div>
              <div class="sb-sidenav-menu-heading text-white">Courses/Subjects</div>
