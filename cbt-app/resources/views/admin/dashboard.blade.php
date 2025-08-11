@@ -66,38 +66,39 @@
 
     {{-- CHARTTING --}}
     <div class="row">
-        <div class="col-xl-6">
+        <div class="col-xl-4">
             <div class="card mb-4">
                 <div class="card-header">
-                    <i class="fas fa-chart-area me-1"></i>
-                    Correct/Failed Chart
+                   <i class="fas fa-chart-pie me-1"></i>
+                    Student Correct/Failed Chart
                 </div>
 
-                <div style="width: 100%; max-width: 400px; margin: auto; margin-top: 30px; margin-bottom:30px">
+                <div style="width: 100%; max-width: 300px; margin: auto; margin-top: 30px; margin-bottom:30px">
                     <canvas id="subjectChart"></canvas>
                 </div>
             </div>
         </div>
-        {{-- <div class="col-xl-6">
+       
+        <div class="col-xl-4">
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-chart-bar me-1"></i>
-                    Students performance Chart
+                    Students Performance History 
                 </div>
-                <div style="width: 100%; max-width: 400px; margin: auto; height: 400px;margin-top: 40px;">
-                    <canvas id="performanceChart"></canvas>
+                <div style="width: 100%; max-width: 300px; margin: auto; margin-top: 40px;">
+                  <canvas id="barChart" ></canvas>
                 </div>
                 
             </div>
-        </div> --}}
-        <div class="col-xl-6">
+        </div>
+         <div class="col-xl-4">
             <div class="card mb-4">
                 <div class="card-header">
-                    <i class="fas fa-chart-bar me-1"></i>
-                    Students performance Chart
+                   <i class="fas fa-chart-pie me-1"></i>
+                   Average % Score Per Subject
                 </div>
-                <div style="width: 100%; max-width: 400px; margin: auto; height: 400px;margin-top: 40px;">
-                   <canvas id="subjectScoreChart" height="100"></canvas>
+                <div style="width: 100%; max-width: 300px; margin: auto; ;margin-top: 40px;">
+                   <canvas id="pieChart" ></canvas>
                 </div>
                 
             </div>
@@ -143,7 +144,6 @@
                             <td>
                                 {{ $history->total > 0 ? round(($history->score / $history->total) * 100, 2) : 0 }}%
                             </td>
-                            {{-- <td>{{ $history->created_at->format('d M Y, h:i A') }}</td> --}}
                         </tr>
                     @endforeach
                 </tbody>
@@ -154,7 +154,6 @@
     {{-- JAVASCRIPT --}}
     @php
         $isAdmin = Auth::user()->role == 2;
-
         $correct = $isAdmin ? $adminData['correctAnswers'] ?? 0 : $userData['correctAnswers'] ?? 0;
         $failed = $isAdmin ? $adminData['failedAnswers'] ?? 0 : $userData['failedAnswers'] ?? 0;
     @endphp
@@ -180,8 +179,10 @@
        
     @endphp
     <script>
-        const correctFailedCtx = document.getElementById('subjectChart')?.getContext('2d');
-        const ctxSubject = document.getElementById('subjectScoreChart')?.getContext('2d');
+    const correctFailedCtx = document.getElementById('subjectChart')?.getContext('2d');
+    const barCtx = document.getElementById('barChart').getContext('2d');
+    const pieCtx = document.getElementById('pieChart').getContext('2d');
+
 
         if (correctFailedCtx) {
             new Chart(correctFailedCtx, {
@@ -197,37 +198,62 @@
             });
         }
 
-        // Bar chart for exam year vs percentage
       
-        // chart
-         if (ctxSubject) {
-        new Chart(ctxSubject, {
-            type: 'bar',
-            data: {
-                labels: {!! json_encode($subjects) !!}, // X-axis: Subjects
-                datasets: [{
-                    label: 'Score',
-                    data: {!! json_encode($scores) !!}, // Y-axis: Scores
-                    backgroundColor: '#28a745',
-                    borderRadius: 5
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: Math.max(...{!! json_encode($scores) !!}) + 5 // Slight padding above highest score
-                    }
+  
+
+// Bar Chart (Subject vs Latest Score)
+    new Chart(barCtx, {
+        type: 'bar',
+        data: {
+            labels: {!! json_encode($barSubjects) !!},
+            datasets: [{
+                label: 'Latest Score',
+                data: {!! json_encode($barScores) !!},
+                backgroundColor: '#007bff',
+                borderRadius: 5
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    // Assuming max score known or optional
                 }
             }
-        });
-    }
-    </script>
+        }
+    });
+
+    // Pie Chart (Subject vs Average Percentage)
+    new Chart(pieCtx, {
+        type: 'pie',
+        data: {
+            labels: {!! json_encode($pieSubjects) !!},
+            datasets: [{
+                data: {!! json_encode($piePercentages) !!},
+                backgroundColor: [
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56',
+                    '#4BC0C0',
+                    '#9966FF',
+                    '#FF9F40'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+   
+   
+   
+   </script>
 @endsection
 {{-- <td>{{ $latestResult->created_at->format('d M Y, h:i A') }}</td> --}}

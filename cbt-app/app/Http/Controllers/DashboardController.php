@@ -17,13 +17,11 @@ class DashboardController extends Controller
     public function index()
     {
         $user = auth()->user();
+        $results = Exams::where('user_id', $user->id)->get();
         $correctAnswers = Exams::where('user_id', $user->id)->sum('score');
         $totalQuestions = Exams::where('user_id', $user->id)->sum('total');
         $failedAnswers  = $totalQuestions - $correctAnswers;
-        // NEW ENTRY
-    
-       
-    
+
         if ($user->role == 1) {
             $adminData = [
                 'totalStudents'     => User::where('role', 2)->count(),
@@ -34,8 +32,6 @@ class DashboardController extends Controller
                 'failedAnswers'      => $failedAnswers,
                 'answeredQuestions'  => $correctAnswers + $failedAnswers,
             ];
-
-            
 
             return view('admin.admin-dashboard', compact('adminData'));
         }
@@ -48,7 +44,6 @@ class DashboardController extends Controller
                    $results = Exams::where('user_id', $user->id)
                     ->orderByDesc('created_at')
                     ->get();
-
             // Optional: If you still want to show latest separately
             $latestResult = $results->first();
 // COUNT FOR DASHBOARD
@@ -64,16 +59,62 @@ class DashboardController extends Controller
             ];
 
             // CHARTS
-          // Assuming $results is already fetched as in your @foreach loop
-$subjects = $results->pluck('subject')->toArray();
-$scores = $results->pluck('score')->toArray();
+         $subjects = $results->pluck('subject')->toArray();
+          $scores = $results->pluck('score')->toArray();
 
-    
+    // SUBJECT & PERCENTAGE CHART
+// For bar chart, if multiple exams per subject, pick latest exam per subject
+$latestScoresPerSubject = $results
+    ->sortByDesc('created_at')
+    ->groupBy('subject')
+    ->map(function($exams) {
+        return $exams->first(); // latest exam per subject
+    });
+
+$barSubjects = $latestScoresPerSubject->pluck('subject')->toArray();
+$barScores = $latestScoresPerSubject->pluck('score')->toArray();
+
+// Prepare pie chart data (subject vs average percentage)
+$groupedBySubject = $results->groupBy('subject');
+
+$pieSubjects = [];
+$piePercentages = [];
+
+foreach ($groupedBySubject as $subject => $exams) {
+    $totalPercentage = 0;
+    $count = 0;
+
+    foreach ($exams as $exam) {
+        if ($exam->total > 0) {
+            $totalPercentage += ($exam->score / $exam->total) * 100;
+            $count++;
+        }
+    }
+
+    if ($count > 0) {
+        $pieSubjects[] = $subject;
+        $piePercentages[] = round($totalPercentage / $count, 2);
+    }
+}
+
+// barchart
+$results = Exams::where('user_id', $user->id)
+    ->orderBy('created_at', 'asc')
+    ->get();
+
+
+
+
             return view('admin.dashboard', 
             compact(
             'userData',
-                'results',
-                'scores', 'subjects',
+            'results',
+                'scores', 
+                'subjects', 
+                'barSubjects', 
+                'barScores', 
+                'pieSubjects', 
+                'piePercentages',
                  'latestResult'));
         }
     
