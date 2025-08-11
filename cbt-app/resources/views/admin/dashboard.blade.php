@@ -72,19 +72,34 @@
                     <i class="fas fa-chart-area me-1"></i>
                     Correct/Failed Chart
                 </div>
-                {{-- <canvas id="correctFailedChart" width="400" height="300"></canvas> --}}
 
-                <div class="card-body"><canvas id="correctFailedChart" width="100%" height="400"></canvas></div>
+                <div style="width: 100%; max-width: 400px; margin: auto; margin-top: 30px; margin-bottom:30px">
+                    <canvas id="subjectChart"></canvas>
+                </div>
             </div>
         </div>
+        {{-- <div class="col-xl-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-bar me-1"></i>
+                    Students performance Chart
+                </div>
+                <div style="width: 100%; max-width: 400px; margin: auto; height: 400px;margin-top: 40px;">
+                    <canvas id="performanceChart"></canvas>
+                </div>
+                
+            </div>
+        </div> --}}
         <div class="col-xl-6">
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-chart-bar me-1"></i>
                     Students performance Chart
                 </div>
-                {{-- <canvas id="performanceChart" width="400" height="300"></canvas> --}}
-                <div class="card-body"><canvas id="performanceChart" width="100%" height="400"></canvas></div>
+                <div style="width: 100%; max-width: 400px; margin: auto; height: 400px;margin-top: 40px;">
+                   <canvas id="subjectScoreChart" height="100"></canvas>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -137,22 +152,36 @@
     </div>
 
     {{-- JAVASCRIPT --}}
+    @php
+        $isAdmin = Auth::user()->role == 2;
+
+        $correct = $isAdmin ? $adminData['correctAnswers'] ?? 0 : $userData['correctAnswers'] ?? 0;
+        $failed = $isAdmin ? $adminData['failedAnswers'] ?? 0 : $userData['failedAnswers'] ?? 0;
+    @endphp
+    //
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/    chart.min.js"></script>
+    @php
+        $isAdmin = Auth::user()->role == 1;
 
+        $correct = $isAdmin
+            ? $adminData['correctAnswers'] ?? 0
+            : (isset($userData['correctAnswers'])
+                ? $userData['correctAnswers']
+                : 0);
+
+        $failed = $isAdmin
+            ? $adminData['failedAnswers'] ?? 0
+            : (isset($userData['failedAnswers'])
+                ? $userData['failedAnswers']
+                : 0);
+       
+    @endphp
     <script>
-        const correctFailedCtx = document.getElementById('correctFailedChart')?.getContext('2d');
-        const performanceCtx = document.getElementById('performanceChart')?.getContext('2d');
-        const performanceCtx = document.getElementById('performanceChart')?.getContext('2d');
-
-        @php
-            $isAdmin = Auth::user()->role == 1;
-
-            $correct = $isAdmin ? $adminData['correctAnswers'] ?? 0 : (isset($userData['correctAnswers']) ? $userData['correctAnswers'] : 0);
-
-            $failed = $isAdmin ? $adminData['failedAnswers'] ?? 0 : (isset($userData['failedAnswers']) ? $userData['failedAnswers'] : 0);
-        @endphp
+        const correctFailedCtx = document.getElementById('subjectChart')?.getContext('2d');
+        const ctxSubject = document.getElementById('subjectScoreChart')?.getContext('2d');
 
         if (correctFailedCtx) {
             new Chart(correctFailedCtx, {
@@ -168,21 +197,37 @@
             });
         }
 
-        if (performanceCtx) {
-            new Chart(performanceCtx, {
-                type: 'line',
-                data: {
-                    labels: {!! json_encode($performanceDates ?? []) !!},
-                    datasets: [{
-                        label: 'Score (%)',
-                        data: {!! json_encode($performanceScores ?? []) !!},
-                        fill: false,
-                        borderColor: '#007bff',
-                        tension: 0.3
-                    }]
+        // Bar chart for exam year vs percentage
+      
+        // chart
+         if (ctxSubject) {
+        new Chart(ctxSubject, {
+            type: 'bar',
+            data: {
+                labels: {!! json_encode($subjects) !!}, // X-axis: Subjects
+                datasets: [{
+                    label: 'Score',
+                    data: {!! json_encode($scores) !!}, // Y-axis: Scores
+                    backgroundColor: '#28a745',
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: Math.max(...{!! json_encode($scores) !!}) + 5 // Slight padding above highest score
+                    }
                 }
-            });
-        }
+            }
+        });
+    }
     </script>
 @endsection
 {{-- <td>{{ $latestResult->created_at->format('d M Y, h:i A') }}</td> --}}

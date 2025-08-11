@@ -20,6 +20,8 @@ class DashboardController extends Controller
         $correctAnswers = Exams::where('user_id', $user->id)->sum('score');
         $totalQuestions = Exams::where('user_id', $user->id)->sum('total');
         $failedAnswers  = $totalQuestions - $correctAnswers;
+        // NEW ENTRY
+    
        
     
         if ($user->role == 1) {
@@ -49,6 +51,7 @@ class DashboardController extends Controller
 
             // Optional: If you still want to show latest separately
             $latestResult = $results->first();
+// COUNT FOR DASHBOARD
             $userData = [
                 'totalStudents'     => User::where('role', 2)->count(),
                 'totalUsers'        => User::where('role', '!=', 1)->count(),
@@ -59,8 +62,19 @@ class DashboardController extends Controller
                 'failedAnswers'      => $failedAnswers,
                 'answeredQuestions'  => $correctAnswers + $failedAnswers,
             ];
+
+            // CHARTS
+          // Assuming $results is already fetched as in your @foreach loop
+$subjects = $results->pluck('subject')->toArray();
+$scores = $results->pluck('score')->toArray();
+
     
-            return view('admin.dashboard', compact('userData', 'results','latestResult'));
+            return view('admin.dashboard', 
+            compact(
+            'userData',
+                'results',
+                'scores', 'subjects',
+                 'latestResult'));
         }
     
         // In case role is not 1 or 2
