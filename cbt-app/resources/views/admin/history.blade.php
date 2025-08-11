@@ -5,7 +5,7 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            <span class="fw-bold">All Student Exam History</span>
+            <span class="fw-bold">All Students Exam History</span>
         </div>
         <div class="card-body">
             <table id="datatablesSimple">
@@ -17,6 +17,7 @@
                         <th>Years</th>
                         <th>Score</th>
                         <th>Percentage</th>
+                        <th>Date</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -27,6 +28,7 @@
                         <th>Years</th>
                         <th>Score</th>
                         <th>Percentage</th>
+                        <th>Date</th>
                     </tr>
                 </tfoot>
                 <tbody>
