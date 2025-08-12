@@ -6,7 +6,7 @@
         <li class="breadcrumb-item active">Student Dashboard</li>
     </ol>
 
-    {{-- Student/Normal User Stats --}}
+    {{-- STUDENTS/USER STATISTICS --}}
     <div class="container mt-4">
         <div class="row g-4 py-4">
             @if (!empty($userData))
@@ -64,7 +64,7 @@
 
 
 
-    {{-- CHARTTING --}}
+    {{--STATISTICAL CHARTTING --}}
     <div class="row">
         <div class="col-xl-4">
             <div class="card mb-4">
@@ -105,7 +105,7 @@
         </div>
     </div>
 
-    {{-- TABLE --}}
+    {{--DATA TABLE FOR STUDENT HISTORY--}}
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
@@ -157,7 +157,6 @@
         $correct = $isAdmin ? $adminData['correctAnswers'] ?? 0 : $userData['correctAnswers'] ?? 0;
         $failed = $isAdmin ? $adminData['failedAnswers'] ?? 0 : $userData['failedAnswers'] ?? 0;
     @endphp
-    //
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.js"></script>
@@ -183,7 +182,7 @@
     const barCtx = document.getElementById('barChart').getContext('2d');
     const pieCtx = document.getElementById('pieChart').getContext('2d');
 
-
+// FAIL/CORRECT STATISTICS
         if (correctFailedCtx) {
             new Chart(correctFailedCtx, {
                 type: 'doughnut',

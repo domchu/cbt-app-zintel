@@ -18,75 +18,61 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <style>
-        /* Dark Mode Styling */
-        body.dark-mode {
-            background-color: #121212 !important;
-            color: #f1f1f1 !important;
-        }
+   <style>
+    body.exam-page {
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+    }
 
-        body.dark-mode .bg-white,
-        body.dark-mode .card,
-        body.dark-mode .dark-mode-container {
-            background-color: #1e1e1e !important;
-            color: #f1f1f1 !important;
-        }
+    .bg-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
 
-        body.dark-mode .text-dark {
-            color: #f1f1f1 !important;
-        }
+    .bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        animation: fadeBackground 10s infinite;
+        transition: opacity 1s ease-in-out;
+    }
 
-        body.dark-mode .btn {
-            background-color: #2c2c2c !important;
-            color: #f1f1f1 !important;
-            border-color: #555 !important;
-        }
+    .bg-image:nth-child(1) {
+        background-image: url('/images/bg-exam-person.jpg');
+        animation-delay: 0s;
+    }
 
-        body.dark-mode hr {
-            border-color: #444 !important;
-        }
+    .bg-image:nth-child(2) {
+        background-image: url('/images/bg-exam-cap.jpg');
+        animation-delay: 5s;
+    }
 
-        body.dark-mode #resultCard {
-            background-color: #1e1e1e !important;
-            color: #f1f1f1 !important;
-            border-color: #444 !important;
+    @keyframes fadeBackground {
+        0%, 40% {
+            opacity: 1;
         }
-
-        body.dark-mode #resultCard hr {
-            border-color: #666 !important;
+        50%, 90% {
+            opacity: 0;
         }
-
-        body.dark-mode .btn-outline-primary {
-            border-color: #90cdf4 !important;
-            color: #90cdf4 !important;
-        }
-
-        body.dark-mode .btn-outline-primary:hover {
-            background-color: #90cdf4 !important;
-            color: #121212 !important;
-        }
-
-        .dark-mode-container {
-            transition: background-color 0.4s, color 0.4s;
-        }
-
-        body:not(.dark-mode) .dark-mode-container {
-            background-color: #ffffff !important;
-            color: #212529 !important;
-        }
-
-        body.dark-mode #resultCard {
-            border-color: #444 !important;
-        }
-
-        body.dark-mode {
-            background-color: #121212 !important;
-            color: #f1f1f1 !important;
-        }
-    </style>
+    }
+</style>
 </head>
 
-<body class="font-sans antialiased light-mode" id="appBody">
+<body class="font-sans antialiased exam-page" id="appBody">
+     <div class="bg-container">
+        <div class="bg-image"></div>
+        <div class="bg-image"></div>
+    </div>
 
     <div class="min-vh-100 dark-mode-container">
         @include('layouts.navigation')
@@ -101,52 +87,14 @@
         @endisset
 
         <!-- Page Content -->
-        <main>
+        <main class="color:white; text-align:center; padding-top:50px;">
             <div class="container-fluid px-4 container">
                 @yield('content')
             </div>
         </main>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const toggleButton = document.getElementById('darkModeToggle');
-            const themeIcon = document.getElementById('themeIcon');
-            const body = document.getElementById('appBody');
-    
-            function applyTheme(theme) {
-                if (theme === 'dark-mode') {
-                    body.classList.add('dark-mode');
-                    body.classList.remove('light-mode');
-                    if (themeIcon) themeIcon.textContent = '🌞';
-                } else {
-                    body.classList.add('light-mode');
-                    body.classList.remove('dark-mode');
-                    if (themeIcon) themeIcon.textContent = '🌙';
-                }
-            }
-    
-            // Get stored theme or default to system preference
-            let savedTheme = localStorage.getItem('theme');
-    
-            if (!savedTheme) {
-                savedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
-                    ? 'dark-mode'
-                    : 'light-mode';
-            }
-    
-            applyTheme(savedTheme);
-            localStorage.setItem('theme', savedTheme); // Save it once applied
-    
-            // Toggle theme on click
-            toggleButton.addEventListener('click', () => {
-                const currentTheme = body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
-                const newTheme = currentTheme === 'dark-mode' ? 'light-mode' : 'dark-mode';
-                applyTheme(newTheme);
-                localStorage.setItem('theme', newTheme);
-            });
-        });
-    </script>
+   
     
 
 </body>

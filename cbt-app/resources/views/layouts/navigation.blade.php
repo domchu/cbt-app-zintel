@@ -11,11 +11,12 @@
                        
                     </a>
                 </div>
-                    <div class="nav-item">
+                {{-- DARK MODE --}}
+                    {{-- <div class="nav-item">
                         <button id="darkModeToggle" class="btn btn-outline-secondary ms-3">
                             <span id="themeIcon">🌙</span> Toggle Theme
                         </button>
-                    </div>
+                    </div> --}}
               
             </div>
 
