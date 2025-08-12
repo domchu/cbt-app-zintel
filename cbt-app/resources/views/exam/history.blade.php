@@ -22,6 +22,7 @@
                                 <th>👤 Candidate Name</th>
                                 <th>📘 Subject</th>
                                 <th>📅 Year</th>
+                                <th>📄 Exam Type</th>
                                 <th>✅ Score</th>
                                 <th>❓ Total Questions</th>
                                 <th>📊 Percentage</th>
@@ -34,6 +35,7 @@
                                     <td>{{ $history->name }}</td>
                                     <td>{{ $history->subject }}</td>
                                     <td>{{ $history->year }}</td>
+                                    <td>{{ $history->exam_type }}</td>
                                     <td class="text-success fw-bold">{{ $history->score }}</td>
                                     <td>{{ $history->total }}</td>
                                     <td>

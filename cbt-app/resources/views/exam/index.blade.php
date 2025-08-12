@@ -117,7 +117,7 @@
 </style> --}}
 
 
-{{-- @endsection --}} --}}
+{{-- @endsection --}} 
 
 @extends('layouts.app')
 
