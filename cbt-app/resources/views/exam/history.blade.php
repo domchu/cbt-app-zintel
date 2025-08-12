@@ -16,7 +16,7 @@
                 <div class="alert alert-info text-center">No exam results available.</div>
             @else
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered align-middle text-center">
+                    <table id="datatablesSimple" class="table table-striped table-bordered align-middle text-center">
                         <thead class="table-dark">
                             <tr>
                                 <th>👤 Candidate Name</th>
@@ -52,5 +52,7 @@
     </div>
 </div>
 
-
+ <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
+    <script src="{{ asset('admin/js/datatables-simple-demo.js') }}"></script>
 @endsection
