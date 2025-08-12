@@ -4,8 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{-- <meta name="color-scheme" content="light dark"> --}}
-
+    <meta name="color-scheme" content="light dark">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Zintel Academy | Computer Base Test') }}</title>
@@ -16,12 +15,17 @@
 
     <!-- Scripts & CSS -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="{{ asset('admin/css/styles.css') }}" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+    </script>
 
    <style>
     body.exam-page {
         margin: 0;
-        height: 100vh;
+        height: 100%;
         overflow: hidden;
     }
 
@@ -65,6 +69,11 @@
             opacity: 0;
         }
     }
+.dark-mode-container {
+    position: relative;
+    z-index: 1;
+}
+
 </style>
 </head>
 
@@ -87,7 +96,7 @@
         @endisset
 
         <!-- Page Content -->
-        <main class="color:white; text-align:center; padding-top:50px;">
+        <main class="color:lightgray; text-align:center; padding-top:50px;">
             <div class="container-fluid px-4 container">
                 @yield('content')
             </div>
