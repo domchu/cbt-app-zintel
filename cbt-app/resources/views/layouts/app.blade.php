@@ -25,8 +25,8 @@
    <style>
     body.exam-page {
         margin: 0;
-        height: 100%;
-        overflow: hidden;
+    min-height: 100vh;
+    overflow-y: auto;
     }
 
     .bg-container {

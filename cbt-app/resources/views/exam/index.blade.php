@@ -133,18 +133,18 @@
                     <li>Once the exam starts, the timer will begin counting down. The test will automatically submit when time runs out.</li>
                     <li>You are allowed to answer questions in any order unless otherwise restricted.</li>
                     <li>Click “Next” to proceed to the next question, and “Previous” to review earlier questions (enabled).</li>
-                    {{-- <li>Do not refresh the browser, close the tab, or press the back button during the test.</li>
+                    <li>Do not refresh the browser, close the tab, or press the back button during the test.</li>
                     <li>Each question may have a time limit or may auto-lock after submission (based on exam settings).</li>
                     <li>Click “Submit” once you are done. You cannot modify answers after submission.</li>
                     <li>Your score will be available immediately submit button is trigger or after admin review depending on the exam type.</li>
                     <li>Cheating or switching tabs may lead to disqualification.</li>
                     <li>If you face any issues, contact your exam supervisor or administrator immediately.</li>
-                    <li>GoodLucks !!!</li> --}}
+                    <li>GoodLucks !!!</li>
                 </ul>
 
             <!-- Acknowledgement Button -->
             <div class="mt-3">
-                <button id="acknowledgeBtn" id="confirmReadBtn" class="btn btn-primary">
+                <button id="acknowledgeBtn" id="confirmReadBtn" class="btn btn-danger">
                     I have read and understood the instructions
                 </button>
             </div>
