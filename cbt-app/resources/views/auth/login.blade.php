@@ -12,7 +12,7 @@
             </a>
         </div>
         <div class="my-8 text-center font-bold">
-            <h2>Welcome Back !</h2>
+            <h2>Welcome Back ! Enter Your Credentials</h2>
         </div>
         {{-- SESSION --}}
         <x-auth-session-status class="mb-4" :status="session('status')" />
