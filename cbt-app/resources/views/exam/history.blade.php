@@ -4,7 +4,7 @@
     <div class="container my-5">
         <div class="card shadow-sm">
             <div class="card-header bg-primary text-white text-center">
-                <h4 class="mb-0">📄 My Exam History</h4>
+                <h4 class="mb-0">📄 My Examination History</h4>
             </div>
 
             <div class="card-body">
@@ -20,10 +20,10 @@
                             <thead class="table-dark">
                                 <tr>
                                     <th>👤 Candidate Name</th>
-                                    <th>📘 Subject</th>
-                                    <th>📅 Year</th>
+                                    <th>📘 Subjects</th>
+                                    <th>📅 Years</th>
                                     <th>📄 Exam Type</th>
-                                    <th>✅ Score</th>
+                                    <th>✅ Total Scores</th>
                                     <th>❓ Total Questions</th>
                                     <th>📊 Percentage</th>
                                     <th>🕒 Date Completed</th>
@@ -35,7 +35,7 @@
                                     <th>📘 Subject</th>
                                     <th>📅 Year</th>
                                     <th>📄 Exam Type</th>
-                                    <th>✅ Score</th>
+                                    <th>✅ Total Score</th>
                                     <th>❓ Total Questions</th>
                                     <th>📊 Percentage</th>
                                     <th>🕒 Date Completed</th>

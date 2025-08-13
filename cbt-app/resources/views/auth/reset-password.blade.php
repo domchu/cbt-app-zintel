@@ -3,7 +3,6 @@
         <div class="bg-image bg-image-1"></div>
         <div class="bg-image bg-image-2"></div>
     </div>
-
     <!-- Logo Status -->
     <div class="login-box">
         <div class="logo-container text-center mb-4" style="display:flex;justify-content:center;margin-bottom:30px">
@@ -12,12 +11,8 @@
             </a>
         </div>
         <div class="my-8 text-center font-bold">
-            <h2>Forgot Password ! No Qualms</h2>
+            <h2>Reset Your Password & Safe Keep It</h2>
         </div>
-
-
-
-
         {{-- <x-guest-layout> --}}
         <form method="POST" action="{{ route('password.store') }}">
             @csrf
@@ -58,7 +53,6 @@
             </div>
         </form>
         <link href="{{ asset('css/reset-password.css') }}" rel="stylesheet" />
-
         <link href="{{ asset('admin/css/styles.css') }}" rel="stylesheet" />
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
