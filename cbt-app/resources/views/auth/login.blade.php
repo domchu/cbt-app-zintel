@@ -6,10 +6,13 @@
     </div>
     <!-- Logo Status -->
     <div class="login-box">
-        <div class="logo-container text-center mb-4">
+        <div class="logo-container text-center mb-4" style="display:flex;justify-content:center;margin-bottom:30px">
             <a href="{{ url('/') }}">
-                <img src="{{ asset('assets/logo.png') }}" alt="Brand Logo" width="60" />
+                <img src="{{ asset('assets/logo.png') }}" alt="Brand Logo" width="100" />
             </a>
+        </div>
+        <div class="my-8 text-center font-bold">
+            <h2>Welcome Back !</h2>
         </div>
         {{-- SESSION --}}
         <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -20,7 +23,7 @@
 
             <!-- Email Address -->
             <div>
-                <x-input-label for="email" :value="__('Email')" />
+                <x-input-label for="email" :value="__('Email Address')" />
                 <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
                     required autofocus autocomplete="username" />
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
