@@ -12,7 +12,7 @@
                     <div class="card-body">
                         {{-- your slider data --}}
                         
-                            <table class="table table-bordered">
+                            <table id="datatablesSimple" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>ID</th>

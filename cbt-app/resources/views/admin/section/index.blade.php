@@ -16,7 +16,7 @@
 
                     </div>
                     <div class="card-body">
-                        <table class="table table-stripe table-hover table-bordered">
+                        <table id="datatablesSimple" class="table table-stripe table-hover table-bordered">
                             <thead>
                                 <tr>
                                     <th>Name</th>

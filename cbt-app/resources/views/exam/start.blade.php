@@ -43,7 +43,8 @@
                         <Article class="question-container" id="question-{{ $i }}">
 
 
-                            <h4>Question {{ $i + 1 }}</h4>
+                            <h4 style="font-bold;font-size:30px">Question {{ $i + 1 }}. </h4>
+                            {{-- <span style="font-bold;font-size:30px">{{ $i + 1 }}. </span> --}}
                             <h5>{{ $question->question }}</h5>
 
                             <section class="cont">

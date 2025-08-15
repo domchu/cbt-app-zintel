@@ -31,7 +31,7 @@
                     <div class="card-body">
                         {{-- Your Student Data --}}
 
-                        <table id="myDataTable" class="table table-bordered table-hover">
+                        <table id="datatablesSimple" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>ID</th>
