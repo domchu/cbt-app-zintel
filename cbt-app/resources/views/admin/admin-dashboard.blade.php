@@ -9,7 +9,7 @@
     <div class="container mt-4">
         <div class="row g-4 py-4">
 
-            @if (!empty($userData))
+            @if (!empty($adminData))
                 <div class="col-md-4">
                     <div class="card shadow-sm border-primary">
                         <div class="card-body text-center">
@@ -97,7 +97,7 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            <h4 class="mb-3">📊 All Students' Exam History</h4>
+            <h4 class="mb-3">📊 All Students Exam History</h4>
         </div>
         <div class="card-body">
             @if ($results->isEmpty())
@@ -106,7 +106,7 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
-                            <th>Candidate Name</th>
+                        <th>Candidate Name</th>
                         <th>Subjects</th>
                         <th>Exam Type</th>
                         <th>Years</th>
@@ -116,7 +116,7 @@
                     </thead>
                     <tfoot>
                         <tr>
-                              <th>Candidate Name</th>
+                        <th>Candidate Name</th>
                         <th>Subjects</th>
                         <th>Exam Type</th>
                         <th>Years</th>
@@ -153,38 +153,105 @@
 
 
 
-    {{-- JAVASCRIPT --}}
+     {{-- JAVASCRIPT --}}
+    @php
+        $isAdmin = Auth::user()->role == 2;
+        $correct = $isAdmin ? $adminData['correctAnswers'] ?? 0 : $userData['correctAnswers'] ?? 0;
+        $failed = $isAdmin ? $adminData['failedAnswers'] ?? 0 : $userData['failedAnswers'] ?? 0;
+    @endphp
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/    chart.min.js"></script>
+    @php
+        $isAdmin = Auth::user()->role == 1;
+
+        $correct = $isAdmin
+            ? $adminData['correctAnswers'] ?? 0
+            : (isset($userData['correctAnswers'])
+                ? $userData['correctAnswers']
+                : 0);
+
+        $failed = $isAdmin
+            ? $adminData['failedAnswers'] ?? 0
+            : (isset($userData['failedAnswers'])
+                ? $userData['failedAnswers']
+                : 0);
+
+    @endphp
     <script>
-        const correctFailedCtx = document.getElementById('correctFailedChart').getContext('2d');
-        new Chart(correctFailedCtx, {
-            type: 'doughnut',
+        const correctFailedCtx = document.getElementById('subjectChart')?.getContext('2d');
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
+
+        // FAIL/CORRECT STATISTICS
+        if (correctFailedCtx) {
+            new Chart(correctFailedCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Correct', 'Failed'],
+                    datasets: [{
+                        data: [{{ $correct }}, {{ $failed }}],
+                        backgroundColor: ['#28a745', '#dc3545'],
+                        borderWidth: 1
+                    }]
+                }
+            });
+        }
+
+
+
+
+        // Bar Chart (Subject vs Latest Score)
+        new Chart(barCtx, {
+            type: 'bar',
             data: {
-                labels: ['Correct', 'Failed'],
+                labels: {!! json_encode($barSubjects) !!},
                 datasets: [{
-                    data: [{{ $correctAnswers }}, {{ $failedAnswers }}],
-                    backgroundColor: ['#28a745', '#dc3545'],
-                    borderWidth: 1
+                    label: 'Latest Score',
+                    data: {!! json_encode($barScores) !!},
+                    backgroundColor: '#007bff',
+                    borderRadius: 5
                 }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        // Assuming max score known or optional
+                    }
+                }
             }
         });
 
-        const performanceCtx = document.getElementById('performanceChart').getContext('2d');
-        new Chart(performanceCtx, {
-            type: 'line',
+        // Pie Chart (Subject vs Average Percentage)
+        new Chart(pieCtx, {
+            type: 'pie',
             data: {
-                labels: {!! json_encode($performanceDates) !!}, // e.g., ['May', 'June', 'July']
+                labels: {!! json_encode($pieSubjects) !!},
                 datasets: [{
-                    label: 'Score (%)',
-                    data: {!! json_encode($performanceScores) !!}, // e.g., [50, 80, 60]
-                    fill: false,
-                    borderColor: '#007bff',
-                    tension: 0.1
+                    data: {!! json_encode($piePercentages) !!},
+                    backgroundColor: [
+                        '#FF6384',
+                        '#36A2EB',
+                        '#FFCE56',
+                        '#4BC0C0',
+                        '#9966FF',
+                        '#FF9F40'
+                    ],
+                    borderWidth: 1
                 }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
             }
         });
     </script>
 @endsection
 
-
-{{-- <center><span><?php echo date("Y");?> &copy;Copyright Zintel Academy | All Right Reserved</span></center>  --}}
