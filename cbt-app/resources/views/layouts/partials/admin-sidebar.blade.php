@@ -57,13 +57,24 @@
                  <nav class="sb-sidenav-menu-nested nav">
                      <a class="nav-link" href="{{ url('admin/student/create') }}">Add Students</a>
                      <a class="nav-link" href="{{ url('admin/student') }}">View Students</a>
+                     {{-- <a class="nav-link" href="{{ url('admin/section/create') }}">Add Section</a>
+                     <a class="nav-link" href="{{ url('admin/section') }}">View Sections</a> --}}
+                   
+                 </nav>
+             </div>
+             {{-- Section --}}
+              <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSections"
+                 aria-expanded="false" aria-controls="collapseSections">
+                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                 Academics Secction
+                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+             </a>
+             <div class="collapse" id="collapseSections" aria-labelledby="headingThree"
+                 data-bs-parent="#sidenavAccordion">
+                 <nav class="sb-sidenav-menu-nested nav">
                      <a class="nav-link" href="{{ url('admin/section/create') }}">Add Section</a>
-                     {{-- <a class="nav-link" href="{{ url('admin/subject/create') }}">Subjects</a> --}}
-                     {{-- <a class="nav-link" href="{{ url('admin/students') }}">Add Subjects</a>
-                     <a class="nav-link" href="{{ url('admin/students') }}">Add Class</a>
-                     <a class="nav-link" href="{{ url('admin/students') }}">Sections</a>
-                     <a class="nav-link" href="{{ url('admin/students') }}">View Students</a>
-                     <a class="nav-link" href="{{ url('admin/students') }}">View Students</a> --}}
+                     <a class="nav-link" href="{{ url('admin/section') }}">View Sections</a>
+                   
                  </nav>
              </div>
 
@@ -79,7 +90,8 @@
              <div class="collapse" id="collapseFrontend" aria-labelledby="headingThree"
                  data-bs-parent="#sidenavAccordion">
                  <nav class="sb-sidenav-menu-nested nav">
-                     <a class="nav-link" href="{{ url('home-slider') }}">Slider</a>
+                     <a class="nav-link" href="{{ url('add-slider') }}">add Slider</a>
+                     <a class="nav-link" href="{{ url('home-slider') }}">View Slider</a>
                  </nav>
              </div>
 
@@ -91,7 +103,7 @@
                  General Settins
                  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
              </a>
-             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
+             {{-- <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
                  data-bs-parent="#sidenavAccordion">
                  <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                      <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -122,8 +134,8 @@
                          </nav>
                      </div>
                  </nav>
-             </div>
-             <div class="sb-sidenav-menu-heading">Addons</div>
+             </div> --}}
+             <div class="sb-sidenav-menu-heading">Charts</div>
              <a class="nav-link" href="charts.html">
                  <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                  Charts
