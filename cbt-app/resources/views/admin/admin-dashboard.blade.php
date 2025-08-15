@@ -11,26 +11,27 @@
 
             @if (!empty($adminData))
                 <div class="col-md-4">
-                    <div class="card shadow-sm border-primary">
+                    <div class="card shadow-sm border-success">
                         <div class="card-body text-center">
-                            <h5 class="card-title">📚 Total Subjects</h5>
-                            <p class="fs-4 fw-bold">{{ $adminData['totalSubjects'] }}</p>
+                            <h5 class="card-title">👥Total Students</h5>
+                            <p class="fs-4 fw-bold">{{ $adminData['totalUsers'] ?? 0 }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card shadow-sm border-success">
+                    <div class="card shadow-sm border-primary">
                         <div class="card-body text-center">
-                            <h5 class="card-title">👥Total Students</h5>
-                            <p class="fs-4 fw-bold">{{ $adminData['totalUsers'] }}</p>
+                            <h5 class="card-title">📚 Total Subjects</h5>
+                            <p class="fs-4 fw-bold">{{ $adminData['totalSubjects'] ?? 0 }}</p>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-4">
                     <div class="card shadow-sm border-info">
                         <div class="card-body text-center">
                             <h5 class="card-title">❓Total Questions</h5>
-                            <p class="fs-4 fw-bold">{{ $adminData['totalQuestions'] }}</p>
+                            <p class="fs-4 fw-bold">{{ $adminData['totalQuestions'] ?? 0 }}</p>
                         </div>
                     </div>
                 </div>
@@ -39,7 +40,7 @@
                     <div class="card shadow-sm border-warning">
                         <div class="card-body text-center">
                             <h5 class="card-title">✅ Answered</h5>
-                            <p class="fs-4 fw-bold">{{ $adminData['answeredQuestions'] }}</p>
+                            <p class="fs-4 fw-bold">{{ $adminData['answeredQuestions'] ?? 0 }}</p>
                         </div>
                     </div>
                 </div>
@@ -48,7 +49,7 @@
                     <div class="card shadow-sm border-success">
                         <div class="card-body text-center">
                             <h5 class="card-title">✔️ Correct</h5>
-                            <p class="fs-4 fw-bold">{{ $adminData['correctAnswers'] }}</p>
+                            <p class="fs-4 fw-bold">{{ $adminData['correctAnswers'] ?? 0 }}</p>
                         </div>
                     </div>
                 </div>
@@ -57,7 +58,7 @@
                     <div class="card shadow-sm border-danger">
                         <div class="card-body text-center">
                             <h5 class="card-title">❌ Failed</h5>
-                            <p class="fs-4 fw-bold">{{ $adminData['failedAnswers'] }}</p>
+                            <p class="fs-4 fw-bold">{{ $adminData['failedAnswers'] ?? 0 }}</p>
                         </div>
                     </div>
                 </div>
@@ -69,31 +70,49 @@
                 </div>
             @endif
         </div>
-
     </div>
 
     {{-- CHARTING --}}
     <div class="row">
-        <div class="col-xl-6">
+        <div class="col-xl-4">
             <div class="card mb-4">
                 <div class="card-header">
-                    <i class="fas fa-chart-area me-1"></i>
-                    Correct/Failed Chart
+                    <i class="fas fa-chart-pie me-1"></i>
+                    Student Correct/Failed Chart
                 </div>
-                <div class="card-body"><canvas id="correctFailedChart" width="100%" height="40"></canvas></div>
+
+                <div style="width: 100%; max-width: 300px; margin: auto; margin-top: 30px; margin-bottom:30px">
+                    <canvas id="subjectChart"></canvas>
+                </div>
             </div>
         </div>
-        <div class="col-xl-6">
+
+        <div class="col-xl-4">
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-chart-bar me-1"></i>
-                    Students performance Chart
+                    Students Performance History
                 </div>
-                <div class="card-body"><canvas id="performanceChart" width="100%" height="40"></canvas></div>
+                <div style="width: 100%; max-width: 300px; margin: auto; margin-top: 40px;">
+                    <canvas id="barChart"></canvas>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xl-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-pie me-1"></i>
+                    Average % Score Per Subject
+                </div>
+                <div style="width: 100%; max-width: 300px; margin: auto; ;margin-top: 40px;">
+                    <canvas id="pieChart"></canvas>
+                </div>
+
             </div>
         </div>
     </div>
-    {{-- TABLE --}}
+    {{-- DATA TABLE --}}
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
@@ -106,38 +125,44 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
-                        <th>Candidate Name</th>
-                        <th>Subjects</th>
-                        <th>Exam Type</th>
-                        <th>Years</th>
-                        <th>Score</th>
-                        <th>Percentage</th>
+                            <th>Candidate Name</th>
+                            <th>Subjects</th>
+                            <th>Exam Type</th>
+                            <th>Years</th>
+                            <th>Total Score</th>
+                            <th>Total Questions</th>
+                            <th>Percentage</th>
+                            <th>Date Completed</th>
+
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                        <th>Candidate Name</th>
-                        <th>Subjects</th>
-                        <th>Exam Type</th>
-                        <th>Years</th>
-                        <th>Score</th>
-                        <th>Percentage</th>
+                            <th>Candidate Name</th>
+                            <th>Subjects</th>
+                            <th>Exam Type</th>
+                            <th>Years</th>
+                            <th>Total Score</th>
+                            <th>Total Questions</th>
+                            <th>Percentage</th>
+                            <th>Date Completed</th>
+
                         </tr>
                     </tfoot>
                     <tbody>
-                         @foreach ($results as $history)
-                        <tr>
-                            <td>{{ $history->name }}</td>
-                            <td>{{ $history->subject }}</td>
-                            <td>{{ $history->exam_type }}</td>
-                            <td> {{ $history->year }}</td>
-                            <td>{{ $history->score }} / {{ $history->total }}</td>
-                            <td>
-                                {{ $history->total > 0 ? round(($history->score / $history->total) * 100, 2) : 0 }}%
-                            </td>
-                            <td>{{ $history->created_at->format('d M Y, h:i A') }}</td> 
-                        </tr>
-                    @endforeach
+                        @foreach ($results as $history)
+                            <tr>
+                                <td>{{ $history->name }}</td>
+                                <td>{{ $history->subject }}</td>
+                                <td>{{ $history->exam_type }}</td>
+                                <td> {{ $history->year }}</td>
+                                <td>{{ $history->score }} / {{ $history->total }}</td>
+                                <td>
+                                    {{ $history->total > 0 ? round(($history->score / $history->total) * 100, 2) : 0 }}%
+                                </td>
+                                <td>{{ $history->created_at->format('d M Y, h:i A') }}</td>
+                            </tr>
+                        @endforeach
                         <tr>
                             <td>Colleen Hurst</td>
                             <td>Javascript Developer</td>
@@ -153,9 +178,9 @@
 
 
 
-     {{-- JAVASCRIPT --}}
+    {{-- JAVASCRIPT --}}
     @php
-        $isAdmin = Auth::user()->role == 2;
+        $isAdmin = Auth::user()->role == 1;
         $correct = $isAdmin ? $adminData['correctAnswers'] ?? 0 : $userData['correctAnswers'] ?? 0;
         $failed = $isAdmin ? $adminData['failedAnswers'] ?? 0 : $userData['failedAnswers'] ?? 0;
     @endphp
@@ -164,8 +189,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/    chart.min.js"></script>
     @php
-        $isAdmin = Auth::user()->role == 1;
-
         $correct = $isAdmin
             ? $adminData['correctAnswers'] ?? 0
             : (isset($userData['correctAnswers'])
@@ -198,8 +221,6 @@
                 }
             });
         }
-
-
 
 
         // Bar Chart (Subject vs Latest Score)
@@ -254,4 +275,3 @@
         });
     </script>
 @endsection
-
