@@ -119,7 +119,7 @@
             <h4 class="mb-3">📊 All Students Exam History</h4>
         </div>
         <div class="card-body">
-            @if ($results->isEmpty())
+            @if ($examHistory->isEmpty())
                 <div class="alert alert-info">No exam results found.</div>
             @else
                 <table id="datatablesSimple">
@@ -150,17 +150,17 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach ($results as $history)
+                        @foreach ($examHistory as $exam)
                             <tr>
-                                <td>{{ $history->name }}</td>
-                                <td>{{ $history->subject }}</td>
-                                <td>{{ $history->exam_type }}</td>
-                                <td> {{ $history->year }}</td>
-                                <td>{{ $history->score }} / {{ $history->total }}</td>
+                                <td>{{ $exam->name }}</td>
+                                <td>{{ $exam->subject }}</td>
+                                <td>{{ $exam->exam_type }}</td>
+                                <td> {{ $exam->year }}</td>
+                                <td>{{ $exam->score }} / {{ $exam->total }}</td>
                                 <td>
-                                    {{ $history->total > 0 ? round(($history->score / $history->total) * 100, 2) : 0 }}%
+                                    {{ $exam->total > 0 ? round(($exam->score / $exam->total) * 100, 2) : 0 }}%
                                 </td>
-                                <td>{{ $history->created_at->format('d M Y, h:i A') }}</td>
+                                <td>{{ $exam->created_at->format('d M Y, h:i A') }}</td>
                             </tr>
                         @endforeach
                         <tr>
@@ -203,7 +203,7 @@
                 : 0);
 
     @endphp
-    <script>
+    {{-- <script>
         const correctFailedCtx = document.getElementById('subjectChart')?.getContext('2d');
         const barCtx = document.getElementById('barChart').getContext('2d');
         const pieCtx = document.getElementById('pieChart').getContext('2d');
@@ -274,5 +274,5 @@
                 }
             }
         });
-    </script>
+    </script> --}}
 @endsection

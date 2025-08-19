@@ -25,14 +25,20 @@ class AdminDashboardController extends Controller
         $totalStudents = User::where('role', 2)->count(); // student role = 2
         $totalSubjects = Subject::count();
         $totalQuestions = Questions::count();
+        $answeredQuestions = Exams::count();
+        $totalQuestions = Exams::sum('total');
+         $correctAnswers = Exams::where('user_id', $user->id)->sum('score');
+        $totalQuestions = Exams::where('user_id', $user->id)->sum('total');
+        $failedAnswers  = $totalQuestions - $correctAnswers;
 
         // Exam history
         $examHistory = Exams::with(['student', 'subject'])->latest()->get();
+        
 
         // Answers stats
-        $answeredQuestions = Exams::count();
-        $correctAnswers = Exams::where('is_correct', true)->count();
-        $failedAnswers = Exams::where('is_correct', false)->count();
+        
+        // $correctAnswers = Exams::where('is_correct', true)->count();
+        // $failedAnswers = Exams::where('is_correct', false)->count();
 
         return view('admin.admin-dashboard', compact(
             'totalUsers',
