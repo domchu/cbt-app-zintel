@@ -122,7 +122,7 @@
             @if ($examHistory->isEmpty())
                 <div class="alert alert-info">No exam results found.</div>
             @else
-                <table id="datatablesSimple">
+                <table id="datatablesSimple" class="table table-bordered">
                     <thead>
                         <tr>
                             <th>Candidate Name</th>
@@ -156,7 +156,8 @@
                                 <td>{{ $exam->subject }}</td>
                                 <td>{{ $exam->exam_type }}</td>
                                 <td> {{ $exam->year }}</td>
-                                <td>{{ $exam->score }} / {{ $exam->total }}</td>
+                                 <td class="text-success fw-bold">{{ $exam->score }}</td>
+                                  <td>{{ $exam->total }}</td>
                                 <td>
                                     {{ $exam->total > 0 ? round(($exam->score / $exam->total) * 100, 2) : 0 }}%
                                 </td>
