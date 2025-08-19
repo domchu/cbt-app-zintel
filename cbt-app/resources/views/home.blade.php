@@ -12,8 +12,8 @@
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="
-                https://cdn.jsdelivr.net/npm/sweetalert2/dist/sweetalert2.all.min.js
-                "></script>
+                    https://cdn.jsdelivr.net/npm/sweetalert2/dist/sweetalert2.all.min.js
+                    "></script>
 
     <!-- Styles / Scripts -->
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
@@ -66,23 +66,23 @@
     @endif
 
     <div class="w-full sm:px-32 px-10 border">
-        <x-banner/>
+        <x-banner />
     </div>
-    
+
     <div>
-        <x-features/>
+        <x-features />
     </div>
-    
+
     <div>
-        <x-categories/>
+        <x-categories />
     </div>
-    
+
     <div class="w-full">
-        <x-students-section/>
+        <x-students-section />
     </div>
-    
+
     <div class="w-full">
-        <x-testimonials/>
+        <x-testimonials />
     </div>
 
     <div>

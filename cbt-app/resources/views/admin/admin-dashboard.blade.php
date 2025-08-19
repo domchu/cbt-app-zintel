@@ -9,28 +9,29 @@
     <div class="container mt-4">
         <div class="row g-4 py-4">
 
-            @if (!empty($userData))
-                <div class="col-md-4">
-                    <div class="card shadow-sm border-primary">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">📚 Total Subjects</h5>
-                            <p class="fs-4 fw-bold">{{ $adminData['totalSubjects'] }}</p>
-                        </div>
-                    </div>
-                </div>
+            @if (!empty($adminData))
                 <div class="col-md-4">
                     <div class="card shadow-sm border-success">
                         <div class="card-body text-center">
                             <h5 class="card-title">👥Total Students</h5>
-                            <p class="fs-4 fw-bold">{{ $adminData['totalUsers'] }}</p>
+                            <p class="fs-4 fw-bold">{{ $adminData['totalUsers'] ?? 0 }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
+                    <div class="card shadow-sm border-primary">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">📚 Total Subjects</h5>
+                            <p class="fs-4 fw-bold">{{ $adminData['totalSubjects'] ?? 0 }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
                     <div class="card shadow-sm border-info">
                         <div class="card-body text-center">
                             <h5 class="card-title">❓Total Questions</h5>
-                            <p class="fs-4 fw-bold">{{ $adminData['totalQuestions'] }}</p>
+                            <p class="fs-4 fw-bold">{{ $adminData['totalQuestions'] ?? 0 }}</p>
                         </div>
                     </div>
                 </div>
@@ -39,7 +40,7 @@
                     <div class="card shadow-sm border-warning">
                         <div class="card-body text-center">
                             <h5 class="card-title">✅ Answered</h5>
-                            <p class="fs-4 fw-bold">{{ $adminData['answeredQuestions'] }}</p>
+                            <p class="fs-4 fw-bold">{{ $adminData['answeredQuestions'] ?? 0 }}</p>
                         </div>
                     </div>
                 </div>
@@ -48,7 +49,7 @@
                     <div class="card shadow-sm border-success">
                         <div class="card-body text-center">
                             <h5 class="card-title">✔️ Correct</h5>
-                            <p class="fs-4 fw-bold">{{ $adminData['correctAnswers'] }}</p>
+                            <p class="fs-4 fw-bold">{{ $adminData['correctAnswers'] ?? 0 }}</p>
                         </div>
                     </div>
                 </div>
@@ -57,7 +58,7 @@
                     <div class="card shadow-sm border-danger">
                         <div class="card-body text-center">
                             <h5 class="card-title">❌ Failed</h5>
-                            <p class="fs-4 fw-bold">{{ $adminData['failedAnswers'] }}</p>
+                            <p class="fs-4 fw-bold">{{ $adminData['failedAnswers'] ?? 0 }}</p>
                         </div>
                     </div>
                 </div>
@@ -69,122 +70,137 @@
                 </div>
             @endif
         </div>
-
     </div>
 
     {{-- CHARTING --}}
     <div class="row">
-        <div class="col-xl-6">
+        <div class="col-xl-4">
             <div class="card mb-4">
                 <div class="card-header">
-                    <i class="fas fa-chart-area me-1"></i>
-                    Correct/Failed Chart
+                    <i class="fas fa-chart-pie me-1"></i>
+                    Student Correct/Failed Chart
                 </div>
-                <div class="card-body"><canvas id="correctFailedChart" width="100%" height="40"></canvas></div>
+
+                <div style="width: 100%; max-width: 300px; margin: auto; margin-top: 30px; margin-bottom:30px">
+                    <canvas id="examChart"></canvas>
+                </div>
             </div>
         </div>
-        <div class="col-xl-6">
+
+        <div class="col-xl-4">
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-chart-bar me-1"></i>
-                    Students performance Chart
+                    Students Performance History
                 </div>
-                <div class="card-body"><canvas id="performanceChart" width="100%" height="40"></canvas></div>
+                <div style="width: 100%; max-width: 300px; margin: auto; margin-top: 40px;">
+                    <canvas id="barChart"></canvas>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xl-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-pie me-1"></i>
+                    Average % Score Per Subject
+                </div>
+                <div style="width: 100%; max-width: 300px; margin: auto; ;margin-top: 40px;">
+                    <canvas id="pieChart"></canvas>
+                </div>
+
             </div>
         </div>
     </div>
-    {{-- TABLE --}}
+    {{-- DATA TABLE --}}
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            <h4 class="mb-3">📊 All Students' Exam History</h4>
+            <h4 class="mb-3">📊 All Students Exam History</h4>
         </div>
         <div class="card-body">
-            @if ($results->isEmpty())
+            @if ($examHistory->isEmpty())
                 <div class="alert alert-info">No exam results found.</div>
             @else
-                <table id="datatablesSimple">
+                <table id="datatablesSimple" class="table table-bordered">
                     <thead>
                         <tr>
                             <th>Candidate Name</th>
-                        <th>Subjects</th>
-                        <th>Exam Type</th>
-                        <th>Years</th>
-                        <th>Score</th>
-                        <th>Percentage</th>
+                            <th>Subjects</th>
+                            <th>Exam Type</th>
+                            <th>Years</th>
+                            <th>Total Score</th>
+                            <th>Total Questions</th>
+                            <th>Percentage</th>
+                            <th>Date Completed</th>
+
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                              <th>Candidate Name</th>
-                        <th>Subjects</th>
-                        <th>Exam Type</th>
-                        <th>Years</th>
-                        <th>Score</th>
-                        <th>Percentage</th>
+                            <th>Candidate Name</th>
+                            <th>Subjects</th>
+                            <th>Exam Type</th>
+                            <th>Years</th>
+                            <th>Total Score</th>
+                            <th>Total Questions</th>
+                            <th>Percentage</th>
+                            <th>Date Completed</th>
+
                         </tr>
                     </tfoot>
                     <tbody>
-                         @foreach ($results as $history)
-                        <tr>
-                            <td>{{ $history->name }}</td>
-                            <td>{{ $history->subject }}</td>
-                            <td>{{ $history->exam_type }}</td>
-                            <td> {{ $history->year }}</td>
-                            <td>{{ $history->score }} / {{ $history->total }}</td>
-                            <td>
-                                {{ $history->total > 0 ? round(($history->score / $history->total) * 100, 2) : 0 }}%
-                            </td>
-                            <td>{{ $history->created_at->format('d M Y, h:i A') }}</td> 
-                        </tr>
-                    @endforeach
-                        <tr>
-                            <td>Colleen Hurst</td>
-                            <td>Javascript Developer</td>
-                            <td>San Francisco</td>
-                            <td>39</td>
-                            <td>2009/09/15</td>
-                            <td>$205,500</td>
-                        </tr>
+                        @foreach ($examHistory as $exam)
+                            <tr>
+                                <td>{{ $exam->name }}</td>
+                                <td>{{ $exam->subject }}</td>
+                                <td>{{ $exam->exam_type }}</td>
+                                <td> {{ $exam->year }}</td>
+                                 <td class="text-success font-bold">{{ $exam->score }}</td>
+                                  <td>{{ $exam->total }}</td>
+                                <td>
+                                    {{ $exam->total > 0 ? round(($exam->score / $exam->total) * 100, 2) : 0 }}%
+                                </td>
+                                <td>{{ $exam->created_at->format('d M Y, h:i A') }}</td>
+                            </tr>
+                        @endforeach
+                       
                     </tbody>
                 </table>
+                @endif
         </div>
     </div>
 
 
 
-    {{-- JAVASCRIPT --}}
+   
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/    chart.min.js"></script>
+   
     <script>
-        const correctFailedCtx = document.getElementById('correctFailedChart').getContext('2d');
-        new Chart(correctFailedCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Correct', 'Failed'],
-                datasets: [{
-                    data: [{{ $correctAnswers }}, {{ $failedAnswers }}],
-                    backgroundColor: ['#28a745', '#dc3545'],
-                    borderWidth: 1
-                }]
-            }
-        });
+        const correctFailedCtx = document.getElementById('examChart')?.getContext('2d');
+        // const barCtx = document.getElementById('barChart').getContext('2d');
+        // const pieCtx = document.getElementById('pieChart').getContext('2d');
 
-        const performanceCtx = document.getElementById('performanceChart').getContext('2d');
-        new Chart(performanceCtx, {
-            type: 'line',
-            data: {
-                labels: {!! json_encode($performanceDates) !!}, // e.g., ['May', 'June', 'July']
-                datasets: [{
-                    label: 'Score (%)',
-                    data: {!! json_encode($performanceScores) !!}, // e.g., [50, 80, 60]
-                    fill: false,
-                    borderColor: '#007bff',
-                    tension: 0.1
-                }]
-            }
-        });
+        // FAIL/CORRECT STATISTICS
+        const ctx = document.getElementById('examChart').getContext('2d');
+    const examChart = new Chart(ctx, {
+        type: 'pie', // change to 'bar' or 'doughnut' if you like
+        data: {
+            labels: @json($chartData['labels']),
+            datasets: [{
+                label: 'Exam Stats',
+                data: @json($chartData['data']),
+                backgroundColor: ['#4CAF50', '#F44336'], // green = correct, red = failed
+            }]
+        }
+    });
+
+
+       
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
 @endsection
-
-
-{{-- <center><span><?php echo date("Y");?> &copy;Copyright Zintel Academy | All Right Reserved</span></center>  --}}

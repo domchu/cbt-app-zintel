@@ -35,13 +35,7 @@ class SliderController extends Controller
                     'image'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        // if($validator->fails())
-        //         {
-        //             return response()->json([
-        //             'message'=> 'All fields are required',
-        //             'error'=> $validator->messages(),
-        //             ], 422);
-        //         }
+      
 
        
 

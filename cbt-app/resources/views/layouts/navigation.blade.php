@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 ">
+<nav x-data="{ open: false }" class="bg-[#32064A] dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 ">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center text-center h-16">
@@ -11,11 +11,12 @@
                        
                     </a>
                 </div>
-                    <div class="nav-item">
+                {{-- DARK MODE --}}
+                    {{-- <div class="nav-item">
                         <button id="darkModeToggle" class="btn btn-outline-secondary ms-3">
                             <span id="themeIcon">🌙</span> Toggle Theme
                         </button>
-                    </div>
+                    </div> --}}
               
             </div>
 

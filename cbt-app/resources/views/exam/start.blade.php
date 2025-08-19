@@ -1,10 +1,10 @@
-@extends('layouts.dashboard')
+@extends('layouts.app')
 
 @section('content')
     <div class="container mt-8">
         <h1 class="exam-title">Exam - {{ $subject }} - {{ $year }} ({{ $exam_type }})</h1>
 
-        <div class="timer-container float-end">
+        <div class="timer-container timer-container-fixed float-end">
             <div id="timer" class="text-danger text-2xl">Time Left: <span id="time" class="timer"></span></div>
             <!-- Question Navigation Panel -->
             <div class="question-navigation">
@@ -43,7 +43,8 @@
                         <Article class="question-container" id="question-{{ $i }}">
 
 
-                            <h4>Question {{ $i + 1 }}</h4>
+                            <h4 style="font-bold;font-size:30px">Question {{ $i + 1 }}. </h4>
+                            {{-- <span style="font-bold;font-size:30px">{{ $i + 1 }}. </span> --}}
                             <h5>{{ $question->question }}</h5>
 
                             <section class="cont">
@@ -80,10 +81,10 @@
                         </Article>
                     @endfor
 
-                    <div class="mt-3 text-center">
+                    <div class="mt-3 text-center mb-40" style="margin-bottom: 40px;">
                         <button type="button" class="btn btn-secondary" onclick="prevQuestion()">Previous</button>
                         <button type="button" class="btn btn-primary" onclick="nextQuestion()">Next</button>
-                        <button type="submit" class="btn btn-success submit-btn" style="display: none;">Submit
+                        <button type="submit" class="btn btn-danger submit-btn" style="display: none;">Submit
                             Exam</button>
                     </div>
                 </div>
@@ -188,6 +189,27 @@
             margin-bottom: 20px;
         }
 
+        .mb-40 {
+            margin-bottom: 40px !important;
+        }
+
+        .timer-container-fixed {
+            position: fixed;
+            top: 130px;
+            /* distance from top */
+            right: 50px;
+            /* distance from right */
+            width: 450px;
+            /* or adjust width as needed */
+            z-index: 1000;
+            /* make sure it’s on top */
+            background-color: rgba(255, 255, 255, 0.9);
+            /* optional: semi-transparent bg */
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
         .question-box {
             width: 40px;
             height: 40px;
@@ -223,8 +245,8 @@
             display: block;
             margin-top: 10px;
             font-weight: bold;
-          background-color: yellow;
-            color:black;
+            background-color: yellow;
+            color: black;
         }
 
         .timer,
@@ -243,22 +265,25 @@
         .cont {
             display: flex;
         }
-        .speaker-review{
-         margin-left:50px;
+
+        .speaker-review {
+            margin-left: 50px;
         }
-        .read-aloud{
-            color:#fff;
-            font-weight:600;
-            font-family:sans-serif;
-            background-color:#32064a;
+
+        .read-aloud {
+            color: #fff;
+            font-weight: 600;
+            font-family: sans-serif;
+            background-color: #32064a;
         }
-        .read-aloud:hover, .review-checkbox:hover{
-            color:#000;
-            font-weight:bold;
-            font-family:sans-serif;
-            border:2px solid #968c9d;
-             transition: all 1s ease;
+
+        .read-aloud:hover,
+        .review-checkbox:hover {
+            color: #000;
+            font-weight: bold;
+            font-family: sans-serif;
+            border: 2px solid #968c9d;
+            transition: all 1s ease;
         }
-        
     </style>
 @endsection

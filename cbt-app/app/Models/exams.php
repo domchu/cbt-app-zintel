@@ -23,11 +23,16 @@ class Exams extends Model
         'user_answers' => 'array',
     ];
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, );
         
     }
     public function subject(){
-        return $this->belongsTo(Subject::class);
+        return $this->belongsTo(Subject::class, 'subject_id');
 
+    }
+       // Exam belongs to a student (User)
+    public function student()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

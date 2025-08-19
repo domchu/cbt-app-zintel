@@ -22,7 +22,7 @@
                         </h2>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered mt-3">
+                        <table  id="datatablesSimple" class="table table-bordered mt-3">
                             <thead>
                                 <tr>
                                     <th>ID</th>
