@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Models\Exams;
 use App\Models\Subject;
 use App\Models\Questions;
-// use App\Models\Answer;
 
 class AdminDashboardController extends Controller
 {
@@ -21,34 +20,40 @@ class AdminDashboardController extends Controller
         }
 
         // Global stats
-        $totalUsers = User::count();
-        $totalStudents = User::where('role', 2)->count(); // student role = 2
+          $totalUsers = User::count();
+        $totalStudents = User::where('role', 2)->count();
         $totalSubjects = Subject::count();
         $totalQuestions = Questions::count();
-        $answeredQuestions = Exams::count();
-        $totalQuestions = Exams::sum('total');
-         $correctAnswers = Exams::where('user_id', $user->id)->sum('score');
-        $totalQuestions = Exams::where('user_id', $user->id)->sum('total');
-        $failedAnswers  = $totalQuestions - $correctAnswers;
+
+ // Answer stats
+        $answeredQuestions = Exams::sum('total');
+        $correctAnswers = Exams::sum('score');
+        $failedAnswers = $answeredQuestions - $correctAnswers;
 
         // Exam history
         $examHistory = Exams::with(['student', 'subject'])->latest()->get();
-        
 
-        // Answers stats
+$chartData = [
+    'labels' => ['Correct Answers', 'Failed Answers'],
+    'data'   => [$correctAnswers, $failedAnswers],
+];
+
+      $adminData = [
+    'totalStudents' => $totalStudents,
+    'totalUsers' => $totalUsers,
+    'totalQuestions' => $totalQuestions,
+    'totalSubjects' => $totalSubjects,
+    'correctAnswers' => $correctAnswers,
+    'failedAnswers' => $failedAnswers,
+    'answeredQuestions' => $answeredQuestions,
+];
+
         
-        // $correctAnswers = Exams::where('is_correct', true)->count();
-        // $failedAnswers = Exams::where('is_correct', false)->count();
 
         return view('admin.admin-dashboard', compact(
-            'totalUsers',
-            'totalStudents',
-            'totalSubjects',
-            'totalQuestions',
-            'answeredQuestions',
-            'correctAnswers',
-            'failedAnswers',
-            'examHistory'
+            'adminData',
+            'examHistory',
+             'chartData'
         ));
     }
 }

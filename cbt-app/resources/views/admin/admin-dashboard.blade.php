@@ -82,7 +82,7 @@
                 </div>
 
                 <div style="width: 100%; max-width: 300px; margin: auto; margin-top: 30px; margin-bottom:30px">
-                    <canvas id="subjectChart"></canvas>
+                    <canvas id="examChart"></canvas>
                 </div>
             </div>
         </div>
@@ -156,7 +156,7 @@
                                 <td>{{ $exam->subject }}</td>
                                 <td>{{ $exam->exam_type }}</td>
                                 <td> {{ $exam->year }}</td>
-                                 <td class="text-success fw-bold">{{ $exam->score }}</td>
+                                 <td class="text-success font-bold">{{ $exam->score }}</td>
                                   <td>{{ $exam->total }}</td>
                                 <td>
                                     {{ $exam->total > 0 ? round(($exam->score / $exam->total) * 100, 2) : 0 }}%
@@ -164,14 +164,7 @@
                                 <td>{{ $exam->created_at->format('d M Y, h:i A') }}</td>
                             </tr>
                         @endforeach
-                        <tr>
-                            <td>Colleen Hurst</td>
-                            <td>Javascript Developer</td>
-                            <td>San Francisco</td>
-                            <td>39</td>
-                            <td>2009/09/15</td>
-                            <td>$205,500</td>
-                        </tr>
+                       
                     </tbody>
                 </table>
                 @endif
@@ -180,100 +173,34 @@
 
 
 
-    {{-- JAVASCRIPT --}}
-    @php
-        $isAdmin = Auth::user()->role == 1;
-        $correct = $isAdmin ? $adminData['correctAnswers'] ?? 0 : $userData['correctAnswers'] ?? 0;
-        $failed = $isAdmin ? $adminData['failedAnswers'] ?? 0 : $userData['failedAnswers'] ?? 0;
-    @endphp
+   
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/    chart.min.js"></script>
-    @php
-        $correct = $isAdmin
-            ? $adminData['correctAnswers'] ?? 0
-            : (isset($userData['correctAnswers'])
-                ? $userData['correctAnswers']
-                : 0);
-
-        $failed = $isAdmin
-            ? $adminData['failedAnswers'] ?? 0
-            : (isset($userData['failedAnswers'])
-                ? $userData['failedAnswers']
-                : 0);
-
-    @endphp
-    {{-- <script>
-        const correctFailedCtx = document.getElementById('subjectChart')?.getContext('2d');
-        const barCtx = document.getElementById('barChart').getContext('2d');
-        const pieCtx = document.getElementById('pieChart').getContext('2d');
+   
+    <script>
+        const correctFailedCtx = document.getElementById('examChart')?.getContext('2d');
+        // const barCtx = document.getElementById('barChart').getContext('2d');
+        // const pieCtx = document.getElementById('pieChart').getContext('2d');
 
         // FAIL/CORRECT STATISTICS
-        if (correctFailedCtx) {
-            new Chart(correctFailedCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Correct', 'Failed'],
-                    datasets: [{
-                        data: [{{ $correct }}, {{ $failed }}],
-                        backgroundColor: ['#28a745', '#dc3545'],
-                        borderWidth: 1
-                    }]
-                }
-            });
+        const ctx = document.getElementById('examChart').getContext('2d');
+    const examChart = new Chart(ctx, {
+        type: 'pie', // change to 'bar' or 'doughnut' if you like
+        data: {
+            labels: @json($chartData['labels']),
+            datasets: [{
+                label: 'Exam Stats',
+                data: @json($chartData['data']),
+                backgroundColor: ['#4CAF50', '#F44336'], // green = correct, red = failed
+            }]
         }
+    });
 
 
-        // Bar Chart (Subject vs Latest Score)
-        new Chart(barCtx, {
-            type: 'bar',
-            data: {
-                labels: {!! json_encode($barSubjects) !!},
-                datasets: [{
-                    label: 'Latest Score',
-                    data: {!! json_encode($barScores) !!},
-                    backgroundColor: '#007bff',
-                    borderRadius: 5
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        // Assuming max score known or optional
-                    }
-                }
-            }
-        });
-
-        // Pie Chart (Subject vs Average Percentage)
-        new Chart(pieCtx, {
-            type: 'pie',
-            data: {
-                labels: {!! json_encode($pieSubjects) !!},
-                datasets: [{
-                    data: {!! json_encode($piePercentages) !!},
-                    backgroundColor: [
-                        '#FF6384',
-                        '#36A2EB',
-                        '#FFCE56',
-                        '#4BC0C0',
-                        '#9966FF',
-                        '#FF9F40'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'bottom'
-                    }
-                }
-            }
-        });
-    </script> --}}
+       
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+    </script>
 @endsection
